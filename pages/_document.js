@@ -4,13 +4,13 @@ import Footer from '../components/Footer.tsx'
 
 export default function Document() {
     return (
-        <Html>
+        <Html lang='es'>
             <Head />
             <head>
                 <title> CarHouse - Inicio </title>
                 <link rel="shortcut icon" href="./assets/img/logo/icon-shortcut.png" />
                 {/* Fontawesome */}
-                <script src="https://kit.fontawesome.com/de0eb60c48.js" crossorigin="anonymous"></script>
+                <script src="https://kit.fontawesome.com/de0eb60c48.js" crossOrigin="anonymous"></script>
                 {/* AOS (Animate On Scroll) */}
                 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
@@ -21,9 +21,9 @@ export default function Document() {
                 <NextScript />
                 <Footer/>
                 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-                <script>
+                {/* <script>
                     AOS.init();
-                </script>
+                </script> */}
             </body>
 
         </Html>
