@@ -2,7 +2,7 @@ import React from 'react'
 
 const comprar = () => {
   return (
-    <div>
+    <>
 
 
             {/* form 1 */}
@@ -213,7 +213,7 @@ const comprar = () => {
         </section>
     </main>
 
-        </div>
+        </>
   )
 }
 
