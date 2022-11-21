@@ -8,7 +8,7 @@ const comprar = () => {
             {/* form 1 */}
 
             <form className="search-form">
-                 {/* <!-- Barra Busqueda --> */}
+                 {/* Barra Busqueda  */}
                 <input className="search-bar" type="search" placeholder="¿Qué auto estas buscando?" />
                 <button className="search-btn"><img src="../assets/img/icons/magnifying-glass.png" alt="icono busqueda" width="25" /></button>
             </form>
@@ -17,10 +17,10 @@ const comprar = () => {
 
  <main className="main-comprar">
         <section className="amount-sort-section"> 
-        {/* <!-- Cantidad de vehiculos y ordenamiento --> */}
+        {/*  Cantidad de vehiculos y ordenamiento  */}
             <p className="total-vehicles">Se han encontrado 6789 vehículos</p>
             <div className="sort-vehicles"> 
-            {/* <!-- Ordenamiento --> */}
+            {/*  Ordenamiento  */}
                 <img src="../assets/img/icons/ordenar-por-opcion-de-boton-de-interfaz-de-atributos.png" alt="icono ordenamiento" width="25" />
                 <p>Ordenar por:</p>
                 <select name="ordenamiento" id="">
@@ -32,9 +32,9 @@ const comprar = () => {
         </section>
 
         <section className="filter-cars"> 
-        {/* <!-- Filtrar y Vehiculos --> */}
+        {/* Filtrar y Vehiculos  */}
             <section className="filters">
-                 {/* <!-- Filtrar --> */}
+                 {/* Filtrar  */}
                 <div className="filter-title">
                     <img src="../assets/img/icons/simbolo-de-herramienta-llena-de-filtro.png" alt="icono filtrar" width="25" />
                     <p>Filtrar:</p>
@@ -71,12 +71,12 @@ const comprar = () => {
             </section>
 
             <section className="cars-list">
-                 {/* <!-- Listado Vehiculos --> */}
+                 {/* Listado Vehiculos  */}
                 <a className="card-car" href="./car.html"> 
-                {/* <!-- Card Auto --> */}
+                {/* Card Auto  */}
                     <img src="../assets/img/images/comprar/nissan-kicks.webp" alt="imagen auto nissan"/>
                     <div className="info-car"> 
-                    {/* <!-- Datos Vehiculo --> */}
+                    {/*  Datos Vehiculo  */}
                         <div className="car-brand">
                             <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" />
                             <h3>Nissan Kicks</h3>
@@ -89,10 +89,10 @@ const comprar = () => {
                     </div>
                 </a>
                 <a className="card-car" href="./car.html">
-                     {/* <!-- Card Auto --> */}
+                     {/*  Card Auto  */}
                     <img src="../assets/img/images/comprar/golf-gti.webp" alt="imagen auto" />
                     <div>
-                         {/* <!-- Datos Vehiculo --> */}
+                         {/*  Datos Vehiculo */}
                         <div className="car-brand">
                             <img src="../assets/img/images/comprar-home/volkswagen-logo.webp" alt="logo volkswagen" width="28" />
                             <h3>Volkswagen Golf GTI</h3>
@@ -105,10 +105,10 @@ const comprar = () => {
                     </div>
                 </a>
                 <a className="card-car" href="./car.html"> 
-                {/* <!-- Card Auto --> */}
+                {/*  Card Auto  */}
                     <img src="../assets/img/images/comprar/320i.webp" alt="imagen auto bmw"/>
                     <div> 
-                        {/* <!-- Datos Vehiculo --> */}
+                        {/* Datos Vehiculo  */}
                         <div className="car-brand">
                             <img src="../assets/img/images/comprar-home/logo-bmw.webp" alt="logo bmw" width="30" />
                             <h3>BMW 320i</h3>
@@ -121,10 +121,10 @@ const comprar = () => {
                     </div>
                 </a>
                 <a className="card-car" href="./car.html">
-                     {/* <!-- Card Auto --> */}
+                     {/*  Card Auto  */}
                     <img src="../assets/img/images/comprar/fiesta.webp" alt="imagen auto ford" />
                     <div> 
-                        {/* <!-- Datos Vehiculo --> */}
+                        {/*  Datos Vehiculo  */}
                         <div className="car-brand">
                             <img src="../assets/img/images/comprar-home/logo-ford.webp" alt="logo ford" width="50" />
                             <h3>Ford Fiesta</h3>
@@ -137,10 +137,10 @@ const comprar = () => {
                     </div>
                 </a>
                 <a className="card-car" href="./car.html">
-                     {/* <!-- Card Auto --> */}
+                     {/*  Card Auto  */}
                     <img src="../assets/img/images/comprar/amg-c450.webp" alt="imagen auto mercedes" />
                     <div>
-                         {/* <!-- Datos Vehiculo --> */}
+                         {/*  Datos Vehiculo  */}
                         <div className="car-brand">
                             <img src="../assets/img/images/comprar-home/logo-mercedes-benz.webp" alt="logo mercedes" width="50" />
                             <h3>Mercedes AMG C450</h3>
@@ -153,10 +153,10 @@ const comprar = () => {
                     </div>
                 </a>
                 <a className="card-car" href="./car.html">
-                     {/* <!-- Card Auto --> */}
+                     {/*  Card Auto  */}
                     <img src="../assets/img/images/comprar/clio.webp" alt="imagen auto renault" />
                     <div> 
-                        {/* <!-- Datos Vehiculo --> */}
+                        {/*  Datos Vehiculo  */}
                         <div className="car-brand">
                             <img src="../assets/img/images/comprar-home/renault-logo.webp" alt="logo renault" width="50" />
                             <h3>Renault Clio</h3>
@@ -169,10 +169,10 @@ const comprar = () => {
                     </div>
                 </a>
                 <a className="card-car" href="./car.html"> 
-                {/* <!-- Card Auto --> */}
+                {/*  Card Auto  */}
                     <img src="../assets/img/images/comprar/swift.webp" alt="imagen auto suzuki" />
                     <div>
-                         {/* <!-- Datos Vehiculo --> */}
+                         {/*  Datos Vehiculo  */}
                         <div className="car-brand">
                             <img src="../assets/img/images/comprar-home/suzuki_logo.webp" alt="logo suzuki" width="30" />
                             <h3>Suzuki Swift</h3>
@@ -185,10 +185,10 @@ const comprar = () => {
                     </div>
                 </a>
                 <a className="card-car" href="./car.html"> 
-                {/* <!-- Card Auto --> */}
+                {/*  Card Auto  */}
                     <img src="../assets/img/images/comprar/accent.webp" alt="imagen auto hyundai" />
                     <div> 
-                        {/* <!-- Datos Vehiculo --> */}
+                        {/*  Datos Vehiculo  */}
                         <div className="car-brand">
                             <img src="../assets/img/images/comprar-home/hyundai-logo.webp" alt="logo hyundai" width="40" />
                             <h3>Hyundai Accent</h3>
@@ -204,7 +204,7 @@ const comprar = () => {
         </section>
 
         <section className="pages"> 
-        {/* <!-- Pages --> */}
+        {/*  Pages  */}
             <a href="#">1</a>
             <a href="#">2</a>
             <a href="#">3</a>
