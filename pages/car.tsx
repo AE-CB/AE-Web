@@ -5,6 +5,7 @@ import {
     faChevronLeft,
     faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
+import Footer from '../components/Footer';
 // var $ = require("jquery");
 // if (typeof window !== "undefined") {
 //    window.$ = window.jQuery = require("jquery");
@@ -178,6 +179,8 @@ const car = () => {
                     </div>
                 </section>
             </main>
+
+            <Footer/>
         </>
     )
 }
