@@ -1,9 +1,12 @@
 import React from 'react'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 
 function comprarHome() {
   return (
    <>
+       <Header/>
+
         <section className="banner-comprar-home">
             <h1>Encontrá el Auto de <br/><b>Tus Sueños</b></h1>
             <form className="search-form"> {/* Barra de Busqueda */}

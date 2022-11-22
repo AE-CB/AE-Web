@@ -6,6 +6,7 @@ import {
     faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 // var $ = require("jquery");
 // if (typeof window !== "undefined") {
 //    window.$ = window.jQuery = require("jquery");
@@ -20,6 +21,8 @@ import Footer from '../components/Footer';
 const car = () => {
     return (
         <>
+            <Header/>
+
             <form className="search-form">  {/*Barra Busqueda*/}
                 <input className="search-bar" type="search" placeholder="¿Qué auto estas buscando?" />
                 <button className="search-btn"><img src="../assets/img/icons/magnifying-glass.png" alt="icono busqueda" width="25" /></button>

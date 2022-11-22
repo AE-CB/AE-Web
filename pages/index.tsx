@@ -1,11 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
     <>
+
+      <Header/>
+
       <section className="banner">
         <img className="banner-img" src="./assets/img/images/landing-page/banner-wallpaper.webp"
           alt="imagen de auto" width="50%" /> {/* Imagen del banner */}

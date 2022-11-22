@@ -1,10 +1,12 @@
 import React from 'react'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 
 function contactanos() {
   return (
 
        <>
+        <Header/>
 
         <section className="banner-contactanos">
             <h1>Contáctanos</h1>

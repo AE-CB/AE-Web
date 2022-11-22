@@ -1,10 +1,13 @@
 import React from 'react'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
 
 function financiamientoInfo() {
   return (
 
         <>
+
+        <Header/>
 
        <section className="banner-financing-info">
             <h1>Las 6 Formas de <br/><b>Financiar la Compra de tu Vehículo</b></h1>

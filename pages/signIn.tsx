@@ -1,10 +1,12 @@
 import React from 'react'
+import Header from '../components/Header'
 
 function signIn() {
   return (
 
        <>
-       
+       <Header/>
+
        <div className="sign-in-container">
         <img className="sign-in-banner" src="../assets/img/images/sign-in-up/car-image.webp" alt="imagen auto" width="100%" height="50%" /> {/* Parte de la Imagen */}
         <a href="../index.html" className="btn-volver-siu"><i className="fas fa-arrow-left"></i></a>

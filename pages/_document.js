@@ -20,7 +20,7 @@ export default function Document() {
 
             </head>
             <body>
-                <Header />
+                {/* <Header /> */}
                 <Main />
                 <NextScript />
                 {/* <Footer/> */}
