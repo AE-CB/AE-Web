@@ -7,8 +7,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const car = () => {
-  return (
-    <>
+    return (
+        <>
             <form className="search-form">  {/*Barra Busqueda*/}
                 <input className="search-bar" type="search" placeholder="¿Qué auto estas buscando?" />
                 <button className="search-btn"><img src="../assets/img/icons/magnifying-glass.png" alt="icono busqueda" width="25" /></button>
@@ -18,7 +18,7 @@ const car = () => {
                 <div className="return-comprar">
                     <a className="btn-return-comprar" href="./comprar.html">
                         <FontAwesomeIcon icon={faArrowLeft} />
-                    <p>Atrás</p></a>
+                        <p>Atrás</p></a>
                 </div>
 
                 <section className="car-section">
@@ -169,7 +169,7 @@ const car = () => {
                 </section>
             </main>
         </>
-  )
+    )
 }
 
 export default car
