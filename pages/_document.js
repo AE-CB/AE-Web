@@ -7,15 +7,6 @@ import { Fragment } from "react";
 import { useRouter } from "next/router";
 
 export default function Document() {
-
-    // const router = useRouter();
-    // const { asPath } = useRouter();
-
-
-    // let pathName = router.pathname
-
-    // const showFooter =router.pathname  === "/signIn"  ? false : true;
-
     return (
         <Html lang='es'>
             <Head />
