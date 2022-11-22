@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../components/Footer'
 
 function car() {
   return (
@@ -162,6 +163,8 @@ function car() {
             </div>
         </section>
     </main>
+
+    <Footer/>
     </>
   )
 }

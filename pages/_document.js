@@ -3,7 +3,19 @@ import Header from '../components/Header.tsx'
 import Footer from '../components/Footer.tsx'
 import Script from 'next/script'
 
+import { Fragment } from "react";
+import { useRouter } from "next/router";
+
 export default function Document() {
+
+    // const router = useRouter();
+    // const { asPath } = useRouter();
+
+
+    // let pathName = router.pathname
+
+    // const showFooter =router.pathname  === "/signIn"  ? false : true;
+
     return (
         <Html lang='es'>
             <Head />
@@ -20,7 +32,18 @@ export default function Document() {
                 <Header />
                 <Main />
                 <NextScript />
-                <Footer/>
+
+                {/* <Fragment>
+        {showFooter && <Footer/>}
+       
+    </Fragment> */}
+    {/* console.log(asPath) */}
+
+
+{/* {asPath !== '/signIn' && <Footer/>} */}
+
+
+                {/* <Footer/> */}
                 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
                 {/* <script>
                     AOS.init();

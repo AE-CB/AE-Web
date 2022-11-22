@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../components/Footer'
 
 const comprar = () => {
   return (
@@ -212,6 +213,8 @@ const comprar = () => {
             <a href="#">Siguiente</a>
         </section>
     </main>
+
+    <Footer/>
 
         </>
   )
