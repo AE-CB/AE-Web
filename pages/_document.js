@@ -32,17 +32,6 @@ export default function Document() {
                 <Header />
                 <Main />
                 <NextScript />
-
-                {/* <Fragment>
-        {showFooter && <Footer/>}
-       
-    </Fragment> */}
-    {/* console.log(asPath) */}
-
-
-{/* {asPath !== '/signIn' && <Footer/>} */}
-
-
                 {/* <Footer/> */}
                 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
                 {/* <script>
