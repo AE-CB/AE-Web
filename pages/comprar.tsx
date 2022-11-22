@@ -209,9 +209,7 @@ const comprar = () => {
                     <a href="#">Siguiente</a>
                 </section>
             </main>
-
-    <Footer/>
-
+            <Footer />
         </>
     )
 }
