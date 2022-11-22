@@ -6,10 +6,9 @@ import {
     faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 
-
-function car() {
-    return (
-        <>
+const car = () => {
+  return (
+    <>
             <form className="search-form">  {/*Barra Busqueda*/}
                 <input className="search-bar" type="search" placeholder="¿Qué auto estas buscando?" />
                 <button className="search-btn"><img src="../assets/img/icons/magnifying-glass.png" alt="icono busqueda" width="25" /></button>
@@ -170,7 +169,8 @@ function car() {
                 </section>
             </main>
         </>
-    )
+  )
 }
 
 export default car
+
