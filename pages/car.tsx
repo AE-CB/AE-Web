@@ -6,20 +6,24 @@ import {
     faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from '../components/Footer';
-// var $ = require("jquery");
-// if (typeof window !== "undefined") {
-//    window.$ = window.jQuery = require("jquery");
-// }
-// import 'owl.carousel/dist/assets/owl.carousel.css';
-// import 'owl.carousel';
-// import dynamic from "next/dynamic";
-// const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
-//   ssr: false,
-// });
+var $ = require("jquery");
+if (typeof window !== "undefined") {
+    window.$ = window.jQuery = require("jquery");
+}
+import dynamic from "next/dynamic";
+const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
+    ssr: false,
+});
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const car = () => {
     return (
         <>
+            {/* <OwlCarousel>
+                <a className="item"><p>sddsd</p></a>
+                <a className="item"><p>sddsd</p></a>
+            </OwlCarousel> */}
             <form className="search-form">  {/*Barra Busqueda*/}
                 <input className="search-bar" type="search" placeholder="¿Qué auto estas buscando?" />
                 <button className="search-btn"><img src="../assets/img/icons/magnifying-glass.png" alt="icono busqueda" width="25" /></button>
@@ -113,63 +117,66 @@ const car = () => {
                 <section className="similar-cars">
                     <h3>Vehículos Similares</h3>
                     <div className="list-similar-cars">
-                        <a className="card-car" href="./car.html">
-                            {/* Card Auto */}
-                            <img src="../assets/img/images/comprar/nissan-kicks.webp" alt="imagen auto nissan" />
-                            <div className="info-car"> { /* Datos Vehiculo */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" />
-                                    <h3>Nissan Kicks</h3>
+                        <OwlCarousel>
+                            <a className="card-car item" href="./car.html">
+                                {/* Card Auto */}
+                                <img src="../assets/img/images/comprar/nissan-kicks.webp" alt="imagen auto nissan" />
+                                <div className="info-car"> { /* Datos Vehiculo */}
+                                    <div className="car-brand">
+                                        <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" />
+                                        <h3>Nissan Kicks</h3>
+                                    </div>
+                                    <div className="car-data">
+                                        <p>Año: 2021</p>
+                                        <p>Kilometros: 23500</p>
+                                        <p>USD 29700</p>
+                                    </div>
                                 </div>
-                                <div className="car-data">
-                                    <p>Año: 2021</p>
-                                    <p>Kilometros: 23500</p>
-                                    <p>USD 29700</p>
+                            </a>
+                            <a className="card-car item" href="./car.html"> { /* Card Auto */}
+                                <img src="../assets/img/images/comprar/clio.webp" alt="imagen auto renault" />
+                                <div> { /* Datos Vehiculo */}
+                                    <div className="car-brand">
+                                        <img src="../assets/img/images/comprar-home/renault-logo.webp" alt="logo renault" width="50" />
+                                        <h3>Renault Clio</h3>
+                                    </div>
+                                    <div>
+                                        <p>Año: 2018</p>
+                                        <p>Kilometros: 46900</p>
+                                        <p>USD 17600</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a className="card-car" href="./car.html"> { /* Card Auto */}
-                            <img src="../assets/img/images/comprar/clio.webp" alt="imagen auto renault" />
-                            <div> { /* Datos Vehiculo */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/renault-logo.webp" alt="logo renault" width="50" />
-                                    <h3>Renault Clio</h3>
+                            </a>
+                            <a className="card-car item" href="./car.html"> { /* Card Auto */}
+                                <img src="../assets/img/images/comprar/swift.webp" alt="imagen auto suzuki" />
+                                <div> { /* Datos Vehiculo */}
+                                    <div className="car-brand">
+                                        <img src="../assets/img/images/comprar-home/suzuki_logo.webp" alt="logo suzuki" width="30" />
+                                        <h3>Suzuki Swift</h3>
+                                    </div>
+                                    <div>
+                                        <p>Año: 2017</p>
+                                        <p>Kilometros: 90600</p>
+                                        <p>USD 14600</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p>Año: 2018</p>
-                                    <p>Kilometros: 46900</p>
-                                    <p>USD 17600</p>
+                            </a>
+                            <a className="card-car item" href="./car.html"> { /* Card Auto */}
+                                <img src="../assets/img/images/comprar/accent.webp" alt="imagen auto hyundai" />
+                                <div> { /* Datos Vehiculo */}
+                                    <div className="car-brand">
+                                        <img src="../assets/img/images/comprar-home/hyundai-logo.webp" alt="logo hyundai" width="40" />
+                                        <h3>Hyundai Accent</h3>
+                                    </div>
+                                    <div>
+                                        <p>Año: 2018</p>
+                                        <p>Kilometros: 108500</p>
+                                        <p>USD 21800</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a className="card-car" href="./car.html"> { /* Card Auto */}
-                            <img src="../assets/img/images/comprar/swift.webp" alt="imagen auto suzuki" />
-                            <div> { /* Datos Vehiculo */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/suzuki_logo.webp" alt="logo suzuki" width="30" />
-                                    <h3>Suzuki Swift</h3>
-                                </div>
-                                <div>
-                                    <p>Año: 2017</p>
-                                    <p>Kilometros: 90600</p>
-                                    <p>USD 14600</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a className="card-car" href="./car.html"> { /* Card Auto */}
-                            <img src="../assets/img/images/comprar/accent.webp" alt="imagen auto hyundai" />
-                            <div> { /* Datos Vehiculo */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/hyundai-logo.webp" alt="logo hyundai" width="40" />
-                                    <h3>Hyundai Accent</h3>
-                                </div>
-                                <div>
-                                    <p>Año: 2018</p>
-                                    <p>Kilometros: 108500</p>
-                                    <p>USD 21800</p>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </OwlCarousel>
+
                         <div className="left-arrow">
                             <FontAwesomeIcon icon={faChevronLeft} />
                         </div>
@@ -180,7 +187,7 @@ const car = () => {
                 </section>
             </main>
 
-            <Footer/>
+            <Footer />
         </>
     )
 }

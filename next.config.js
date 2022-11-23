@@ -12,8 +12,10 @@ const nextConfig = {
         jQuery: "jquery",
         "window.jQuery": "jquery",
       }));
-    return config;
+      return config;
   }
 }
 
 module.exports = nextConfig
+
+
