@@ -1,7 +1,26 @@
 import React from 'react'
 import Footer from '../components/Footer'
 
-const comprar = () => {
+export async function getStaticProps() {
+    console.log(process.env.API_HOST+ '/vehicles');
+
+    const res = await fetch(process.env.API_HOST+ '/vehicles',{
+        method: 'post',
+        headers: new Headers({
+            'Authorization': 'Bearer '+'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZTQ0MWQ3MDFkNzZiMjU0NjU2MWNkNmQ3Y2VkMmNiZmVlZTRlMzU4NmFkZmFlM2RmYzdjN2IyMmZhNDZhZmFmNDQ0MTQ1ZjYyYTU2NzVhNDkiLCJpYXQiOjE2NjkyOTM5NjEuNjU0MTI1LCJuYmYiOjE2NjkyOTM5NjEuNjU0MTI3LCJleHAiOjE3MDA4Mjk5NjEuNjA0NDg2LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.lnP3cJaqQ8CJB7FzxVueOllV_jx5FzFaqiuke3wjvNBxm92f96Cxor2Ce8uLrDFm6SE67pL9kT88SMhr7JP9ky8cKLcyY-FCFRmLJKtMlUGp_9sQAOkc204SYJ5VUQTPA2ChntfUmYXWv3-bKzqfYu7BHzG634UAL1mgiY2y4H94RLEmzjPc1iX83QuB7fxeFr7ODcQBjQYcgAD08tffkB4g8MebAYgEQjBgxmZAG9nqi2er78gJXP2dTqP8UFbyheh9BywLQVG2459QejaTDgN1gxFPPwXeGThtBAYzHLWlYvXVa4Sihb5uh0jX90S81nmtVi9DymFokJ0_QtqAEGW4YxZpX0Ixz0hBOalqYUybOShSA65ih72zrxyy00LlxyPKZJB1MnQJhipAkBXki3Dc0FcZkv3MCEgwaRH88TP1aibpfDWftj7kMCJ7Trks8eQAGt62NqnFLDZXGhCOWwebUoKav7n_kPdnlxz7VFQTrsYfmRVhJ6sor5BTwa_pmJzjtaxE6Ec6lju1cL6kQOnAAsKtcDkklsEmCSfBdBElqJHq-8FBYfDJ3oy62ybmgcKeGiVjz_-DlougkdRLEnUUhl55Flt1nMXUM8G-0-5zOKFtL0uDg6k-GlNVVXwSl9EE5Iy65vQeuFnNS-V82mWFKsSzn5EXIFB0z0w-4BQ', 
+        })
+    })
+    const vehicles = await res.json()
+    console.log(vehicles.data)
+
+    return {
+        props: {
+            vehicles,
+        },
+    }
+}
+
+const comprar = ({vehicles}) => {
     return (
         <>
             {/* form 1 */}
@@ -82,118 +101,6 @@ const comprar = () => {
                                     <p>Año: 2021</p>
                                     <p>Kilometros: 23500</p>
                                     <p>USD 29700</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a className="card-car" href="./car.html">
-                            {/*  Card Auto  */}
-                            <img src="../assets/img/images/comprar/golf-gti.webp" alt="imagen auto" />
-                            <div>
-                                {/*  Datos Vehiculo */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/volkswagen-logo.webp" alt="logo volkswagen" width="28" />
-                                    <h3>Volkswagen Golf GTI</h3>
-                                </div>
-                                <div>
-                                    <p>Año: 2020</p>
-                                    <p>Kilometros: 35678</p>
-                                    <p>USD 32590</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a className="card-car" href="./car.html">
-                            {/*  Card Auto  */}
-                            <img src="../assets/img/images/comprar/320i.webp" alt="imagen auto bmw" />
-                            <div>
-                                {/* Datos Vehiculo  */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/logo-bmw.webp" alt="logo bmw" width="30" />
-                                    <h3>BMW 320i</h3>
-                                </div>
-                                <div>
-                                    <p>Año: 2014</p>
-                                    <p>Kilometros: 190780</p>
-                                    <p>USD 31400</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a className="card-car" href="./car.html">
-                            {/*  Card Auto  */}
-                            <img src="../assets/img/images/comprar/fiesta.webp" alt="imagen auto ford" />
-                            <div>
-                                {/*  Datos Vehiculo  */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/logo-ford.webp" alt="logo ford" width="50" />
-                                    <h3>Ford Fiesta</h3>
-                                </div>
-                                <div>
-                                    <p>Año: 2016</p>
-                                    <p>Kilometros: 60790</p>
-                                    <p>USD 17800</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a className="card-car" href="./car.html">
-                            {/*  Card Auto  */}
-                            <img src="../assets/img/images/comprar/amg-c450.webp" alt="imagen auto mercedes" />
-                            <div>
-                                {/*  Datos Vehiculo  */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/logo-mercedes-benz.webp" alt="logo mercedes" width="50" />
-                                    <h3>Mercedes AMG C450</h3>
-                                </div>
-                                <div>
-                                    <p>Año: 2016</p>
-                                    <p>Kilometros: 78900</p>
-                                    <p>USD 59700</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a className="card-car" href="./car.html">
-                            {/*  Card Auto  */}
-                            <img src="../assets/img/images/comprar/clio.webp" alt="imagen auto renault" />
-                            <div>
-                                {/*  Datos Vehiculo  */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/renault-logo.webp" alt="logo renault" width="50" />
-                                    <h3>Renault Clio</h3>
-                                </div>
-                                <div>
-                                    <p>Año: 2018</p>
-                                    <p>Kilometros: 46900</p>
-                                    <p>USD 17600</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a className="card-car" href="./car.html">
-                            {/*  Card Auto  */}
-                            <img src="../assets/img/images/comprar/swift.webp" alt="imagen auto suzuki" />
-                            <div>
-                                {/*  Datos Vehiculo  */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/suzuki_logo.webp" alt="logo suzuki" width="30" />
-                                    <h3>Suzuki Swift</h3>
-                                </div>
-                                <div>
-                                    <p>Año: 2017</p>
-                                    <p>Kilometros: 90600</p>
-                                    <p>USD 14600</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a className="card-car" href="./car.html">
-                            {/*  Card Auto  */}
-                            <img src="../assets/img/images/comprar/accent.webp" alt="imagen auto hyundai" />
-                            <div>
-                                {/*  Datos Vehiculo  */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/hyundai-logo.webp" alt="logo hyundai" width="40" />
-                                    <h3>Hyundai Accent</h3>
-                                </div>
-                                <div>
-                                    <p>Año: 2018</p>
-                                    <p>Kilometros: 108500</p>
-                                    <p>USD 21800</p>
                                 </div>
                             </div>
                         </a>
