@@ -6,20 +6,39 @@ import {
     faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from '../components/Footer';
+
 var $ = require("jquery");
 if (typeof window !== "undefined") {
     window.$ = window.jQuery = require("jquery");
 }
+
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+
 import dynamic from "next/dynamic";
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
     ssr: false,
 });
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
+
+
 
 const car = () => {
     return (
         <>
+            <style jsx>{`
+            
+                
+              .item-boxShadow{
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+                border-radius:15px;
+                
+             
+           }
+
+            `}
+
+            </style>
+
             {/* <OwlCarousel>
                 <a className="item"><p>sddsd</p></a>
                 <a className="item"><p>sddsd</p></a>
@@ -116,13 +135,22 @@ const car = () => {
 
                 <section className="similar-cars">
                     <h3>Vehículos Similares</h3>
-                    <div className="list-similar-cars">
-                        <OwlCarousel>
-                            <a className="card-car item" href="./car.html">
+                    <div>
+                        <OwlCarousel loop
+                                     nav={false}
+                                     autoplay={false}
+                                     dots={false}
+                                     autoplayTimeout={2000}
+                                     autoplaySpeed={2000}
+                                     autoplayHoverPause={false}
+                                     items={4}>
+                           
+                           <div className='item item-boxShadow'   style={{margin:10}}>
+                           <a className="card-car item" href="./car.html">
                                 {/* Card Auto */}
-                                <img src="../assets/img/images/comprar/nissan-kicks.webp" alt="imagen auto nissan" />
+                                <img src="../assets/img/images/comprar/nissan-kicks.webp" alt="imagen auto nissan" style={{borderTopRightRadius:15, borderTopLeftRadius:15}} />
                                 <div className="info-car"> { /* Datos Vehiculo */}
-                                    <div className="car-brand">
+                                    <div className="car-brand" style={{width:30}}>
                                         <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" />
                                         <h3>Nissan Kicks</h3>
                                     </div>
@@ -133,10 +161,12 @@ const car = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a className="card-car item" href="./car.html"> { /* Card Auto */}
-                                <img src="../assets/img/images/comprar/clio.webp" alt="imagen auto renault" />
+                           </div>
+                           <div className='item item-boxShadow'  style={{margin:10 }}>
+                           <a className="card-car item" href="./car.html"> { /* Card Auto */}
+                                <img src="../assets/img/images/comprar/clio.webp" alt="imagen auto renault" style={{borderTopRightRadius:15, borderTopLeftRadius:15}}/>
                                 <div> { /* Datos Vehiculo */}
-                                    <div className="car-brand">
+                                    <div className="car-brand"  style={{width:30}}>
                                         <img src="../assets/img/images/comprar-home/renault-logo.webp" alt="logo renault" width="50" />
                                         <h3>Renault Clio</h3>
                                     </div>
@@ -147,10 +177,12 @@ const car = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a className="card-car item" href="./car.html"> { /* Card Auto */}
-                                <img src="../assets/img/images/comprar/swift.webp" alt="imagen auto suzuki" />
+                           </div>
+                           <div className='item item-boxShadow'  style={{margin:10}}>
+                           <a className="card-car item" href="./car.html"> { /* Card Auto */}
+                                <img src="../assets/img/images/comprar/swift.webp" alt="imagen auto suzuki" style={{borderTopRightRadius:15, borderTopLeftRadius:15}}/>
                                 <div> { /* Datos Vehiculo */}
-                                    <div className="car-brand">
+                                    <div className="car-brand" style={{width:30}}>
                                         <img src="../assets/img/images/comprar-home/suzuki_logo.webp" alt="logo suzuki" width="30" />
                                         <h3>Suzuki Swift</h3>
                                     </div>
@@ -161,10 +193,13 @@ const car = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a className="card-car item" href="./car.html"> { /* Card Auto */}
-                                <img src="../assets/img/images/comprar/accent.webp" alt="imagen auto hyundai" />
+                           </div>
+                         
+                           <div className='item item-boxShadow'  style={{margin:10}}>
+                           <a className="card-car item" href="./car.html"> { /* Card Auto */}
+                                <img src="../assets/img/images/comprar/accent.webp" alt="imagen auto hyundai" style={{borderTopRightRadius:15, borderTopLeftRadius:15}}/>
                                 <div> { /* Datos Vehiculo */}
-                                    <div className="car-brand">
+                                    <div className="car-brand"  style={{width:30}}>
                                         <img src="../assets/img/images/comprar-home/hyundai-logo.webp" alt="logo hyundai" width="40" />
                                         <h3>Hyundai Accent</h3>
                                     </div>
@@ -175,6 +210,9 @@ const car = () => {
                                     </div>
                                 </div>
                             </a>
+                           </div>
+                           
+                          
                         </OwlCarousel>
 
                         <div className="left-arrow">
