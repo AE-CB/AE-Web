@@ -2929,3 +2929,10 @@ select:hover {
 @media (min-width: 992px) {
   .issues {
     padding-left: 4rem; } }
+
+
+
+    .item-boxShadow{
+                box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+                border-radius:15px;
+    }

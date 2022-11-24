@@ -25,24 +25,7 @@ const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
 const car = () => {
     return (
         <>
-            <style jsx>{`
-            
-                
-              .item-boxShadow{
-                box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-                border-radius:15px;
-                
-             
-           }
-
-            `}
-
-            </style>
-
-            {/* <OwlCarousel>
-                <a className="item"><p>sddsd</p></a>
-                <a className="item"><p>sddsd</p></a>
-            </OwlCarousel> */}
+         
             <form className="search-form">  {/*Barra Busqueda*/}
                 <input className="search-bar" type="search" placeholder="¿Qué auto estas buscando?" />
                 <button className="search-btn"><img src="../assets/img/icons/magnifying-glass.png" alt="icono busqueda" width="25" /></button>
