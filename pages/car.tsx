@@ -34,20 +34,14 @@ const car = () => {
                      items:4,
                      responsive: {
                         0: {
-                            items: 1,
-                        },
-                        400: {
-                            items: 1,
-                        },
-                        600: {
                             items: 2,
                         },
-                        700: {
+                        600: {
                             items: 3,
                         },
                         1000: {
-                            items: 5,
-                        }
+                            items: 4,
+                        },
                     },
 
                  }
