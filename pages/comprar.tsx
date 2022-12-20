@@ -2,12 +2,12 @@ import React from 'react'
 import Footer from '../components/Footer'
 
 export async function getStaticProps() {
-    console.log(process.env.API_HOST + '/vehicles');
+    console.log(process.env.API_HOST + '/approved_vehicles');
 
-    const res = await fetch(process.env.API_HOST + '/vehicles', {
+    const res = await fetch(process.env.API_HOST + '/approved_vehicles', {
         method: 'get',
         headers: new Headers({
-            'Authorization': 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZTQ0MWQ3MDFkNzZiMjU0NjU2MWNkNmQ3Y2VkMmNiZmVlZTRlMzU4NmFkZmFlM2RmYzdjN2IyMmZhNDZhZmFmNDQ0MTQ1ZjYyYTU2NzVhNDkiLCJpYXQiOjE2NjkyOTM5NjEuNjU0MTI1LCJuYmYiOjE2NjkyOTM5NjEuNjU0MTI3LCJleHAiOjE3MDA4Mjk5NjEuNjA0NDg2LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.lnP3cJaqQ8CJB7FzxVueOllV_jx5FzFaqiuke3wjvNBxm92f96Cxor2Ce8uLrDFm6SE67pL9kT88SMhr7JP9ky8cKLcyY-FCFRmLJKtMlUGp_9sQAOkc204SYJ5VUQTPA2ChntfUmYXWv3-bKzqfYu7BHzG634UAL1mgiY2y4H94RLEmzjPc1iX83QuB7fxeFr7ODcQBjQYcgAD08tffkB4g8MebAYgEQjBgxmZAG9nqi2er78gJXP2dTqP8UFbyheh9BywLQVG2459QejaTDgN1gxFPPwXeGThtBAYzHLWlYvXVa4Sihb5uh0jX90S81nmtVi9DymFokJ0_QtqAEGW4YxZpX0Ixz0hBOalqYUybOShSA65ih72zrxyy00LlxyPKZJB1MnQJhipAkBXki3Dc0FcZkv3MCEgwaRH88TP1aibpfDWftj7kMCJ7Trks8eQAGt62NqnFLDZXGhCOWwebUoKav7n_kPdnlxz7VFQTrsYfmRVhJ6sor5BTwa_pmJzjtaxE6Ec6lju1cL6kQOnAAsKtcDkklsEmCSfBdBElqJHq-8FBYfDJ3oy62ybmgcKeGiVjz_-DlougkdRLEnUUhl55Flt1nMXUM8G-0-5zOKFtL0uDg6k-GlNVVXwSl9EE5Iy65vQeuFnNS-V82mWFKsSzn5EXIFB0z0w-4BQ',
+            'Authorization': 'Bearer ' + process.env.API_KEY,
         })
     })
     const vehicles = await res.json()
@@ -87,23 +87,29 @@ const comprar = ({ vehicles }) => {
                     </section>
 
                     <section className="cars-list">
-                        {/* Listado Vehiculos  */}
-                        <a className="card-car" href="./car.html">
-                            {/* Card Auto  */}
-                            <img src="../assets/img/images/comprar/nissan-kicks.webp" alt="imagen auto nissan" />
-                            <div className="info-car">
-                                {/*  Datos Vehiculo  */}
-                                <div className="car-brand">
-                                    <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" />
-                                    <h3>Nissan Kicks</h3>
-                                </div>
-                                <div className="car-data">
-                                    <p>Año: 2021</p>
-                                    <p>Kilometros: 23500</p>
-                                    <p>USD 29700</p>
-                                </div>
-                            </div>
-                        </a>
+                        {/* List Vehiculos  */}
+                        {vehicles.map((item, i) => {
+                            return (
+                                <>
+                                    <a key={i} className="card-car" href="./car.html">
+                                        {/* Card Auto  */}
+                                        <img src="../assets/img/images/comprar/nissan-kicks.webp" alt="imagen auto nissan" />
+                                        <div className="info-car">
+                                            {/* Vehicle data */}
+                                            <div className="car-brand">
+                                                <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" />
+                                                <h3>Nissan Kicks</h3>
+                                            </div>
+                                            <div className="car-data">
+                                                <p>Año: {item.year}</p>
+                                                <p>Kilometros: {item.mileage}</p>
+                                                <p>USD 29700{item.price}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </>
+                            );
+                        })}
                     </section>
                 </section>
 
