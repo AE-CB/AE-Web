@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Footer from '../components/Footer'
 
-export async function getStaticProps() {
-    console.log(process.env.API_HOST + '/approved_vehicles');
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/NativeSelect';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 
-    const res = await fetch(process.env.API_HOST + '/approved_vehicles', {
+const NativeSelectBox = styled(Box)(({ theme }) => ({
+    '.MuiInputBase-root': {
+        marginBottom: '0 !important'
+    },
+    '.MuiFormControl-root': {
+        marginBottom: '0 !important'
+    }
+}));
+
+const ButtonBox = styled(Box)(({ theme }) => ({
+    '.MuiButtonBase-root': {
+        fontSize: 12
+    }
+}));
+
+export async function getStaticProps() {
+    console.log(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles');
+
+    const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles', {
         method: 'get',
         headers: new Headers({
             'Authorization': 'Bearer ' + process.env.API_KEY,
@@ -21,6 +43,26 @@ export async function getStaticProps() {
 }
 
 const comprar = ({ vehicles }) => {
+
+    const [filters, setFilters] = useState({});
+
+
+    const handleFilters = (type) => (event) => {
+        let tempArr = filters;
+        tempArr[type] = event.target.value;
+    };
+
+    const filterItems = async () => {
+        const res = await fetch('http://localhost:8000/apisearchtest', {
+            method: 'get',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + 'dsdsd',
+            })
+        })
+        // const vehicles = await res.json()
+        // console.log(vehicles)
+    }
+
     return (
         <>
             {/* form 1 */}
@@ -34,7 +76,8 @@ const comprar = ({ vehicles }) => {
             <main className="main-comprar">
                 <section className="amount-sort-section">
                     {/*  Cantidad de vehiculos y ordenamiento  */}
-                    <p className="total-vehicles">Se han encontrado 6789 vehículos</p>
+                    {/* <p className="total-vehicles">Se han encontrado 6789 vehículos</p> */}
+                    <p className="total-vehicles">{vehicles.length} vehicles have been found</p>
                     <div className="sort-vehicles">
                         {/*  Ordenamiento  */}
                         <img src="../assets/img/icons/ordenar-por-opcion-de-boton-de-interfaz-de-atributos.png" alt="icono ordenamiento" width="25" />
@@ -48,6 +91,7 @@ const comprar = ({ vehicles }) => {
                 </section>
 
                 <section className="filter-cars">
+
                     {/* Filtrar y Vehiculos  */}
                     <section className="filters">
                         {/* Filtrar  */}
@@ -56,34 +100,148 @@ const comprar = ({ vehicles }) => {
                             <p>Filtrar:</p>
                             <a href="#">Filtrar</a>
                         </div>
-                        <div>
-                            <p>Estado</p>
-                            <img src="../assets/img/icons/flecha-hacia-abajo.png" alt="icono flecha hacia abajo" width="12" />
-                        </div>
-                        <div>
-                            <p>Marca</p>
-                            <img src="../assets/img/icons/flecha-hacia-abajo.png" alt="icono flecha hacia abajo" width="12" />
-                        </div>
-                        <div>
-                            <p>Modelo</p>
-                            <img src="../assets/img/icons/flecha-hacia-abajo.png" alt="icono flecha hacia abajo" width="12" />
-                        </div>
-                        <div>
-                            <p>Año</p>
-                            <img src="../assets/img/icons/flecha-hacia-abajo.png" alt="icono flecha hacia abajo" width="12" />
-                        </div>
-                        <div>
-                            <p>Precio</p>
-                            <img src="../assets/img/icons/flecha-hacia-abajo.png" alt="icono flecha hacia abajo" width="12" />
-                        </div>
-                        <div>
-                            <p>Kilometros</p>
-                            <img src="../assets/img/icons/flecha-hacia-abajo.png" alt="icono flecha hacia abajo" width="12" />
-                        </div>
-                        <div>
-                            <p>Ubicación</p>
-                            <img src="../assets/img/icons/flecha-hacia-abajo.png" alt="icono flecha hacia abajo" width="12" />
-                        </div>
+                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                    Condition
+                                </InputLabel>
+                                <NativeSelect
+                                    defaultValue={'all'}
+                                    inputProps={{
+                                        name: 'condition',
+                                        id: 'condition-native-drop',
+                                        className: 'select-filters'
+                                    }}
+                                    onChange={handleFilters("condition")}
+                                >
+                                    <option value={'all'}>All</option>
+                                    <option value={'brand_new'}>Brand New</option>
+                                    <option value={'used'}>Used</option>
+                                </NativeSelect>
+                            </FormControl>
+                        </NativeSelectBox>
+                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                    Brand
+                                </InputLabel>
+                                <NativeSelect
+                                    defaultValue={'all'}
+                                    inputProps={{
+                                        name: 'brand',
+                                        id: 'brand-native-drop',
+                                        className: 'select-filters'
+                                    }}
+                                    onChange={handleFilters("brand")}
+                                >
+                                    <option value={'all'}>All</option>
+                                    <option value={20}>Twenty</option>
+                                    <option value={30}>Thirty</option>
+                                </NativeSelect>
+                            </FormControl>
+                        </NativeSelectBox>
+                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                    Model
+                                </InputLabel>
+                                <NativeSelect
+                                    defaultValue={'all'}
+                                    inputProps={{
+                                        name: 'model',
+                                        id: 'model-native-drop',
+                                        className: 'select-filters'
+                                    }}
+                                    onChange={handleFilters("model")}
+                                >
+                                    <option value={'all'}>All</option>
+                                    <option value={20}>Twenty</option>
+                                    <option value={30}>Thirty</option>
+                                </NativeSelect>
+                            </FormControl>
+                        </NativeSelectBox>
+                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                    Year
+                                </InputLabel>
+                                <NativeSelect
+                                    defaultValue={'all'}
+                                    inputProps={{
+                                        name: 'year',
+                                        id: 'year-native-drop',
+                                        className: 'select-filters'
+                                    }}
+                                    onChange={handleFilters("year")}
+                                >
+                                    <option value={'all'}>All</option>
+                                    <option value={20}>Twenty</option>
+                                    <option value={30}>Thirty</option>
+                                </NativeSelect>
+                            </FormControl>
+                        </NativeSelectBox>
+                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                    Price
+                                </InputLabel>
+                                <NativeSelect
+                                    defaultValue={'all'}
+                                    inputProps={{
+                                        name: 'price',
+                                        id: 'price-native-drop',
+                                        className: 'select-filters'
+                                    }}
+                                >
+                                    <option value={'all'}>All</option>
+                                    <option value={20}>Twenty</option>
+                                    <option value={30}>Thirty</option>
+                                </NativeSelect>
+                            </FormControl>
+                        </NativeSelectBox>
+                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                    Kilometres
+                                </InputLabel>
+                                <NativeSelect
+                                    defaultValue={'all'}
+                                    inputProps={{
+                                        name: 'kilometres',
+                                        id: 'kilometres-native-drop',
+                                        className: 'select-filters'
+                                    }}
+                                    onChange={handleFilters("kilometres")}
+                                >
+                                    <option value={'all'}>All</option>
+                                    <option value={20}>Twenty</option>
+                                    <option value={30}>Thirty</option>
+                                </NativeSelect>
+                            </FormControl>
+                        </NativeSelectBox>
+                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                    Location
+                                </InputLabel>
+                                <NativeSelect
+                                    defaultValue={'all'}
+                                    inputProps={{
+                                        name: 'location',
+                                        id: 'location-native-drop',
+                                        className: 'select-filters'
+                                    }}
+                                    onChange={handleFilters("location")}
+                                >
+                                    <option value={'all'}>All</option>
+                                    <option value={20}>Twenty</option>
+                                    <option value={30}>Thirty</option>
+                                </NativeSelect>
+                            </FormControl>
+                        </NativeSelectBox>
+                        <ButtonBox>
+                            <Button size="large" variant="contained" onClick={filterItems}>Apply Filters</Button>
+                        </ButtonBox>
                     </section>
 
                     <section className="cars-list">
@@ -98,7 +256,7 @@ const comprar = ({ vehicles }) => {
                                             {/* Vehicle data */}
                                             <div className="car-brand">
                                                 <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" />
-                                                <h3>Nissan Kicks</h3>
+                                                <h3>{item.title}</h3>
                                             </div>
                                             <div className="car-data">
                                                 <p>Año: {item.year}</p>
