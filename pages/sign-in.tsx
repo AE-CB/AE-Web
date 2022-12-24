@@ -1,6 +1,42 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
+import Router from 'next/router';
 
 const SignIn = () => {
+
+    const ref_error_div = useRef(null);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    var terrors = [];
+    const [errors, setErrors] = useState([]);
+
+    const submitLogin = async (e) => {
+        e.preventDefault()
+
+        let formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password);
+
+        setErrors([])
+
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/login', {
+            method: 'POST',
+            body: formData,
+        })
+
+        if (res.status == 422) {
+            terrors = await res.json();
+            await setErrors(terrors.errors)
+            window.location.hash = '#display_errors';
+        }
+
+        if (res.status == 200) {
+            Router.push('/sign-in')
+        }
+
+    }
+
     return (
         <>
             <div className="sign-in-container">
@@ -9,17 +45,33 @@ const SignIn = () => {
 
                 <div className="sign-in-content"> {/* Parte del Formulario */}
                     <a href="../index.html"><img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" /></a>
-                    <h1>Iniciar Sesion</h1>
+                    <h1>Log in</h1>
 
-                    <form className="sign-in-form"> {/* Formulario Inicio Sesion */}
+                    <div id="display_errors" className="display_errors" ref={ref_error_div}>
+                        <ul>
+                            {errors.map((item, key) => {
+                                return (
+                                    <li key={key}>{item}</li>
+                                )
+                            })}
+                        </ul>
+                    </div>
+
+                    <form className="sign-in-form" onSubmit={submitLogin}> {/* Formulario Inicio Sesion */}
                         <div className="sign-in-fields"> {/* Campos */}
                             <div className="sign-up-field">
                                 <h3>Email</h3>
-                                <input type="email" name="email" placeholder="Ingresa tu email" required />
+                                <input type="email" 
+                                onLoad={(e) => setEmail(e.target.value)}
+                                onChange={(e) => setEmail(e.target.value)} 
+                                name="email" placeholder="Enter your email" required />
                             </div>
                             <div className="sign-up-field">
                                 <h3>Contraseña</h3>
-                                <input type="password" name="password" placeholder="Ingresa tu contraseña" required />
+                                <input type="password" 
+                                onLoad={(e) => setPassword(e.target.value)}
+                                onChange={(e) => setPassword(e.target.value)}
+                                name="password" placeholder="Enter Your password" required />
                             </div>
                             <a href="#">¿Olvidaste tu contraseña?</a>
                         </div>
@@ -29,9 +81,9 @@ const SignIn = () => {
                                 <label htmlFor="remember">Recordarme</label>
                             </div>
                             <div className="sign-in-up">
-                                <input type="submit" value="Iniciar Sesion" />
+                                <input type="submit" value="Log in" />
                                 <div className="register-section"> {/* Registrarse */}
-                                    <a className="btn-register" href="./sign-up.html">Registrarse</a>
+                                    <a className="btn-register" href="./sign-up.html">Register</a>
                                     <p>¿Aún no tienes una cuenta?</p>
                                 </div>
                             </div>

@@ -45,6 +45,7 @@ const SignUp = () => {
         }
     }
 
+    // Create custom validation for password match
     function validatePassword() {
         if (ref_password.current.value != ref_confirm_password.current.value) {
             ref_confirm_password.current.setCustomValidity("Passwords Don't Match");
@@ -54,9 +55,6 @@ const SignUp = () => {
             ref_confirm_password.current.setCustomValidity('');
         }
     }
-
-    // password.onchange = validatePassword;
-    // confirm_password.onkeyup = validatePassword;
 
     return (
         <>
