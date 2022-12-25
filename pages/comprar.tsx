@@ -285,4 +285,5 @@ const comprar = ({ vehicles }) => {
     )
 }
 
+comprar.layout = "AdminLayout";
 export default comprar

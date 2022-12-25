@@ -1,7 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useContext } from 'react'
 import Router from 'next/router';
+import AppContext from '../context/AppContext'
 
 const SignIn = () => {
+    const context = useContext(AppContext)
 
     const ref_error_div = useRef(null);
 
@@ -32,13 +34,17 @@ const SignIn = () => {
         }
 
         if (res.status == 200) {
-            Router.push('/sign-in')
+            var jsonResponce = await res.json();
+            console.log(jsonResponce.token)
+            context.setApikey(jsonResponce.token)
+            // Router.push('/sign-in')
         }
 
     }
 
     return (
         <>
+        {/* <p>{context.apikey}</p> */}
             <div className="sign-in-container">
                 <img className="sign-in-banner" src="../assets/img/images/sign-in-up/car-image.webp" alt="imagen auto" width="100%" height="50%" /> {/* Parte de la Imagen */}
                 <a href="../index.html" className="btn-volver-siu"><i className="fas fa-arrow-left"></i></a>
@@ -61,17 +67,17 @@ const SignIn = () => {
                         <div className="sign-in-fields"> {/* Campos */}
                             <div className="sign-up-field">
                                 <h3>Email</h3>
-                                <input type="email" 
-                                onLoad={(e) => setEmail(e.target.value)}
-                                onChange={(e) => setEmail(e.target.value)} 
-                                name="email" placeholder="Enter your email" required />
+                                <input type="email"
+                                    onLoad={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    name="email" placeholder="Enter your email" required />
                             </div>
                             <div className="sign-up-field">
                                 <h3>Contraseña</h3>
-                                <input type="password" 
-                                onLoad={(e) => setPassword(e.target.value)}
-                                onChange={(e) => setPassword(e.target.value)}
-                                name="password" placeholder="Enter Your password" required />
+                                <input type="password"
+                                    onLoad={(e) => setPassword(e.target.value)}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    name="password" placeholder="Enter Your password" required />
                             </div>
                             <a href="#">¿Olvidaste tu contraseña?</a>
                         </div>
@@ -121,4 +127,5 @@ const SignIn = () => {
     )
 }
 
+SignIn.layout = "NormalLayout";
 export default SignIn

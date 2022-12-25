@@ -20,9 +20,10 @@ export default function Document() {
 
             </head>
             <body>
-                <Header />
+                {/* <Header /> */}
                 <Main />
                 <NextScript />
+                
                 {/* <Footer/> */}
                 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
                 {/* <script>

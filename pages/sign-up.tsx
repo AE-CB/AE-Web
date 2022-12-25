@@ -205,5 +205,6 @@ const SignUp = () => {
     )
 }
 
+SignUp.layout = "NormalLayout";
 export default SignUp
 

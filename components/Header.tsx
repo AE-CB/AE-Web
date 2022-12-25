@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import AppContext from '../context/AppContext'
 
 const Header = () => {
+
+  const context = useContext(AppContext)
+
   return (
     <>
       <header>

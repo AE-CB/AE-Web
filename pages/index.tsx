@@ -3,7 +3,9 @@ import Image from 'next/image'
 import Footer from '../components/Footer'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+import React from 'react'
+
+const Home = () => {
   return (
     <>
       <section className="banner">
@@ -67,7 +69,10 @@ export default function Home() {
         </section>
       </main>
 
-      <Footer/>
     </>
   )
 }
+
+Home.layout = "AdminLayout";
+export default Home
+
