@@ -23,9 +23,10 @@ const Header = () => {
                 <li>
                   <a className="nav-link" href="./pages/comprar-home.html">Comprar</a>
                 </li>
-                <li>
+                {context.apikey && <li>
                   <a className="nav-link" href="./pages/vender.html">Vender</a>
-                </li>
+                </li>}
+
                 <li>
                   <a className="nav-link" href="./pages/concesionarias.html">Concesionarias</a>
                 </li>

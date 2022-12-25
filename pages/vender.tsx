@@ -1,29 +1,120 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Footer from '../components/Footer'
+import NativeSelect from '@mui/material/NativeSelect';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+
+const NativeSelectBox = styled(Box)(({ theme }) => ({
+    '.MuiInputBase-root': {
+        marginTop: '10px !important',
+        width: '100%'
+    },
+    '.MuiInput-root:before': {
+        borderBottom: '3px solid'
+    },
+    '.MuiInput-root:hover:not(.Mui-disabled, .Mui-error):before': {
+        borderBottom: '3px solid'
+    },
+    '.MuiInput-input:focus': {
+        backgroundColor: 'none !important'
+    }
+
+}));
 
 const Vender = () => {
+
+    const [brand, setBrand] = useState("");
+    const [model, setModel] = useState("");
+    const [year, setYear] = useState("");
+    const [category, setCategory] = useState("")
+    const [color, setColor] = useState("");
+    const [description, setDescription] = useState("");
+    const [mileage, setMileage] = useState("");
+    const [engine, setEngine] = useState("");
+    const [departament, setDepartament] = useState("");
+    const [location, setLocation] = useState("");
+    const [owner, setOwner] = useState("");
+    const [price, setPrice] = useState("");
+
+    const submitPublication = async (e) => {
+        e.preventDefault()
+
+        let formData = new FormData();
+        formData.append('brand', brand);
+        formData.append('brand', brand);
+        formData.append('model', model);
+        formData.append('year', year);
+        formData.append('category', category);
+        formData.append('color', color);
+        formData.append('description', description);
+        formData.append('mileage', mileage);
+        formData.append('engine', engine);
+        formData.append('departament', departament);
+        formData.append('location', location);
+        formData.append('owner', owner);
+        formData.append('price', price);
+
+        setErrors([])
+
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/register', {
+            method: 'POST',
+            body: formData,
+        })
+
+        if (res.status == 422) {
+            terrors = await res.json();
+            await setErrors(terrors.errors)
+            window.location.hash = '#display_errors';
+        }
+
+        if (res.status == 200) {
+            Router.push('/sign-in')
+        }
+    }
+
     return (
         <>
             <section className="vender-banner">
                 <div className="gradient-div"></div>
-                <h1>Vende tu Auto de forma <br/><b>Rápida y Segura</b></h1>
+                <h1>Vende tu Auto de forma <br /><b>Rápida y Segura</b></h1>
             </section>
             <main className="main-vender">
-                <form className="form-vender">
+                <form className="form-vender" onSubmit={submitPublication}>
                     <section className="brand-section"> {/* Marca, Modelo y Ano */}
                         <div>
-                            <h2>1. Indica Marca, Modelo y Año del Vehículo</h2>
+                            <h2>1. Indicates Make, Model and Year of the Vehicle</h2>
                             <div className="sign-up-field">
-                                <h3>Marca</h3>
-                                <input type="text" name="brand" placeholder="¿Cuál es la marca de tu vehículo?" autocomplete="off" required />
+                                <h3>Brand</h3>
+                                <select name="brand" id="" onChange={(e) => setBrand(e.target.value)} required>
+                                    <option value="" selected disabled>Select a brand</option>
+                                    <option value={'Suzuki'}>Suzuki</option>
+                                    <option value={'Volkswagen'}>Volkswagen</option>
+                                    <option value={'Fiat'}>Fiat</option>
+                                </select>
+                                {/* <NativeSelectBox>
+                                    <NativeSelect
+                                        defaultValue={'all'}
+                                        inputProps={{
+                                            name: 'brand',
+                                        }}
+                                    // onChange={handleFilters("condition")}
+                                    >
+                                        <option value={''}>Select a brand</option>
+                                        <option value={'Suzuki'}>Suzuki</option>
+                                        <option value={'Volkswagen'}>Volkswagen</option>
+                                        <option value={'Fiat'}>Fiat</option>
+                                    </NativeSelect>
+                                </NativeSelectBox> */}
+
+                                {/* <input type="text" name="brand" placeholder="¿Cuál es la marca de tu vehículo?" autocomplete="off" required /> */}
                             </div>
                             <div className="sign-up-field">
-                                <h3>Modelo</h3>
-                                <input type="text" name="model" placeholder="¿Cuál es el modelo de tu vehículo?" autocomplete="off" required />
+                                <h3>Model</h3>
+                                <input type="text" name="model" onChange={(e) => setModel(e.target.value)} placeholder="What is the model of your vehicle?" autocomplete="off" required />
                             </div>
                             <div className="sign-up-field">
-                                <h3>Año</h3>
-                                <input type="number" name="year" placeholder="¿Cuál es el año de tu vehículo?" min="1960" max="2022" required />
+                                <h3>Year</h3>
+                                <input type="number" name="year" onChange={(e) => setYear(e.target.value)} placeholder="What is the year of your vehicle?" min="1960" max="2022" required />
                             </div>
                             <img className="logo-ch-vender" src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" />
                         </div>
@@ -31,23 +122,25 @@ const Vender = () => {
                     </section>
                     <section className="cat-section"> {/* Categoria, Color y Descripcion */}
                         <div>
-                            <h2>2. Indica Categoría, Color  y de una Descripción del Vehículo</h2>
+                            <h2>2. Indicates Category, Color and a Description of the Vehicle</h2>
                             <div className="sign-up-field">
-                                <h3>Categoría</h3>
-                                <select name="cat" id="">
-                                    <option value="" selected disabled>Seleccione una Categoría</option>
-                                    <option value="">Autos y Camionetas</option>
-                                    <option value="">Motos</option>
-                                    <option value="">Camiones</option>
+                                <h3>Category</h3>
+                                <select name="category" id="" onChange={(e) => setCategory(e.target.value)} >
+                                    <option value="" selected disabled>Select a Category</option>
+                                    <option value="car_and_trucks">Cars and Trucks</option>
+                                    <option value="motorcycles">Motorcycles</option>
+                                    <option value="trucks">Trucks</option>
                                 </select>
                             </div>
                             <div className="sign-up-field">
                                 <h3>Color</h3>
-                                <input type="text" name="color" placeholder="¿De qué color es tu vehículo?" autocomplete="off" required />
+                                <input type="text" name="color" onChange={(e) => setColor(e.target.value)}
+                                    placeholder="What color is your vehicle?" autocomplete="off" required />
                             </div>
                             <div className="sign-up-field">
                                 <h3>Descripción</h3>
-                                <textarea name="description" id="" cols="30" rows="10" placeholder="Escriba una descripción de su vehículo" minlength="25" maxlength="2500" required></textarea>
+                                <textarea name="description" onChange={(e) => setDescription(e.target.value)}
+                                    id="" cols="30" rows="10" placeholder="Write a description of your vehicle" minlength="25" maxlength="2500" required></textarea>
                             </div>
                             <img className="logo-ch-vender" src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" />
                         </div>
@@ -55,14 +148,16 @@ const Vender = () => {
                     </section>
                     <section className="tec-section"> {/* Datos Tecnicos */}
                         <div>
-                            <h2>3. Datos Técnicos del Vehículo</h2>
+                            <h2>3. Technical Data of the Vehicle</h2>
                             <div className="sign-up-field">
-                                <h3>Kilometros</h3>
-                                <input type="number" name="kilometers" placeholder="¿Cuántos kilometros tiene tu vehículo?" min="0" required />
+                                <h3>Mileage</h3>
+                                <input type="number" name="kilometers" onChange={(e) => setMileage(e.target.value)}
+                                    placeholder="How many kilometers does your vehicle have?" min="0" required />
                             </div>
                             <div className="sign-up-field">
-                                <h3>Motor</h3>
-                                <input type="text" name="motor" placeholder="¿De qué tamaño es el motor de tu vehículo?" autocomplete="off" required />
+                                <h3>Engine</h3>
+                                <input type="text" name="motor" onChange={(e) => setEngine(e.target.value)}
+                                    placeholder="What size is the engine of your vehicle?" autocomplete="off" required />
                             </div>
                             <img className="logo-ch-vender" src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" />
                         </div>
@@ -70,13 +165,13 @@ const Vender = () => {
                     </section>
                     <section className="pictures-section"> {/* Fotos */}
                         <div>
-                            <h2>4. Sube Fotos de Calidad del Vehículo</h2>
-                            <p>(Minimo 4 fotos, una por lado del vehículo)</p>
+                            <h2>4. Upload Vehicle Quality Photos</h2>
+                            <p>(Minimum 4 photos, one per side of the vehicle)</p>
                             <div className="upload-image-box">
                                 <input type="file" name="images" id="upload-image" accept="image/*" multiple />
                                 <label for="upload-image">
                                     <img src="../assets/img/icons/camara-fotografica.png" alt="Imagen de Camara" />
-                                    <p>Agregar Fotos</p>
+                                    <p>Add Photos</p>
                                 </label>
                             </div>
                             <img className="logo-ch-vender" src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" />
@@ -85,11 +180,11 @@ const Vender = () => {
                     </section>
                     <section className="location-section"> {/* Ubicacion */}
                         <div>
-                            <h2>5. ¿Dónde se Encuentra el Vehículo?</h2>
+                            <h2>5. Where is the Vehicle Located?</h2>
                             <div className="sign-up-field">
-                                <h3>Departamento</h3>
-                                <select name="departamento" id="">
-                                    <option value="default" selected disabled>¿Dónde se encuentra el vehículo?</option>
+                                <h3>Department</h3>
+                                <select name="departamento" id="" onChange={(e) => setDepartament(e.target.value)}>
+                                    <option value="default" selected disabled>Where is the vehicle located?</option>
                                     <option value="artigas">Artigas</option>
                                     <option value="canelones">Canelones</option>
                                     <option value="cerro largo">Cerro Largo</option>
@@ -112,9 +207,9 @@ const Vender = () => {
                                 </select>
                             </div>
                             <div className="sign-up-field">
-                                <h3>Localidad</h3>
-                                <select name="localidad" id="">
-                                    <option value="" selected disabled>¿En qué localidad esta el vehículo?</option>
+                                <h3>Location</h3>
+                                <select name="localidad" id="" onChange={(e) => setLocation(e.target.value)}>
+                                    <option value="" selected disabled>In what town is the vehicle?</option>
                                     <option value="">Aguada</option>
                                     <option value="">Aires Puros</option>
                                     <option value="">Barra de Carrasco</option>
@@ -144,29 +239,33 @@ const Vender = () => {
                     </section>
                     <section className="end-section"> {/* Finalizar Publicacion */}
                         <div>
-                            <h2>6. Finalizar Publicación</h2>
+                            <h2>6. Finish Publishing</h2>
                             <div className="sign-up-field">
-                                <h3>Nombre del Propietario</h3>
-                                <input type="text" name="owner" placeholder="¿A nombre de quién está el vehículo?" autocomplete="off" required />
+                                <h3>Owner's Name</h3>
+                                <input type="text" name="owner" onChange={(e) => setOwner(e.target.value)}
+                                    placeholder="Whose name is the vehicle in?" autocomplete="off" required />
                             </div>
                             <div className="sign-up-field">
-                                <h3>Precio</h3>
+                                <h3>Price</h3>
                                 <div className="field-price">
                                     <h4>USD</h4>
-                                    <input type="number" name="price" min="1500" max="1000000" placeholder="¿Por cuánto quieres vender tu vehículo?" required />
+                                    <input type="number" name="price" onChange={(e) => setPrice(e.target.value)}
+                                        min="1500" max="1000000"
+                                        placeholder="How much do you want to sell your vehicle for?" required />
                                 </div>
                             </div>
                             <img className="logo-ch-vender" src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" />
                         </div>
                         <img className="aside-img" src="../assets/img/images/vender/car-aside-5.webp" alt="imagen auto" />
                     </section>
-                    <input className="btn-publish" type="submit" value="Finalizar Publicación" />
+                    <input className="btn-publish" type="submit" value="End Publication" />
                 </form>
             </main>
 
-            <Footer/>
+            <Footer />
         </>
     )
 }
 
+Vender.layout = "AdminLayout";
 export default Vender

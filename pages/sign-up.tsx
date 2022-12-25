@@ -26,6 +26,10 @@ const SignUp = () => {
         formData.append('email', email);
         formData.append('password', password);
         formData.append('password_confirmation', passwordconf);
+        formData.append('dob', dob);
+        formData.append('mobile', mobile);
+        formData.append('departament', departament);
+        formData.append('location', location);
 
         setErrors([])
 
