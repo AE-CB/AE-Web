@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import Footer from '../components/Footer'
 import NativeSelect from '@mui/material/NativeSelect';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import AppContext from '../context/AppContext'
 
 const NativeSelectBox = styled(Box)(({ theme }) => ({
     '.MuiInputBase-root': {
@@ -22,6 +23,10 @@ const NativeSelectBox = styled(Box)(({ theme }) => ({
 }));
 
 const Vender = () => {
+    const context = useContext(AppContext)
+
+    const ref_error_div = useRef(null);
+    const img_upload = useRef(null);
 
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
@@ -36,11 +41,13 @@ const Vender = () => {
     const [owner, setOwner] = useState("");
     const [price, setPrice] = useState("");
 
+    var terrors = [];
+    const [errors, setErrors] = useState([]);
+
     const submitPublication = async (e) => {
         e.preventDefault()
 
         let formData = new FormData();
-        formData.append('brand', brand);
         formData.append('brand', brand);
         formData.append('model', model);
         formData.append('year', year);
@@ -53,33 +60,60 @@ const Vender = () => {
         formData.append('location', location);
         formData.append('owner', owner);
         formData.append('price', price);
+        
 
+        var ins = img_upload.current.files.length;
+        for (var x = 0; x < ins; x++) {
+            // formData.append("fileToUpload[]", img_upload.current.files[x]);
+            formData.append('files' + x, img_upload.current.files[x]);
+        }
+
+        formData.append('TotalFiles', ins);
         setErrors([])
 
-        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/register', {
-            method: 'POST',
-            body: formData,
-        })
+        if (context.apikey) {
+            const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/vehicles', {
+                method: 'POST',
+                body: formData,
+                headers: new Headers({
+                    'Authorization': 'Bearer ' + context.apikey,
+                })
+            })
 
-        if (res.status == 422) {
-            terrors = await res.json();
-            await setErrors(terrors.errors)
+            if (res.status == 422) {
+                terrors = await res.json();
+                await setErrors(terrors.errors)
+                window.location.hash = '#display_errors';
+            }
+
+            if (res.status == 200) {
+                // Router.push('/sign-in')
+            }
+        } else {
+            await setErrors(['Please sign in before create vehicles']);
             window.location.hash = '#display_errors';
         }
 
-        if (res.status == 200) {
-            Router.push('/sign-in')
-        }
+
     }
 
     return (
         <>
             <section className="vender-banner">
                 <div className="gradient-div"></div>
-                <h1>Vende tu Auto de forma <br /><b>Rápida y Segura</b></h1>
+                <h1>Sell ​​your car <br /><b>quickly and safely</b></h1>
             </section>
             <main className="main-vender">
-                <form className="form-vender" onSubmit={submitPublication}>
+                <div id="display_errors" className="display_errors" ref={ref_error_div}>
+                    <ul>
+                        {errors.map((item, key) => {
+                            return (
+                                <li key={key}>{item}</li>
+                            )
+                        })}
+                    </ul>
+                </div>
+                <form className="form-vender" onSubmit={submitPublication} encType="multipart/form-data">
                     <section className="brand-section"> {/* Marca, Modelo y Ano */}
                         <div>
                             <h2>1. Indicates Make, Model and Year of the Vehicle</h2>
@@ -168,7 +202,7 @@ const Vender = () => {
                             <h2>4. Upload Vehicle Quality Photos</h2>
                             <p>(Minimum 4 photos, one per side of the vehicle)</p>
                             <div className="upload-image-box">
-                                <input type="file" name="images" id="upload-image" accept="image/*" multiple />
+                                <input type="file" name="images" ref={img_upload}  id="upload-image" accept="image/*" multiple />
                                 <label for="upload-image">
                                     <img src="../assets/img/icons/camara-fotografica.png" alt="Imagen de Camara" />
                                     <p>Add Photos</p>
