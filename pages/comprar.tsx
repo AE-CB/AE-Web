@@ -245,13 +245,17 @@ const comprar = ({ vehicles }) => {
                     </section>
 
                     <section className="cars-list">
-                        {/* List Vehiculos  */}
+                        {/* List Vehicles  */}
                         {vehicles.map((item, i) => {
+
+                            let images = JSON.parse(item.images)
+                            console.log(images)
+
                             return (
                                 <>
                                     <a key={i} className="card-car" href="./car.html">
                                         {/* Card Auto  */}
-                                        <img src="../assets/img/images/comprar/nissan-kicks.webp" alt="imagen auto nissan" />
+                                        <img src={process.env.NEXT_PUBLIC_IMAGE_HOST+images[0]} alt="imagen auto nissan" />
                                         <div className="info-car">
                                             {/* Vehicle data */}
                                             <div className="car-brand">
