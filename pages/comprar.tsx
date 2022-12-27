@@ -32,6 +32,7 @@ export async function getStaticProps() {
             'Authorization': 'Bearer ' + process.env.API_KEY,
         })
     })
+    
     const vehicles = await res.json()
     console.log(vehicles)
 
@@ -45,6 +46,9 @@ export async function getStaticProps() {
 const comprar = ({ vehicles }) => {
 
     const [filters, setFilters] = useState({});
+    const [vehicleArr, setVehicleArr] = useState(vehicles);
+
+    const [brand, setBrand] = useState("all");
 
 
     const handleFilters = (type) => (event) => {
@@ -53,13 +57,17 @@ const comprar = ({ vehicles }) => {
     };
 
     const filterItems = async () => {
-        const res = await fetch('http://localhost:8000/apisearchtest', {
-            method: 'get',
-            headers: new Headers({
-                'Authorization': 'Bearer ' + 'dsdsd',
-            })
+        let formData = new FormData();
+        formData.append('brand', brand);
+
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles', {
+            method: 'POST',
+            body: formData,
         })
-        // const vehicles = await res.json()
+
+
+        const vehicleFiltered = await res.json()
+        setVehicleArr(vehicleFiltered)
         // console.log(vehicles)
     }
 
@@ -132,9 +140,10 @@ const comprar = ({ vehicles }) => {
                                         id: 'brand-native-drop',
                                         className: 'select-filters'
                                     }}
-                                    onChange={handleFilters("brand")}
+                                    onChange={(e) => setBrand(e.target.value)}
                                 >
                                     <option value={'all'}>All</option>
+                                    <option value={'Nissan'}>Nissan</option>
                                     <option value={'Suzuki'}>Suzuki</option>
                                     <option value={'Volkswagen'}>Volkswagen</option>
                                     <option value={'Fiat'}>Fiat</option>
@@ -247,7 +256,7 @@ const comprar = ({ vehicles }) => {
 
                     <section className="cars-list">
                         {/* List Vehicles  */}
-                        {vehicles.map((item, i) => {
+                        {vehicleArr.map((item, i) => {
 
                             let images = JSON.parse(item.images)
                             console.log(images)
