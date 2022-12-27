@@ -135,8 +135,9 @@ const comprar = ({ vehicles }) => {
                                     onChange={handleFilters("brand")}
                                 >
                                     <option value={'all'}>All</option>
-                                    <option value={20}>Twenty</option>
-                                    <option value={30}>Thirty</option>
+                                    <option value={'Suzuki'}>Suzuki</option>
+                                    <option value={'Volkswagen'}>Volkswagen</option>
+                                    <option value={'Fiat'}>Fiat</option>
                                 </NativeSelect>
                             </FormControl>
                         </NativeSelectBox>
@@ -260,7 +261,7 @@ const comprar = ({ vehicles }) => {
                                             {/* Vehicle data */}
                                             <div className="car-brand">
                                                 <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" />
-                                                <h3>{item.title}</h3>
+                                                <h3>{item.model}</h3>
                                             </div>
                                             <div className="car-data">
                                                 <p>Año: {item.year}</p>
