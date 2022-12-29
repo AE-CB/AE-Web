@@ -40,6 +40,7 @@ const Vender = () => {
     const [location, setLocation] = useState("");
     const [owner, setOwner] = useState("");
     const [price, setPrice] = useState("");
+    const [condition, setCondition] = useState("");
 
     var terrors = [];
     const [errors, setErrors] = useState([]);
@@ -60,7 +61,9 @@ const Vender = () => {
         formData.append('location', location);
         formData.append('owner', owner);
         formData.append('price', price);
-        
+        formData.append('condition', condition);
+
+
 
         var ins = img_upload.current.files.length;
         for (var x = 0; x < ins; x++) {
@@ -202,7 +205,7 @@ const Vender = () => {
                             <h2>4. Upload Vehicle Quality Photos</h2>
                             <p>(Minimum 4 photos, one per side of the vehicle)</p>
                             <div className="upload-image-box">
-                                <input type="file" name="images" ref={img_upload}  id="upload-image" accept="image/*" multiple />
+                                <input type="file" name="images" ref={img_upload} id="upload-image" accept="image/*" multiple />
                                 <label for="upload-image">
                                     <img src="../assets/img/icons/camara-fotografica.png" alt="Imagen de Camara" />
                                     <p>Add Photos</p>
@@ -287,6 +290,15 @@ const Vender = () => {
                                         min="1500" max="1000000"
                                         placeholder="How much do you want to sell your vehicle for?" required />
                                 </div>
+                            </div>
+                            <div className="sign-up-field">
+                                <h3>Condition</h3>
+                                <select name="condition" id="" onChange={(e) => setCondition(e.target.value)} >
+                                    <option value={"antique"}>Antique</option>
+                                    <option value={"brand_new"}>Brand New</option>
+                                    <option value={"registered"}>Registered</option>
+                                    <option value={"unregistered"}>Unregistered</option>
+                                </select>
                             </div>
                             <img className="logo-ch-vender" src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" />
                         </div>
