@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Footer from '../components/Footer'
 
 import Box from '@mui/material/Box';
@@ -91,9 +91,19 @@ const comprar = ({ vehicles }) => {
 
     const [filters, setFilters] = useState({});
     const [vehicleArr, setVehicleArr] = useState(vehicles);
+    const filtersRef = useRef(null);
 
     const [brand, setBrand] = useState("all");
     const [condition, setCondition] = useState("all");
+    const [model, setModel] = useState("");
+    const [yearMax, setYearMax] = useState("all");
+    const [yearMin, setYearMin] = useState("all");
+    const [priceMax, setPriceMax] = useState("");
+    const [priceMin, setPriceMin] = useState("");
+    const [type, setType] = useState("all");
+    const [gear, setGear] = useState("all");
+    const [fuel, setFuel] = useState("all");
+    const [city, setCity] = useState("all");
 
 
     const handleFilters = (type) => (event) => {
@@ -105,6 +115,15 @@ const comprar = ({ vehicles }) => {
         let formData = new FormData();
         formData.append('brand', brand);
         formData.append('condition', condition);
+        formData.append('model', model);
+        formData.append('yearMax', yearMax);
+        formData.append('yearMin', yearMin);
+        formData.append('priceMax', priceMax);
+        formData.append('priceMin', priceMin);
+        formData.append('type', type);
+        formData.append('gear', gear);
+        formData.append('fuel', fuel);
+        formData.append('city', city);
 
         const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles', {
             method: 'POST',
@@ -114,6 +133,7 @@ const comprar = ({ vehicles }) => {
 
         const vehicleFiltered = await res.json()
         setVehicleArr(vehicleFiltered)
+        filtersRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
         // console.log(vehicles)
     }
 
@@ -149,7 +169,7 @@ const comprar = ({ vehicles }) => {
                     {/* Filtrar y Vehiculos  */}
                     <section className="filters">
                         {/* Filtrar  */}
-                        <div className="filter-title">
+                        <div ref={filtersRef} className="filter-title">
                             <img src="../assets/img/icons/simbolo-de-herramienta-llena-de-filtro.png" alt="icono filtrar" width="25" />
                             <p>Filters:</p>
                             <a href="#">Filtrar</a>
@@ -201,9 +221,9 @@ const comprar = ({ vehicles }) => {
                         <TextFieldBox sx={{ minWidth: 120, marginBottom: 0 }}>
                             <FormControl fullWidth sx={{ marginBottom: 0 }}>
                                 {/* <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
-                                    Model
+                                    Model 
                                 </InputLabel> */}
-                                <TextField id="standard-basic" label="Model" variant="standard" />
+                                <TextField id="standard-basic" label="Model" variant="standard" onChange={(e) => setModel(e.target.value)} />
                             </FormControl>
                         </TextFieldBox>
                         <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
@@ -218,7 +238,7 @@ const comprar = ({ vehicles }) => {
                                         id: 'year-native-drop',
                                         className: 'select-filters'
                                     }}
-                                    onChange={handleFilters("year")}
+                                    onChange={(e) => setYearMin(e.target.value)}
                                 >
                                     <option value={'all'}>None</option>
                                     {years.map((item, key) => {
@@ -245,7 +265,7 @@ const comprar = ({ vehicles }) => {
                                         id: 'year-native-drop',
                                         className: 'select-filters'
                                     }}
-                                    onChange={handleFilters("year")}
+                                    onChange={(e) => setYearMax(e.target.value)}
                                 >
                                     <option value={'all'}>None</option>
                                     {years.map((item, key) => {
@@ -262,12 +282,12 @@ const comprar = ({ vehicles }) => {
                         </NativeSelectBox>
                         <TextFieldBox sx={{ minWidth: 120, marginBottom: 0 }}>
                             <FormControl fullWidth sx={{ marginBottom: 0 }}>
-                                <TextField id="standard-basic" type={'number'} label="Min Price" variant="standard" />
+                                <TextField id="standard-basic" type={'number'} onChange={(e) => setPriceMin(e.target.value)} label="Min Price" variant="standard" />
                             </FormControl>
                         </TextFieldBox>
                         <TextFieldBox sx={{ minWidth: 120, marginBottom: 0 }}>
                             <FormControl fullWidth sx={{ marginBottom: 0 }}>
-                                <TextField id="standard-basic" type={'number'} label="Max Price" variant="standard" />
+                                <TextField id="standard-basic" type={'number'} onChange={(e) => setPriceMax(e.target.value)} label="Max Price" variant="standard" />
                             </FormControl>
                         </TextFieldBox>
                         <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
@@ -282,7 +302,7 @@ const comprar = ({ vehicles }) => {
                                         id: 'type-native-drop',
                                         className: 'select-filters'
                                     }}
-                                    onChange={(e) => setBrand(e.target.value)}
+                                    onChange={(e) => setType(e.target.value)}
                                 >
                                     <option value="All">All</option>
                                     <option value="cars">Car</option>
@@ -313,7 +333,7 @@ const comprar = ({ vehicles }) => {
                                         id: 'type-native-drop',
                                         className: 'select-filters'
                                     }}
-                                    onChange={(e) => setBrand(e.target.value)}
+                                    onChange={(e) => setGear(e.target.value)}
                                 >
                                     <option value="all"> All </option>
                                     <option value="Automatic">Auto</option>
@@ -333,7 +353,7 @@ const comprar = ({ vehicles }) => {
                                         id: 'type-native-drop',
                                         className: 'select-filters'
                                     }}
-                                    onChange={(e) => setBrand(e.target.value)}
+                                    onChange={(e) => setFuel(e.target.value)}
                                 >
                                     <option value="All"> All </option>
                                     <option value="petrol">Petrol</option>
@@ -356,7 +376,7 @@ const comprar = ({ vehicles }) => {
                                         id: 'type-native-drop',
                                         className: 'select-filters'
                                     }}
-                                    onChange={(e) => setBrand(e.target.value)}
+                                    onChange={(e) => setCity(e.target.value)}
                                 >
                                     <option value="All"> All </option>
                                     <option value="colarado">Colarado</option>
@@ -404,12 +424,6 @@ const comprar = ({ vehicles }) => {
                     <PaginatioStack spacing={2}>
                         <Pagination count={10} variant="outlined" onChange={handlePagination} shape="rounded" />
                     </PaginatioStack>
-                    {/*  Pages  */}
-                    {/* <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">Siguiente</a> */}
                 </section>
             </main>
             <Footer />
