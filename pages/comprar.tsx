@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { TextField } from '@mui/material';
+import Link from 'next/link';
 
 const NativeSelectBox = styled(Box)(({ theme }) => ({
     '.MuiInputBase-root': {
@@ -157,7 +158,7 @@ const comprar = ({ vehicles }) => {
                         <img src="../assets/img/icons/ordenar-por-opcion-de-boton-de-interfaz-de-atributos.png" alt="icono ordenamiento" width="25" />
                         <p>Sort by:</p>
                         <select name="ordenamiento" id="">
-                            <option value="">Latest</option>
+                            <option value="">Date Added</option>
                             <option value="">Lowest price</option>
                             <option value="">highest price</option>
                         </select>
@@ -212,7 +213,7 @@ const comprar = ({ vehicles }) => {
                                 >
                                     <option value={'all'}>All</option>
                                     <option value="Toyota">Toyota</option><option value="Suzuki">Suzuki</option><option value="Honda">Honda</option><option value="Nissan">Nissan</option><option value="Mitsubishi">Mitsubishi</option><option value="Tata">Tata</option><option value="Bajaj">Bajaj</option><option value="TVS">TVS</option><option value="Isuzu">Isuzu</option><option value="Mahindra">Mahindra</option><option value="Mazda">Mazda</option><option value="Hero">Hero</option><option value="Micro">Micro</option><option value="Daihatsu">Daihatsu</option><option value="Hyundai">Hyundai</option><option value="Hero-Honda">Hero-Honda</option><option value="DFSK">DFSK</option><option value="Mercedes-Benz">Mercedes-Benz</option><option value="Kia">Kia</option><option value="Ford">Ford</option><option value="Perodua">Perodua</option><option value="Renault">Renault</option><option value="Peugeot">Peugeot</option><option value="BMW">BMW</option><option value="Yamaha">Yamaha</option>
-                                    <option value="Volkswagen">Volkswagen</option> 
+                                    <option value="Volkswagen">Volkswagen</option>
                                 </NativeSelect>
                             </FormControl>
                         </NativeSelectBox>
@@ -387,7 +388,7 @@ const comprar = ({ vehicles }) => {
                         </ButtonBox>
                     </section>
 
-                    <section className="cars-list">
+                    <section className="cars-list car-l-custom">
                         {/* List Vehicles  */}
                         {vehicleArr.map((item, i) => {
 
@@ -396,22 +397,24 @@ const comprar = ({ vehicles }) => {
 
                             return (
                                 <>
-                                    <a key={i} className="card-car" href="./car.html">
-                                        {/* Card Auto  */}
-                                        <img src={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0]} alt="imagen auto nissan" />
-                                        <div className="info-car">
-                                            {/* Vehicle data */}
-                                            <div className="car-brand">
-                                                {/* <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" /> */}
-                                                <h3>{item.model}</h3>
-                                            </div>
-                                            <div className="car-data">
-                                                <p>Year: {item.year}</p>
-                                                <p>Kilometros: {item.mileage}</p>
-                                                <p>USD {item.price}</p>
+                                    <Link href={`/vehicles/${item.id}`} sx={{color: 'black !important'}}>
+                                        <div key={i} className="card-car">
+                                            {/* Card Auto  */}
+                                            <img src={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0]} alt="imagen auto nissan" />
+                                            <div className="info-car">
+                                                {/* Vehicle data */}
+                                                <div className="car-brand">
+                                                    {/* <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" /> */}
+                                                    <h3>{item.model}</h3>
+                                                </div>
+                                                <div className="car-data">
+                                                    <p>Year: {item.year}</p>
+                                                    <p>Kilometros: {item.mileage}</p>
+                                                    <p>USD {item.price}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </a>
+                                    </Link>
                                 </>
                             );
                         })}

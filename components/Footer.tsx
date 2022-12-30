@@ -6,18 +6,18 @@ const Footer = () => {
             <hr/>
                 <div className="footer-bar"> {/* Barra Footer */}
                     <a href="./index.html"> {/* Logo */}
-                        <img src="./assets/img/logo/carhouse-logo.png" alt="logo CarHouse"/>
+                        <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse"/>
                     </a>
                     <div className="social-media"> {/* Redes Footer */}
                         <ul>
                             <li> {/* Instagram */}
-                                <a className="social-media-item" href="#" target="_blank"><img src="./assets/img/icons/instagram-oscuro.png" alt="icono instagram" width="40" height="40"/></a>
+                                <a className="social-media-item" href="#" target="_blank"><img src="../assets/img/icons/instagram-oscuro.png" alt="icono instagram" width="40" height="40"/></a>
                             </li>
                             <li> {/* Facebook */}
-                                <a className="social-media-item" href="#" target="_blank"><img src="./assets/img/icons/facebook-oscuro.png" alt="icono facebook" width="40" height="40"/></a>
+                                <a className="social-media-item" href="#" target="_blank"><img src="../assets/img/icons/facebook-oscuro.png" alt="icono facebook" width="40" height="40"/></a>
                             </li>
                             <li> {/* Whatsapp */}
-                                <a className="social-media-item" href="#" target="_blank"><img src="./assets/img/icons/whatsapp-oscuro.png" alt="icono whatsapp" width="40" height="40"/></a>
+                                <a className="social-media-item" href="#" target="_blank"><img src="../assets/img/icons/whatsapp-oscuro.png" alt="icono whatsapp" width="40" height="40"/></a>
                             </li>
                         </ul>
                     </div>

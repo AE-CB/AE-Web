@@ -4001,3 +4001,7 @@ select:hover {
 .mt-20{
   margin-top: 20px !important;
 }
+
+.car-l-custom a{
+  color: black;
+}

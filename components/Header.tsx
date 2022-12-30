@@ -12,7 +12,7 @@ const Header = () => {
           <div className="container-1600">
             <div>
               <a className="logo" href="./index.html"> {/* Logo */}
-                <img src="./assets/img/logo/carhouse-logo.png" alt="logo CarHouse" />
+                <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" />
               </a>
 
               <button id="hamburguer" className="hamburguer"><i className="fas fa-bars"></i></button>
