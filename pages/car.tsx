@@ -24,31 +24,32 @@ const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
 
 const car = () => {
 
-   const options = {  loop:true,
-                     nav:true,
-                     autoplay:false,
-                     dots:false,
-                     autoplayTimeout:2000,
-                     autoplaySpeed:2000,
-                     autoplayHoverPause:false,
-                     items:4,
-                     responsive: {
-                        0: {
-                            items: 2,
-                        },
-                        600: {
-                            items: 3,
-                        },
-                        1000: {
-                            items: 4,
-                        },
-                    },
+    const options = {
+        loop: true,
+        nav: true,
+        autoplay: false,
+        dots: false,
+        autoplayTimeout: 2000,
+        autoplaySpeed: 2000,
+        autoplayHoverPause: false,
+        items: 4,
+        responsive: {
+            0: {
+                items: 2,
+            },
+            600: {
+                items: 3,
+            },
+            1000: {
+                items: 4,
+            },
+        },
 
-                 }
+    }
 
     return (
         <>
-         
+
             <form className="search-form">  {/*Barra Busqueda*/}
                 <input className="search-bar" type="search" placeholder="¿Qué auto estas buscando?" />
                 <button className="search-btn"><img src="../assets/img/icons/magnifying-glass.png" alt="icono busqueda" width="25" /></button>
@@ -143,93 +144,93 @@ const car = () => {
                     <h3>Vehículos Similares</h3>
                     <div>
                         <OwlCarousel  {...options}>
-                           
-                           <div className='item item-boxShadow'   style={{margin:10}}>
-                           <a className="card-car item" href="./car.html">
-                                {/* Card Auto */}
-                                <img src="../assets/img/images/comprar/nissan-kicks.webp" alt="imagen auto nissan" style={{borderTopRightRadius:15, borderTopLeftRadius:15}} />
-                                <div className="info-car"> { /* Datos Vehiculo */}
-                                    <div className="car-brand" >
-                                        <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" style={{width:30, height:30}} />
-                                        <h3>Nissan Kicks</h3>
+
+                            <div className='item item-boxShadow' style={{ margin: 10 }}>
+                                <a className="card-car item" href="./car.html">
+                                    {/* Card Auto */}
+                                    <img src="../assets/img/images/comprar/nissan-kicks.webp" alt="imagen auto nissan" style={{ borderTopRightRadius: 15, borderTopLeftRadius: 15 }} />
+                                    <div className="info-car"> { /* Datos Vehiculo */}
+                                        <div className="car-brand" >
+                                            <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" style={{ width: 30, height: 30 }} />
+                                            <h3>Nissan Kicks</h3>
+                                        </div>
+                                        <div className="car-data">
+                                            <p>Año: 2021</p>
+                                            <p>Kilometros: 23500</p>
+                                            <p>USD 29700</p>
+                                        </div>
                                     </div>
-                                    <div className="car-data">
-                                        <p>Año: 2021</p>
-                                        <p>Kilometros: 23500</p>
-                                        <p>USD 29700</p>
+                                </a>
+                            </div>
+                            <div className='item item-boxShadow' style={{ margin: 10 }}>
+                                <a className="card-car item" href="./car.html"> { /* Card Auto */}
+                                    <img src="../assets/img/images/comprar/clio.webp" alt="imagen auto renault" style={{ borderTopRightRadius: 15, borderTopLeftRadius: 15 }} />
+                                    <div> { /* Datos Vehiculo */}
+                                        <div className="car-brand"  >
+                                            <img src="../assets/img/images/comprar-home/renault-logo.webp" alt="logo renault" style={{ width: 30, height: 30 }} />
+                                            <h3>Renault Clio</h3>
+                                        </div>
+                                        <div>
+                                            <p>Año: 2018</p>
+                                            <p>Kilometros: 46900</p>
+                                            <p>USD 17600</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                           </div>
-                           <div className='item item-boxShadow'  style={{margin:10 }}>
-                           <a className="card-car item" href="./car.html"> { /* Card Auto */}
-                                <img src="../assets/img/images/comprar/clio.webp" alt="imagen auto renault" style={{borderTopRightRadius:15, borderTopLeftRadius:15}}/>
-                                <div> { /* Datos Vehiculo */}
-                                    <div className="car-brand"  >
-                                        <img src="../assets/img/images/comprar-home/renault-logo.webp" alt="logo renault" style={{width:30, height:30}} />
-                                        <h3>Renault Clio</h3>
+                                </a>
+                            </div>
+                            <div className='item item-boxShadow' style={{ margin: 10 }}>
+                                <a className="card-car item" href="./car.html"> { /* Card Auto */}
+                                    <img src="../assets/img/images/comprar/swift.webp" alt="imagen auto suzuki" style={{ borderTopRightRadius: 15, borderTopLeftRadius: 15 }} />
+                                    <div> { /* Datos Vehiculo */}
+                                        <div className="car-brand" >
+                                            <img src="../assets/img/images/comprar-home/suzuki_logo.webp" alt="logo suzuki" style={{ width: 30, height: 30 }} />
+                                            <h3>Suzuki Swift</h3>
+                                        </div>
+                                        <div>
+                                            <p>Año: 2017</p>
+                                            <p>Kilometros: 90600</p>
+                                            <p>USD 14600</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p>Año: 2018</p>
-                                        <p>Kilometros: 46900</p>
-                                        <p>USD 17600</p>
+                                </a>
+                            </div>
+
+                            <div className='item item-boxShadow' style={{ margin: 10 }}>
+                                <a className="card-car item" href="./car.html"> { /* Card Auto */}
+                                    <img src="../assets/img/images/comprar/accent.webp" alt="imagen auto hyundai" style={{ borderTopRightRadius: 15, borderTopLeftRadius: 15 }} />
+                                    <div> { /* Datos Vehiculo */}
+                                        <div className="car-brand" >
+                                            <img src="../assets/img/images/comprar-home/hyundai-logo.webp" alt="logo hyundai" style={{ width: 30, height: 30 }} />
+                                            <h3>Hyundai Accent</h3>
+                                        </div>
+                                        <div>
+                                            <p>Año: 2018</p>
+                                            <p>Kilometros: 108500</p>
+                                            <p>USD 21800</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                           </div>
-                           <div className='item item-boxShadow'  style={{margin:10}}>
-                           <a className="card-car item" href="./car.html"> { /* Card Auto */}
-                                <img src="../assets/img/images/comprar/swift.webp" alt="imagen auto suzuki" style={{borderTopRightRadius:15, borderTopLeftRadius:15}}/>
-                                <div> { /* Datos Vehiculo */}
-                                    <div className="car-brand" >
-                                        <img src="../assets/img/images/comprar-home/suzuki_logo.webp" alt="logo suzuki" style={{width:30, height:30}} />
-                                        <h3>Suzuki Swift</h3>
-                                    </div>
-                                    <div>
-                                        <p>Año: 2017</p>
-                                        <p>Kilometros: 90600</p>
-                                        <p>USD 14600</p>
-                                    </div>
-                                </div>
-                            </a>
-                           </div>
-                         
-                           <div className='item item-boxShadow'  style={{margin:10}}>
-                           <a className="card-car item" href="./car.html"> { /* Card Auto */}
-                                <img src="../assets/img/images/comprar/accent.webp" alt="imagen auto hyundai" style={{borderTopRightRadius:15, borderTopLeftRadius:15}}/>
-                                <div> { /* Datos Vehiculo */}
-                                    <div className="car-brand" >
-                                        <img src="../assets/img/images/comprar-home/hyundai-logo.webp" alt="logo hyundai"  style={{width:30, height:30}} />
-                                        <h3>Hyundai Accent</h3>
-                                    </div>
-                                    <div>
-                                        <p>Año: 2018</p>
-                                        <p>Kilometros: 108500</p>
-                                        <p>USD 21800</p>
-                                    </div>
-                                </div>
-                            </a>
-                           </div>
+                                </a>
+                            </div>
 
 
-                           <div className='item item-boxShadow'  style={{margin:10}}>
-                           <a className="card-car item" href="./car.html"> { /* Card Auto */}
-                                <img src="../assets/img/images/comprar/accent.webp" alt="imagen auto hyundai" style={{borderTopRightRadius:15, borderTopLeftRadius:15}}/>
-                                <div> { /* Datos Vehiculo */}
-                                    <div className="car-brand" >
-                                        <img src="../assets/img/images/comprar-home/hyundai-logo.webp" alt="logo hyundai"  style={{width:30, height:30}} />
-                                        <h3>Hyundai Accent</h3>
+                            <div className='item item-boxShadow' style={{ margin: 10 }}>
+                                <a className="card-car item" href="./car.html"> { /* Card Auto */}
+                                    <img src="../assets/img/images/comprar/accent.webp" alt="imagen auto hyundai" style={{ borderTopRightRadius: 15, borderTopLeftRadius: 15 }} />
+                                    <div> { /* Datos Vehiculo */}
+                                        <div className="car-brand" >
+                                            <img src="../assets/img/images/comprar-home/hyundai-logo.webp" alt="logo hyundai" style={{ width: 30, height: 30 }} />
+                                            <h3>Hyundai Accent</h3>
+                                        </div>
+                                        <div>
+                                            <p>Año: 2018</p>
+                                            <p>Kilometros: 108500</p>
+                                            <p>USD 21800</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p>Año: 2018</p>
-                                        <p>Kilometros: 108500</p>
-                                        <p>USD 21800</p>
-                                    </div>
-                                </div>
-                            </a>
-                           </div>
-                           
-                          
+                                </a>
+                            </div>
+
+
                         </OwlCarousel>
 
                         <div className="left-arrow">

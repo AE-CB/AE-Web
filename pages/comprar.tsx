@@ -211,10 +211,8 @@ const comprar = ({ vehicles }) => {
                                     onChange={(e) => setBrand(e.target.value)}
                                 >
                                     <option value={'all'}>All</option>
-                                    <option value={'Nissan'}>Nissan</option>
-                                    <option value={'Suzuki'}>Suzuki</option>
-                                    <option value={'Volkswagen'}>Volkswagen</option>
-                                    <option value={'Fiat'}>Fiat</option>
+                                    <option value="Toyota">Toyota</option><option value="Suzuki">Suzuki</option><option value="Honda">Honda</option><option value="Nissan">Nissan</option><option value="Mitsubishi">Mitsubishi</option><option value="Tata">Tata</option><option value="Bajaj">Bajaj</option><option value="TVS">TVS</option><option value="Isuzu">Isuzu</option><option value="Mahindra">Mahindra</option><option value="Mazda">Mazda</option><option value="Hero">Hero</option><option value="Micro">Micro</option><option value="Daihatsu">Daihatsu</option><option value="Hyundai">Hyundai</option><option value="Hero-Honda">Hero-Honda</option><option value="DFSK">DFSK</option><option value="Mercedes-Benz">Mercedes-Benz</option><option value="Kia">Kia</option><option value="Ford">Ford</option><option value="Perodua">Perodua</option><option value="Renault">Renault</option><option value="Peugeot">Peugeot</option><option value="BMW">BMW</option><option value="Yamaha">Yamaha</option>
+                                    <option value="Volkswagen">Volkswagen</option> 
                                 </NativeSelect>
                             </FormControl>
                         </NativeSelectBox>
@@ -404,11 +402,11 @@ const comprar = ({ vehicles }) => {
                                         <div className="info-car">
                                             {/* Vehicle data */}
                                             <div className="car-brand">
-                                                <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" />
+                                                {/* <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" /> */}
                                                 <h3>{item.model}</h3>
                                             </div>
                                             <div className="car-data">
-                                                <p>Año: {item.year}</p>
+                                                <p>Year: {item.year}</p>
                                                 <p>Kilometros: {item.mileage}</p>
                                                 <p>USD {item.price}</p>
                                             </div>
