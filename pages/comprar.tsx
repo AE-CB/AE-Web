@@ -68,6 +68,8 @@ const handlePagination = (event, value) => {
 
 };
 
+
+
 export async function getStaticProps() {
     console.log(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles');
 
@@ -138,6 +140,33 @@ const comprar = ({ vehicles }) => {
         // console.log(vehicles)
     }
 
+    const setSort = async (e) => {
+        let formData = new FormData();
+        formData.append('brand', brand);
+        formData.append('condition', condition);
+        formData.append('model', model);
+        formData.append('yearMax', yearMax);
+        formData.append('yearMin', yearMin);
+        formData.append('priceMax', priceMax);
+        formData.append('priceMin', priceMin);
+        formData.append('type', type);
+        formData.append('gear', gear);
+        formData.append('fuel', fuel);
+        formData.append('city', city);
+
+        formData.append('sortfilter', e.target.value);
+    
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles', {
+            method: 'POST',
+            body: formData,
+        })
+
+        const vehicleFiltered = await res.json()
+        setVehicleArr(vehicleFiltered)
+        filtersRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    
+    }
+
     return (
         <>
             {/* form 1 */}
@@ -155,12 +184,12 @@ const comprar = ({ vehicles }) => {
                     <p className="total-vehicles">{vehicles.length} vehicles have been found</p>
                     <div className="sort-vehicles">
                         {/*  Ordenamiento  */}
-                        <img src="../assets/img/icons/ordenar-por-opcion-de-boton-de-interfaz-de-atributos.png" alt="icono ordenamiento" width="25" />
+                        <img className='sortimg' src="../assets/img/icons/orderasc.png" alt="icono ordenamiento" width="25" />
                         <p>Sort by:</p>
-                        <select name="ordenamiento" id="">
-                            <option value="">Date Added</option>
-                            <option value="">Lowest price</option>
-                            <option value="">highest price</option>
+                        <select name="ordenamiento" id="" onChange={setSort}>
+                            <option value="date">Date Added</option>
+                            <option value="priceasc">Lowest price</option>
+                            <option value="pricedec">highest price</option>
                         </select>
                     </div>
                 </section>
@@ -397,7 +426,7 @@ const comprar = ({ vehicles }) => {
 
                             return (
                                 <>
-                                    <Link href={`/vehicles/${item.id}`} sx={{color: 'black !important'}}>
+                                    <Link href={`/vehicles/${item.id}`} sx={{ color: 'black !important' }}>
                                         <div key={i} className="card-car">
                                             {/* Card Auto  */}
                                             <img src={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0]} alt="imagen auto nissan" />

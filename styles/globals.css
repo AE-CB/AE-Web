@@ -4005,3 +4005,7 @@ select:hover {
 .car-l-custom a{
   color: black;
 }
+
+.sortimg:hover{
+  cursor: pointer;
+}
