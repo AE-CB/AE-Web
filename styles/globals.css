@@ -4009,3 +4009,7 @@ select:hover {
 .sortimg:hover{
   cursor: pointer;
 }
+
+.car-secondary-images img:hover{
+  cursor: pointer;
+}

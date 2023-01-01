@@ -1,10 +1,16 @@
 import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
 
 const Car = ({ vehicle }) => {
 
     let images = JSON.parse(vehicle.data.images)
     console.log(images)
+
+    const [selectedImg, setSelectedImg] = useState(images[0]);
+
+    const handleImg = (event) => {
+        setSelectedImg(event.target.attributes.dataImg.value)
+    }
 
     return (
         <main className="main-car">
@@ -16,12 +22,19 @@ const Car = ({ vehicle }) => {
 
             <section className="car-section">
                 <section className="car-img">
-                    <img src={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0]} alt="Volkswagen Golf GTI" />
-                    {/* <div className="car-secondary-images">
-                        <img src="../assets/img/images/car/vw-golf-costado.webp" alt="Volkswagen Golf GTI costado" />
+                    <img src={process.env.NEXT_PUBLIC_IMAGE_HOST + selectedImg} alt="Volkswagen Golf GTI" />
+                    <div className="car-secondary-images">
+                        {images.map((image, key) => {
+                            return (
+                                <>
+                                    <img key={key} dataImg={image} onClick={(event) => handleImg(event)} src={process.env.NEXT_PUBLIC_IMAGE_HOST + image} alt="Volkswagen Golf GTI costado" />
+                                </>
+                            )
+                        })}
+                        {/* <img src="../assets/img/images/car/vw-golf-costado.webp" alt="Volkswagen Golf GTI costado" />
                         <img src="../assets/img/images/car/vw-golf-motor.webp" alt="Motor Volkswagen Golf GTI" />
-                        <img src="../assets/img/images/car/volkswagen-golf-gti-interior.webp" alt="Interior Volkswagen Golf GTI" />
-                    </div> */}
+                        <img src="../assets/img/images/car/volkswagen-golf-gti-interior.webp" alt="Interior Volkswagen Golf GTI" /> */}
+                    </div>
                 </section>
 
                 <section className="car-info">
