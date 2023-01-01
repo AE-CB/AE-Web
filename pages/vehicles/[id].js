@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react'
 
@@ -24,7 +25,7 @@ const Car = ({ vehicle }) => {
 
             <section className="car-section" ref={carsectionRef}>
                 <section className="car-img">
-                    <img src={process.env.NEXT_PUBLIC_IMAGE_HOST + selectedImg} alt="Volkswagen Golf GTI" />
+                    <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_IMAGE_HOST + selectedImg} alt="Volkswagen Golf GTI" />
                     <div className="car-secondary-images">
                         {images.map((image, key) => {
                             return (

@@ -4013,3 +4013,8 @@ select:hover {
 .car-secondary-images img:hover{
   cursor: pointer;
 }
+
+.nextimg{
+  width: 100%;
+  height: auto;
+}
