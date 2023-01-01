@@ -49,15 +49,15 @@ const Car = ({ vehicle }) => {
                 </section>
 
                 <section className="car-technical-data">
-                    <h3>Ficha Técnica:</h3>
+                    <h3>Data sheet:</h3>
                     <div className="technical-data">
-                        <p>Marca: <span>Volkswagen</span></p>
-                        <p>Modelo: <span>Golf GTI</span></p>
-                        <p>Año: <span>2020</span></p>
-                        <p>Kilometraje: <span>35.678</span></p>
-                        <p>Color: <span>Blanco</span></p>
-                        <p>Motor: <span>1.6</span> cc</p>
-                        <p>Transmición: <span>6</span> velocidades</p>
+                        <p>Brand: <span>{vehicle.data.brand}</span></p>
+                        <p>Model: <span>{vehicle.data.model}</span></p>
+                        <p>Year: <span>{vehicle.data.year}</span></p>
+                        <p>Mileage: <span>{vehicle.data.mileages}</span></p>
+                        <p>Color: <span>{vehicle.data.color}</span></p>
+                        <p>Engine: <span>{vehicle.data.engine}</span></p>
+                        {/* <p>Transmission: <span>6</span> velocidades</p> */}
                     </div>
                 </section>
 
