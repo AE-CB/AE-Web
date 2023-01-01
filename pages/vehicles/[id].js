@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 const Car = ({ vehicle }) => {
 
@@ -7,9 +7,11 @@ const Car = ({ vehicle }) => {
     console.log(images)
 
     const [selectedImg, setSelectedImg] = useState(images[0]);
+    const carsectionRef = useRef(null);
 
     const handleImg = (event) => {
         setSelectedImg(event.target.attributes.dataImg.value)
+        carsectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
     return (
@@ -20,7 +22,7 @@ const Car = ({ vehicle }) => {
                 </Link>
             </div>
 
-            <section className="car-section">
+            <section className="car-section" ref={carsectionRef}>
                 <section className="car-img">
                     <img src={process.env.NEXT_PUBLIC_IMAGE_HOST + selectedImg} alt="Volkswagen Golf GTI" />
                     <div className="car-secondary-images">
@@ -31,9 +33,6 @@ const Car = ({ vehicle }) => {
                                 </>
                             )
                         })}
-                        {/* <img src="../assets/img/images/car/vw-golf-costado.webp" alt="Volkswagen Golf GTI costado" />
-                        <img src="../assets/img/images/car/vw-golf-motor.webp" alt="Motor Volkswagen Golf GTI" />
-                        <img src="../assets/img/images/car/volkswagen-golf-gti-interior.webp" alt="Interior Volkswagen Golf GTI" /> */}
                     </div>
                 </section>
 
