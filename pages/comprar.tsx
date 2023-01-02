@@ -49,7 +49,7 @@ const TextFieldBox = styled(Box)(({ theme }) => ({
     }
 }));
 
-var years = [];
+var years: any[] = [];
 
 function generateArrayOfYears() {
     var max = new Date().getFullYear()
