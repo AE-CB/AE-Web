@@ -279,7 +279,7 @@ const Vender = () => {
                         <div>
                             <h2>6. Finish Publishing</h2>
                             <div className="sign-up-field">
-                                <h3>Owner's Name</h3>
+                                <h3>Owner&apos;s Name</h3>
                                 <input type="text" name="owner" onChange={(e) => setOwner(e.target.value)}
                                     placeholder="Whose name is the vehicle in?" autocomplete="off" required />
                             </div>
