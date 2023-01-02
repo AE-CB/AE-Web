@@ -49,7 +49,7 @@ const TextFieldBox = styled(Box)(({ theme }) => ({
     }
 }));
 
-var years: any[] = [];
+var years = [];
 
 function generateArrayOfYears() {
     var max = new Date().getFullYear()
@@ -91,7 +91,7 @@ export async function getStaticProps() {
     }
 }
 
-const Comprar = ({ vehicles }) => {
+const comprar = ({ vehicles }) => {
 
     const [filters, setFilters] = useState({});
     const [vehicleArr, setVehicleArr] = useState(vehicles);
@@ -462,5 +462,5 @@ const Comprar = ({ vehicles }) => {
     )
 }
 
-Comprar.layout = "AdminLayout";
-export default Comprar
+comprar.layout = "AdminLayout";
+export default comprar
