@@ -91,7 +91,7 @@ export async function getStaticProps() {
     }
 }
 
-const comprar = ({ vehicles }) => {
+const Comprar = ({ vehicles }) => {
 
     const [filters, setFilters] = useState({});
     const [vehicleArr, setVehicleArr] = useState(vehicles);
@@ -462,5 +462,5 @@ const comprar = ({ vehicles }) => {
     )
 }
 
-comprar.layout = "AdminLayout";
-export default comprar
+Comprar.layout = "AdminLayout";
+export default Comprar
