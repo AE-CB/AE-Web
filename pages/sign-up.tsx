@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Router from 'next/router';
+import Image from "next/image";
 
 const SignUp = () => {
     const ref_password = useRef(null);
@@ -64,12 +65,14 @@ const SignUp = () => {
         <>
             <div className="sign-in-container">
 
-                <img className="sign-in-banner" src="../assets/img/images/sign-in-up/car-image.webp" alt="imagen auto" width="100%" height="50%" /> {/* Parte de la Imagen */}
-                <a href="../index.html" className="btn-volver-siu"><i className="fas fa-arrow-left"></i></a>
+                <Image width={1000} height={1000} className="width_100 sign-in-banner" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/sign-in-up/car-image.webp"} alt="imagen auto" /> {/* Parte de la Imagen */}
+                <a href="../index.html" className="btn-volver-siu">
+                    <svg className="svg-inline--fa fa-arrow-left" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg>
+                </a>
 
 
                 <main className="sign-in-content"> {/* Parte del Formulario */}
-                    <a href="../index.html"><img className="" src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" /></a>
+                    <a href="../index.html"><Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" /></a>
                     <h1>Register</h1>
 
                     <div id="display_errors" className="display_errors" ref={ref_error_div}>
@@ -183,13 +186,13 @@ const SignUp = () => {
                             <div className="social-media"> {/* Redes Footer */}
                                 <ul>
                                     <li> {/* Instagram */}
-                                        <a href="#" target="_blank"><img src="../assets/img/icons/instagram-oscuro.png" alt="icono instagram" width="25" height="25" /></a>
+                                        <a href="#" target="_blank"><Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/instagram-oscuro.png"} alt="icono instagram" width="25" height="25" /></a>
                                     </li>
                                     <li> {/* Facebook */}
-                                        <a href="#" target="_blank"><img src="../assets/img/icons/facebook-oscuro.png" alt="icono facebook" width="25" height="25" /></a>
+                                        <a href="#" target="_blank"><Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/facebook-oscuro.png"} alt="icono facebook" width="25" height="25" /></a>
                                     </li>
                                     <li> {/* Whatsapp */}
-                                        <a href="#" target="_blank"><img src="../assets/img/icons/whatsapp-oscuro.png" alt="icono whatsapp" width="25" height="25" /></a>
+                                        <a href="#" target="_blank"><Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/whatsapp-oscuro.png"} alt="icono whatsapp" width="25" height="25" /></a>
                                     </li>
                                 </ul>
                             </div>

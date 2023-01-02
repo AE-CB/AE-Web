@@ -4018,3 +4018,12 @@ select:hover {
   width: 100%;
   height: auto;
 }
+
+.width_50{
+  width: 50%;
+  height: auto;
+}
+
+.width_100{
+  width: 100%;
+}
