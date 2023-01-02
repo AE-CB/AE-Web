@@ -6,7 +6,8 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import AppContext from '../context/AppContext'
 import AdminLayout from '../components/Layouts/AdminLayout'
 import NormalLayout from '../components/Layouts/NormalLayout';
-import AOS from 'aos';
+// import AOS from 'aos';
+const AOS = require('aos');
 import 'aos/dist/aos.css'; 
 
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
