@@ -22,14 +22,13 @@ const Header = () => {
             <nav id="main-nav" className="main-nav"> {/* Navegacion */}
               <ul>
                 <li>
-                  <a className="nav-link" href="./pages/comprar-home.html">Comprar</a>
+                  <a className="nav-link" href="./pages/comprar-home.html">Buy</a>
                 </li>
                 {context.apikey && <li>
-                  <a className="nav-link" href="./pages/vender.html">Vender</a>
+                  <Link className="nav-link" href={`/vender`}>Sell</Link>
                 </li>}
-
                 <li>
-                  <a className="nav-link" href="./pages/concesionarias.html">Concesionarias</a>
+                  <a className="nav-link" href="./pages/concesionarias.html">Dealerships</a>
                 </li>
                 <li>
                   <Link className="nav-link btn-ingresar" href={`/sign-in`}>Sign In</Link>

@@ -37,9 +37,9 @@ const Vender = () => {
     const [description, setDescription] = useState("");
     const [mileage, setMileage] = useState("");
     const [engine, setEngine] = useState("");
-    const [departament, setDepartament] = useState("");
+    // const [departament, setDepartament] = useState("");
     const [city, setCity] = useState("");
-    const [owner, setOwner] = useState("");
+    // const [owner, setOwner] = useState("");
     const [price, setPrice] = useState("");
     const [condition, setCondition] = useState("");
 
@@ -60,7 +60,7 @@ const Vender = () => {
         formData.append('engine', engine);
         formData.append('departament', departament);
         formData.append('city', city);
-        formData.append('owner', owner);
+        // formData.append('owner', owner);
         formData.append('price', price);
         formData.append('condition', condition);
 
@@ -246,7 +246,7 @@ const Vender = () => {
                             </div> */}
                             <div className="sign-up-field">
                                 <h3>City</h3>
-                                <select name="localidad" id="" onChange={(e) => setLocation(e.target.value)}>
+                                <select name="localidad" id="" onChange={(e) => setCity(e.target.value)}>
                                     <option value="" selected disabled>In what town is the vehicle?</option>
                                     <option value="">Aguada</option>
                                     <option value="">Aires Puros</option>
@@ -278,11 +278,11 @@ const Vender = () => {
                     <section className="end-section"> {/* Finalizar Publicacion */}
                         <div>
                             <h2>6. Finish Publishing</h2>
-                            <div className="sign-up-field">
+                            {/* <div className="sign-up-field">
                                 <h3>Owner&apos;s Name</h3>
                                 <input type="text" name="owner" onChange={(e) => setOwner(e.target.value)}
                                     placeholder="Whose name is the vehicle in?" autocomplete="off" required />
-                            </div>
+                            </div> */}
                             <div className="sign-up-field">
                                 <h3>Price</h3>
                                 <div className="field-price">
