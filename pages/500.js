@@ -1,4 +1,9 @@
 // pages/500.js
-export default function Custom500() {
-    return <h1>500 - Server-side error occurred</h1>
+
+
+const Custom500 = () => {
+    return <h1>404 - Page Not Found</h1>
 }
+
+Custom500.layout = "AdminLayout";
+export default Custom500
