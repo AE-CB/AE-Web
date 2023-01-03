@@ -427,6 +427,7 @@ const Comprar = ({ vehicles }) => {
 
                             return (
                                 <>
+                                
                                     <Link href={`/vehicles/${item.id}`} sx={{ color: 'black !important' }}>
                                         <div key={i} className="card-car">
                                             {/* Card Auto  */}
