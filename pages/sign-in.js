@@ -2,6 +2,7 @@ import React, { useRef, useState, useContext } from 'react'
 import Router from 'next/router';
 import AppContext from '../context/AppContext'
 import Image from 'next/image';
+import Link from 'next/link';
 
 const SignIn = () => {
     const context = useContext(AppContext)
@@ -76,13 +77,13 @@ const SignIn = () => {
                                     name="email" placeholder="Enter your email" required />
                             </div>
                             <div className="sign-up-field">
-                                <h3>Contraseña</h3>
+                                <h3>Password</h3>
                                 <input type="password"
                                     onLoad={(e) => setPassword(e.target.value)}
                                     onChange={(e) => setPassword(e.target.value)}
                                     name="password" placeholder="Enter Your password" required />
                             </div>
-                            <a href="#">¿Olvidaste tu contraseña?</a>
+                            <a href="#">Did you forget your password?</a>
                         </div>
                         <div className="sign-in-btns"> {/* Botones */}
                             <div className="remember-me">
@@ -92,8 +93,8 @@ const SignIn = () => {
                             <div className="sign-in-up">
                                 <input type="submit" value="Log in" />
                                 <div className="register-section"> {/* Registrarse */}
-                                    <a className="btn-register" href="./sign-up.html">Register</a>
-                                    <p>¿Aún no tienes una cuenta?</p>
+                                    <Link className="btn-register" href={`/sign-up`}>Sign Up</Link>
+                                    <p>Don't you have an account yet?</p>
                                 </div>
                             </div>
                         </div>

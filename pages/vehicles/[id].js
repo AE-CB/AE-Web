@@ -200,8 +200,8 @@ export const getStaticProps = async ({ params: { id } }) => {
 
 export const getStaticPaths = async () => {
     const vehicles = [
-        { "id": 1, "name": "John", "age": 30, "car": null },
-        { "id": 2, "name": "John 2", "age": 32, "car": null },
+        { "id": 2, "name": "John", "age": 30, "car": null },
+        { "id": 3, "name": "John 2", "age": 32, "car": null },
         { "id": 31, "name": "John 2", "age": 32, "car": null }
     ]
 

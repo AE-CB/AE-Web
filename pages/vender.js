@@ -38,7 +38,7 @@ const Vender = () => {
     const [mileage, setMileage] = useState("");
     const [engine, setEngine] = useState("");
     const [departament, setDepartament] = useState("");
-    const [location, setLocation] = useState("");
+    const [city, setCity] = useState("");
     const [owner, setOwner] = useState("");
     const [price, setPrice] = useState("");
     const [condition, setCondition] = useState("");
@@ -59,7 +59,7 @@ const Vender = () => {
         formData.append('mileage', mileage);
         formData.append('engine', engine);
         formData.append('departament', departament);
-        formData.append('location', location);
+        formData.append('city', city);
         formData.append('owner', owner);
         formData.append('price', price);
         formData.append('condition', condition);
@@ -219,7 +219,7 @@ const Vender = () => {
                     <section className="location-section"> {/* Ubicacion */}
                         <div>
                             <h2>5. Where is the Vehicle Located?</h2>
-                            <div className="sign-up-field">
+                            {/* <div className="sign-up-field">
                                 <h3>Department</h3>
                                 <select name="departamento" id="" onChange={(e) => setDepartament(e.target.value)}>
                                     <option value="default" selected disabled>Where is the vehicle located?</option>
@@ -243,9 +243,9 @@ const Vender = () => {
                                     <option value="tacuarembo">Tacuarembo</option>
                                     <option value="treinta y tres">Treinta y Tres</option>
                                 </select>
-                            </div>
+                            </div> */}
                             <div className="sign-up-field">
-                                <h3>Location</h3>
+                                <h3>City</h3>
                                 <select name="localidad" id="" onChange={(e) => setLocation(e.target.value)}>
                                     <option value="" selected disabled>In what town is the vehicle?</option>
                                     <option value="">Aguada</option>

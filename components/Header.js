@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, { useContext } from 'react'
 import AppContext from '../context/AppContext'
 
@@ -31,7 +32,7 @@ const Header = () => {
                   <a className="nav-link" href="./pages/concesionarias.html">Concesionarias</a>
                 </li>
                 <li>
-                  <a className="nav-link btn-ingresar" href="./pages/sign-in.html">Ingresar</a>
+                  <Link className="nav-link btn-ingresar" href={`/sign-in`}>Sign In</Link>
                 </li>
               </ul>
             </nav>

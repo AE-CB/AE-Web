@@ -1,6 +1,6 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import Header from '../components/Header.tsx'
-import Footer from '../components/Footer.tsx'
+import Header from '../components/Header.js'
+import Footer from '../components/Footer.js'
 import Script from 'next/script'
 
 import { Fragment } from "react";

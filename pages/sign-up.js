@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Router from 'next/router';
 import Image from "next/image";
+import Link from "next/link";
 
 const SignUp = () => {
     const ref_password = useRef(null);
@@ -116,32 +117,6 @@ const SignUp = () => {
                                 <input type="password" onChange={validatePassword} ref={ref_confirm_password} name="password-repeat" placeholder="Repeat your password" required />
                             </div>
                             <div className="sign-up-field">
-                                <h3 className="input-heading">Departament</h3>
-                                <select name="departamento" id=""
-                                    onChange={(e) => setDepartament(e.target.value)} required>
-                                    <option value="" selected disabled>Select a department</option>
-                                    <option value="artigas">Artigas</option>
-                                    <option value="canelones">Canelones</option>
-                                    <option value="cerro largo">Cerro Largo</option>
-                                    <option value="colonia">Colonia</option>
-                                    <option value="durazno">Durazno</option>
-                                    <option value="flores">Flores</option>
-                                    <option value="florida">Florida</option>
-                                    <option value="lavalleja">Lavalleja</option>
-                                    <option value="maldonado">Maldonado</option>
-                                    <option value="montevideo">Montevideo</option>
-                                    <option value="paysandu">Paysandu</option>
-                                    <option value="rio negro">Rio Negro</option>
-                                    <option value="rivera">Rivera</option>
-                                    <option value="rocha">Rocha</option>
-                                    <option value="salto">Salto</option>
-                                    <option value="san jose">San Jose</option>
-                                    <option value="soriano">Soriano</option>
-                                    <option value="tacuarembo">Tacuarembo</option>
-                                    <option value="treinta y tres">Treinta y Tres</option>
-                                </select>
-                            </div>
-                            <div className="sign-up-field">
                                 <h3 className="input-heading">Location</h3>
                                 <select name="localidad" id=""
                                     onChange={(e) => setLocation(e.target.value)} required>
@@ -173,8 +148,8 @@ const SignUp = () => {
                         <div className="sign-in-up"> {/* Botones */}
                             <input type="submit" value="Register" />
                             <div className="register-section"> {/* Iniciar Sesion */}
-                                <a className="btn-register" href="./sign-in.html">Log in</a>
-                                <p>¿Ya tienes una cuenta?</p>
+                                <Link className="btn-register" href={`/sign-in`}>Sign In</Link>
+                                <p>Already have an account?</p>
                             </div>
                         </div>
                     </form>
