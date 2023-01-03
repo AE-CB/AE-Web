@@ -429,7 +429,6 @@ const Comprar = ({ vehicles }) => {
                                 <>
                                     <Link href={`/vehicles/${item.id}`} sx={{ color: 'black !important' }}>
                                         <div key={i} className="card-car">
-                                            
                                             {/* Card Auto  */}
                                             <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0].replace(/\\/g, "/")} alt="imagen auto nissan" />
                                             <div className="info-car" data={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0].replace(/\\/g, "/")}>
