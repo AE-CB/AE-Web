@@ -94,7 +94,7 @@ const SignIn = () => {
                                 <input type="submit" value="Log in" />
                                 <div className="register-section"> {/* Registrarse */}
                                     <Link className="btn-register" href={`/sign-up`}>Sign Up</Link>
-                                    <p>Don't you have an account yet?</p>
+                                    <p>Don&apos;t you have an account yet?</p>
                                 </div>
                             </div>
                         </div>
