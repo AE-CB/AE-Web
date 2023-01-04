@@ -8,67 +8,196 @@ import React from 'react'
 const Home = () => {
   return (
     <>
-      <section className="banner">
-        <Image className="width_50 banner-img"  width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/landing-page/banner-wallpaper.webp"}
-          alt="imagen de auto" /> {/* Imagen del banner */}
-        <div className="banner-content"> {/* Primera parte del banner */}
-          <h1>La <b>Mejor Plataforma</b> para <br />Vender y Comprar Autos</h1>
-          <p>Ha llegado a Uruguay la mejor plataforma para vender o comprar autos. <br />En CarHouse te la hacemos fácil.</p>
-          <a className="btn-explorar" href="#main">Explorar</a>
-        </div>
+      <section class="banner-comprar-home">
+        <h1>Find the Car of <br /><b>Your Dreams</b></h1>
+        <form class="search-form">
+          <input class="search-bar" type="search" placeholder="What are you looking for?" />
+          <button class="search-btn"><Image src="/assets/img/icons/magnifying-glass.png" alt="icono busqueda" className='auto_height' width={25} height={1000} /></button>
+        </form>
       </section>
-      <main id="main" className="main-content">
-        <h2>¿Qué puedes Hacer aquí?</h2>
-        <p>Todo lo relacionado al mundo de los vehículos se encuentra aquí</p>
 
-        <section className="section-vender">
-          <Image className='width_50' width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/landing-page/vender.svg"} alt="imagen Businessman" />
-          <div data-aos="fade-left" data-aos-duration="1500">
-            <h3>Vende tu Auto de forma <br /><b>Rápida y Segura</b></h3>
-            <a className="btn-vender" href="./pages/vender.html">Vender</a> {/* Boton Vender */}
+      <main class="main-comprar-home">
+        <h2>Main brands</h2>
+        <section class="main-brands">
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img class="img-brand" src="../assets/img/images/comprar-home/fiat-logo.webp" alt="logo fiat" width="55" />
+            </div>
+            <p>Fiat</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/chevrolet-logo.webp" alt="logo chevrolet" width="55" />
+            </div>
+            <p>Chevrolet</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/suzuki_logo.webp" alt="logo suzuki" width="55" />
+            </div>
+            <p>Suzuki</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/volkswagen-logo.webp" alt="logo volkswagen" width="55" />
+            </div>
+            <p>Volkswagen</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/logo-ford.webp" alt="logo ford" width="55" />
+            </div>
+            <p>Ford</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="55" />
+            </div>
+            <p>Nissan</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/logo-bmw.webp" alt="logo bmw" width="55" />
+            </div>
+            <p>BMW</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/toyota-logo.webp" alt="logo toyota" width="55" />
+            </div>
+            <p>Toyota</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/logo-mercedes-benz.webp" alt="logo mercedes" width="55" />
+            </div>
+            <p>Mercedes</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/citroen-logo.webp" alt="logo citroen" width="55" />
+            </div>
+            <p>Citroen</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/chery-logo.webp" alt="logo chery" width="55" />
+            </div>
+            <p>Chery</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/honda-logo.webp" alt="logo honda" width="55" />
+            </div>
+            <p>Honda</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/kia-logo.webp" alt="logo kia" width="55" />
+            </div>
+            <p>Kia</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/audi-logo.webp" alt="logo audi" width="55" />
+            </div>
+            <p>Audi</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/renault-logo.webp" alt="logo renault" width="55" />
+            </div>
+            <p>Renault</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/jeep_logo.webp" alt="logo jeep" width="55" />
+            </div>
+            <p>Jeep</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/hyundai-logo.webp" alt="logo hyundai" width="55" />
+            </div>
+            <p>Hyundai</p>
+          </a>
+          <a href="./comprar.html" class="brand-card"> {/* Card Marca */}
+            <div>
+              <img src="../assets/img/images/comprar-home/logo-peugeot.webp" alt="logo peugeot" width="55" />
+            </div>
+            <p>Peugeot</p>
+          </a>
+        </section>
+
+        <h2>Vehicles that Might Interest You</h2>
+        <section class="car-types-section">
+          <div class="car-types">
+            <a href="./comprar.html" class="vehicle-card vehicle-card-hatchbacks" data-aos="zoom-in"> {/* Card Vehiculo */}
+              <img src="../assets/img/images/comprar-home/vw-golf-hatchback.webp" alt="imagen auto" width="75%" />
+              <p>Hatchbacks</p>
+            </a>
+            <a href="./comprar.html" class="vehicle-card vehicle-card-sedanes" data-aos="zoom-in"> {/* Card Vehiculo */}
+              <img src="../assets/img/images/comprar-home/bmw-sedan.webp" alt="imagen auto" width="75%" />
+              <p>Sedanes</p>
+            </a>
+            <a href="./comprar.html" class="vehicle-card vehicle-card-suvs" data-aos="zoom-in"> {/* Card Vehiculo */}
+              <img src="../assets/img/images/comprar-home/mb-suv.webp" alt="imagen auto" width="75%" />
+              <p>SUVS</p>
+            </a>
+            <a href="./comprar.html" class="vehicle-card vehicle-card-camionetas" data-aos="zoom-in"> {/* Card Vehiculo */}
+              <img src="../assets/img/images/comprar-home/raptor-camioneta.webp" alt="imagen auto" width="75%" />
+              <p>Vans</p>
+            </a>
           </div>
         </section>
 
-        <section className="section-comprar">
-          <Image className='width_50' width={1000} height={1000} data-aos="fade-left" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/landing-page/auto-verde.webp"} alt="imagen auto verde" />
-          <div data-aos="fade-right" data-aos-duration="1500">
-            <h3>Encuentra el Auto de tus <br /><b>Sueños</b></h3>
-            <a className="btn-comprar" href="./pages/comprar-home.html">Comprar</a> {/* Boton Comprar */}
+        <section class="categories-section">
+          <h2>Our Categories</h2>
+          <div class="categories">
+            <a href="./comprar.html" class="cat-card" data-aos="zoom-in"> {/* Card Categoria */}
+              <div>
+                <img src="../assets/img/images/comprar-home/auto-cat.webp" alt="imagen auto" width="80%" />
+              </div>
+              <p>Cars and Trucks</p>
+            </a>
+            <a href="./comprar.html" class="cat-card" data-aos="zoom-in"> {/* Card Categoria */}
+              <div>
+                <img src="../assets/img/images/comprar-home/moto-cat.webp" alt="imagen moto" width="80%" />
+              </div>
+              <p>Motorcycles</p>
+            </a>
+            <a href="./comprar.html" class="cat-card" data-aos="zoom-in"> {/* Card Categoria */}
+              <div>
+                <img src="../assets/img/images/comprar-home/camion-cat.webp" alt="imagen camion" width="80%" />
+              </div>
+              <p>Trucks</p>
+            </a>
           </div>
         </section>
 
-        <section className="section-concesionarias">
-          <Image className='width_50' width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/landing-page/auto-rojo.webp"} alt="imagen auto rojo" />
-          <div data-aos="fade-left" data-aos-duration="1500">
-            <h3>Las Concesionarias más <br /><b>Reconocidas del País</b> se <br />encuentran aquí</h3>
-            <h3>Compra tu <b>Nuevo Auto 0 km</b></h3>
-            <a className="btn-concesionarias" href="./pages/concesionarias.html">Ir a Concesionarias</a>
+        <section class="section-concesionarias-comprar">
+          <h2>Shop By Dealer</h2>
+          <div class="card-info-concesionaria">
+            <img src="../assets/img/images/comprar-home/concesionaria.webp" alt="imagen concesionaria" width="40%" />
+            <div class="info-concesionaria">
+              <h3>Do you want to buy your new car 0 km?</h3>
+              <p>At <b>CarHouse</b> you can find the most recognized dealerships in the country and get the car of your dreams easily and quickly.</p>
+              <p>
+                Most dealerships have several ways to finance the purchase of your vehicle, including financing with the dealer or through a bank, leasing or renting, and cash payment.
+              </p>
+              <a class="btn-info-financiamiento" href="./financiamiento-info.html">
+                View Information on Financing Options &gt;
+              </a>
+              <div>
+                <a class="btn-concesionaria-comprar" href="./concesionarias.html">Go to Dealers</a>
+                <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" width="35%" />
+              </div>
+            </div>
           </div>
         </section>
 
-        <h2>Registra tu Concesionaria</h2>
-        <p>Puedes registrar tu concesionaria de forma gratuita para que los usuarios de CarHouse accedan a tus coches</p>
-
-        <section className="section-contacto">
-          <Image className='width_50' width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/landing-page/concessionaire-register.svg"} alt="imagen contacto" />
-          <div data-aos="fade-left" data-aos-duration="1500">
-            <h3>Registra tu <b>Concesionaria</b><br />en la Plataforma</h3>
-            <a className="btn-contacto" href="./pages/contactanos.html">Contáctanos</a>
-          </div>
-        </section>
-
-        <h2>Información y Estadísticas de tu Cuenta</h2>
-        <p>Puedes acceder a tu perfil para ver tu información, publicaciones, ventas, compras, favoritos y muchas cosas más</p>
-
-        <section className="section-contacto section-perfil">
-          <Image className='width_50' width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/landing-page/profile.svg"} alt="imagen contacto" />
-          <div data-aos="fade-left" data-aos-duration="1500">
-            <h3>Visita tu <b>Perfil</b> para ver tu <br /> información y estadísticas</h3>
-            <a className="btn-contacto" href="./pages/user.html">Ir a mi Perfil</a>
-          </div>
-        </section>
+        <a class="btn-ver-autos" href="./comprar.html">See All Cars</a>
       </main>
-
     </>
   )
 }

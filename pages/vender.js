@@ -309,7 +309,6 @@ const Vender = () => {
                 </form>
             </main>
 
-            <Footer />
         </>
     )
 }

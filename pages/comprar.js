@@ -174,14 +174,13 @@ const Comprar = ({ vehicles }) => {
 
             <form className="search-form">
                 {/* Barra Busqueda  */}
-                <input className="search-bar" type="search" placeholder="¿Qué auto estas buscando?" />
+                <input className="search-bar" type="search" placeholder="What are you looking for?" />
                 <button className="search-btn"><Image width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/icons/magnifying-glass.png"} alt="icono busqueda" /></button>
             </form>
 
             <main className="main-comprar">
                 <section className="amount-sort-section">
                     {/*  Cantidad de vehiculos y ordenamiento  */}
-                    {/* <p className="total-vehicles">Se han encontrado 6789 vehículos</p> */}
                     <p className="total-vehicles">{vehicles.length} vehicles have been found</p>
                     <div className="sort-vehicles">
                         {/*  Ordenamiento  */}
@@ -458,7 +457,6 @@ const Comprar = ({ vehicles }) => {
                     </PaginatioStack>
                 </section>
             </main>
-            <Footer />
         </>
     )
 }
