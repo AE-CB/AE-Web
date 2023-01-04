@@ -104,7 +104,7 @@ const Comprar = ({ vehicles }) => {
     const [yearMin, setYearMin] = useState("all");
     const [priceMax, setPriceMax] = useState("");
     const [priceMin, setPriceMin] = useState("");
-    const [type, setType] = useState("all");
+    const [category, setCategory] = useState("all");
     const [gear, setGear] = useState("all");
     const [fuel, setFuel] = useState("all");
     const [city, setCity] = useState("all");
@@ -124,7 +124,7 @@ const Comprar = ({ vehicles }) => {
         formData.append('yearMin', yearMin);
         formData.append('priceMax', priceMax);
         formData.append('priceMin', priceMin);
-        formData.append('type', type);
+        formData.append('category', category);
         formData.append('gear', gear);
         formData.append('fuel', fuel);
         formData.append('city', city);
@@ -150,7 +150,7 @@ const Comprar = ({ vehicles }) => {
         formData.append('yearMin', yearMin);
         formData.append('priceMax', priceMax);
         formData.append('priceMin', priceMin);
-        formData.append('type', type);
+        formData.append('category', category);
         formData.append('gear', gear);
         formData.append('fuel', fuel);
         formData.append('city', city);
@@ -330,7 +330,7 @@ const Comprar = ({ vehicles }) => {
                                         id: 'type-native-drop',
                                         className: 'select-filters'
                                     }}
-                                    onChange={(e) => setType(e.target.value)}
+                                    onChange={(e) => setCategory(e.target.value)}
                                 >
                                     <option value="All">All</option>
                                     <option value="cars">Car</option>
@@ -400,8 +400,8 @@ const Comprar = ({ vehicles }) => {
                                 <NativeSelect
                                     defaultValue={'all'}
                                     inputProps={{
-                                        name: 'type',
-                                        id: 'type-native-drop',
+                                        name: 'city',
+                                        id: 'city-native-drop',
                                         className: 'select-filters'
                                     }}
                                     onChange={(e) => setCity(e.target.value)}

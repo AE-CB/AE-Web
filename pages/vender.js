@@ -165,9 +165,19 @@ const Vender = () => {
                                 <h3>Category</h3>
                                 <select name="category" id="" onChange={(e) => setCategory(e.target.value)} >
                                     <option value="" selected disabled>Select a Category</option>
-                                    <option value="car_and_trucks">Cars and Trucks</option>
-                                    <option value="motorcycles">Motorcycles</option>
-                                    <option value="trucks">Trucks</option>
+                                    <option value="cars">Car</option>
+                                    <option value="vans">Van</option>
+                                    <option value="suvs">SUV / Jeep</option>
+                                    <option value="motorcycles">Motorcycle</option>
+                                    <option value="crew-cabs">Crew Cab</option>
+                                    <option value="pickups">Pickup / Double Cab</option>
+                                    <option value="buses">Bus</option>
+                                    <option value="lorries">Lorry</option>
+                                    <option value="three-wheels">Three Wheel</option>
+                                    <option value="others">Other</option>
+                                    <option value="tractors">Tractor</option>
+                                    <option value="heavy-duties">Heavy-Duty</option>
+                                    <option value="bicycles">Bicycle</option>
                                 </select>
                             </div>
                             <div className="sign-up-field">
