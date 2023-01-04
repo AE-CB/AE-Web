@@ -12,9 +12,9 @@ const Header = () => {
         <section className="navbar"> {/* Barra de Navegacion */}
           <div className="container-1600">
             <div>
-              <a className="logo" href="./index.html"> {/* Logo */}
+              <Link className="logo" href={`/`}>
                 <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" />
-              </a>
+              </Link>
 
               <button id="hamburguer" className="hamburguer"><i className="fas fa-bars"></i></button>
             </div>
@@ -22,14 +22,14 @@ const Header = () => {
             <nav id="main-nav" className="main-nav"> {/* Navegacion */}
               <ul>
                 <li>
-                  <a className="nav-link" href="./pages/comprar-home.html">Buy</a>
+                  <Link className="nav-link" href={`/comprar`}>Buy</Link>
                 </li>
                 {context.apikey && <li>
                   <Link className="nav-link" href={`/vender`}>Sell</Link>
                 </li>}
-                <li>
+                {/* <li>
                   <a className="nav-link" href="./pages/concesionarias.html">Dealerships</a>
-                </li>
+                </li> */}
                 <li>
                   <Link className="nav-link btn-ingresar" href={`/sign-in`}>Sign In</Link>
                 </li>
