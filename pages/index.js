@@ -22,7 +22,7 @@ const Home = () => {
         <p>Everything related to the world of vehicles is here</p>
 
         <section className="section-vender">
-          <Image className='width_50' width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/vender.svg"} alt="imagen Businessman" />
+          <Image className="width_50" width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/vender.svg"} alt="imagen Businessman" />
           <div data-aos="fade-left" data-aos-duration="1500">
             <h3>Sell ​​your car <br /><b>quickly and safely</b></h3>
             <a className="btn-vender" href="./pages/vender.html">Sell</a> {/* Boton Vender */}
@@ -30,7 +30,7 @@ const Home = () => {
         </section>
 
         <section className="section-comprar">
-          <Image className='width_50' width={1000} height={1000} data-aos="fade-left" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/auto-verde.webp"} alt="imagen auto verde" />
+          <Image className="width_50" width={1000} height={1000} data-aos="fade-left" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/auto-verde.webp"} alt="imagen auto verde" />
           <div data-aos="fade-right" data-aos-duration="1500">
             <h3>Find the Car of your <br /><b>Dreams</b></h3>
             <a className="btn-comprar" href="./pages/comprar-home.html">Buy</a> {/* Boton Comprar */}
@@ -40,7 +40,7 @@ const Home = () => {
 
 
         <section className="section-concesionarias">
-          <Image className='width_50' width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/auto-rojo.webp"} alt="imagen auto rojo" />
+          <Image className="width_50" width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/auto-rojo.webp"} alt="imagen auto rojo" />
           <div data-aos="fade-left" data-aos-duration="1500">
             <h3>The most <br /><b>recognized dealerships in the country</b> are <br />here</h3>
             <h3>Buy your <b>New 0 km Car </b></h3>
@@ -52,7 +52,7 @@ const Home = () => {
         <p>You can register your dealership for free for CarHouse users to access your cars</p>
 
         <section className="section-contacto">
-          <Image className='width_50' width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/concessionaire-register.svg"} alt="imagen contacto" />
+          <Image className="width_50" width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/concessionaire-register.svg"} alt="imagen contacto" />
           <div data-aos="fade-left" data-aos-duration="1500">
             <h3>Register your <b>Dealership</b><br />on the Platform</h3>
             <a className="btn-contacto" href="./pages/contactanos.html">Contact Us</a>
@@ -65,7 +65,7 @@ const Home = () => {
         </p>
 
         <section className="section-contacto section-perfil">
-          <Image className='width_50' width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/profile.svg"} alt="imagen contacto" />
+          <Image className="width_50" width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/profile.svg"} alt="imagen contacto" />
           <div data-aos="fade-left" data-aos-duration="1500">
             <h3>Visit your <b>Profile</b> to see your <br /> information and statistics</h3>
             <a className="btn-contacto" href="./pages/user.html">Go to my profile</a>
