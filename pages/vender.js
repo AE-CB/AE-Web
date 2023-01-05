@@ -283,27 +283,29 @@ const Vender = () => {
                                 <h3>City</h3>
                                 <select name="localidad" id="" onChange={(e) => setCity(e.target.value)}>
                                     <option value="" selected disabled>In what town is the vehicle?</option>
-                                    <option value="">Aguada</option>
-                                    <option value="">Aires Puros</option>
-                                    <option value="">Barra de Carrasco</option>
-                                    <option value="">Barrio Sur</option>
-                                    <option value="">Paso Molino</option>
-                                    <option value="">Brazo Oriental</option>
-                                    <option value="">Buceo</option>
-                                    <option value="">Capurro</option>
-                                    <option value="">Carrasco Norte</option>
-                                    <option value="">Casabo</option>
-                                    <option value="">Casavalle</option>
-                                    <option value="">Centro</option>
-                                    <option value="">Cerrito</option>
-                                    <option value="">Ciudad Vieja</option>
-                                    <option value="">Colon</option>
-                                    <option value="">Conciliacion</option>
-                                    <option value="">Cordon</option>
-                                    <option value="">Flor de Maroñas</option>
-                                    <option value="">Jacinto Vera</option>
-                                    <option value="">Jardines del Hipodromo</option>
-                                    <option value="">La Blanqueada</option>
+                                    <option value="Colombo">Colombo</option>
+                                    <option value="Dehiwala-Mount-Lavinia">Dehiwala-Mount-Lavinia</option>
+                                    <option value="Moratuwa">Moratuwa</option>
+                                    <option value="Kotte">Kotte</option>
+                                    <option value="Battaramulla">Battaramulla</option>
+                                    <option value="Maharagama">Maharagama</option>
+                                    <option value="Kotikawatta">Kotikawatta</option>
+                                    <option value="Kolonnawa">Kolonnawa</option>
+                                    <option value="Keselwatta">Keselwatta</option>
+                                    <option value="Homagama">Homagama</option>
+                                    <option value="Mulleriyawa">Mulleriyawa</option>
+                                    <option value="Kesbewa">Kesbewa</option>
+                                    <option value="Avissawella">Avissawella</option>
+                                    <option value="Kaduwela">Kaduwela</option>
+                                    <option value="Boralesgamuwa">Boralesgamuwa</option>
+                                    <option value="Piliyandala">Piliyandala</option>
+                                    <option value="Nugegoda">Nugegoda</option>
+                                    <option value="Nawala">Nawala</option>
+                                    <option value="Padukka">Padukka</option>
+                                    <option value="Kottawa">Kottawa</option>
+                                    <option value="Pannipitiya">Pannipitiya</option>
+                                    <option value="Malabe">Malabe</option>
+                                    <option value="Hanwella">Hanwella</option>
                                 </select>
                             </div>
                             <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />

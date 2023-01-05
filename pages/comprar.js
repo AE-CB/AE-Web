@@ -156,7 +156,7 @@ const Comprar = ({ vehicles }) => {
         formData.append('city', city);
 
         formData.append('sortfilter', e.target.value);
-    
+
         const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles', {
             method: 'POST',
             body: formData,
@@ -165,7 +165,7 @@ const Comprar = ({ vehicles }) => {
         const vehicleFiltered = await res.json()
         setVehicleArr(vehicleFiltered)
         filtersRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    
+
     }
 
     return (
@@ -175,7 +175,7 @@ const Comprar = ({ vehicles }) => {
             <form className="search-form">
                 {/* Barra Busqueda  */}
                 <input className="search-bar" type="search" placeholder="What are you looking for?" />
-                <button className="search-btn"><Image width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/icons/magnifying-glass.png"} alt="icono busqueda" /></button>
+                <button className="search-btn"><Image width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/magnifying-glass.png"} alt="icono busqueda" /></button>
             </form>
 
             <main className="main-comprar">
@@ -184,7 +184,7 @@ const Comprar = ({ vehicles }) => {
                     <p className="total-vehicles">{vehicles.length} vehicles have been found</p>
                     <div className="sort-vehicles">
                         {/*  Ordenamiento  */}
-                        <Image width={25} height={25} className='sortimg' src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/icons/orderasc.png"} alt="icono ordenamiento"  />
+                        <Image width={25} height={25} className='sortimg' src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/orderasc.png"} alt="icono ordenamiento" />
                         <p>Sort by:</p>
                         <select name="ordenamiento" id="" onChange={setSort}>
                             <option value="date">Date Added</option>
@@ -200,7 +200,7 @@ const Comprar = ({ vehicles }) => {
                     <section className="filters">
                         {/* Filtrar  */}
                         <div ref={filtersRef} className="filter-title">
-                            <Image width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/icons/simbolo-de-herramienta-llena-de-filtro.png"} alt="icono filtrar" />
+                            <Image width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/simbolo-de-herramienta-llena-de-filtro.png"} alt="icono filtrar" />
                             <p>Filters:</p>
                             <a href="#">Filtrar</a>
                         </div>
@@ -407,8 +407,29 @@ const Comprar = ({ vehicles }) => {
                                     onChange={(e) => setCity(e.target.value)}
                                 >
                                     <option value="All"> All </option>
-                                    <option value="colarado">Colarado</option>
-                                    <option value="texas">Texas</option>
+                                    <option value="Colombo">Colombo</option>
+                                    <option value="Dehiwala-Mount-Lavinia">Dehiwala-Mount-Lavinia</option>
+                                    <option value="Moratuwa">Moratuwa</option>
+                                    <option value="Kotte">Kotte</option>
+                                    <option value="Battaramulla">Battaramulla</option>
+                                    <option value="Maharagama">Maharagama</option>
+                                    <option value="Kotikawatta">Kotikawatta</option>
+                                    <option value="Kolonnawa">Kolonnawa</option>
+                                    <option value="Keselwatta">Keselwatta</option>
+                                    <option value="Homagama">Homagama</option>
+                                    <option value="Mulleriyawa">Mulleriyawa</option>
+                                    <option value="Kesbewa">Kesbewa</option>
+                                    <option value="Avissawella">Avissawella</option>
+                                    <option value="Kaduwela">Kaduwela</option>
+                                    <option value="Boralesgamuwa">Boralesgamuwa</option>
+                                    <option value="Piliyandala">Piliyandala</option>
+                                    <option value="Nugegoda">Nugegoda</option>
+                                    <option value="Nawala">Nawala</option>
+                                    <option value="Padukka">Padukka</option>
+                                    <option value="Kottawa">Kottawa</option>
+                                    <option value="Pannipitiya">Pannipitiya</option>
+                                    <option value="Malabe">Malabe</option>
+                                    <option value="Hanwella">Hanwella</option>
                                 </NativeSelect>
                             </FormControl>
                         </NativeSelectBox>
@@ -426,7 +447,7 @@ const Comprar = ({ vehicles }) => {
 
                             return (
                                 <>
-                                
+
                                     <Link href={`/vehicles/${item.id}`} sx={{ color: 'black !important' }}>
                                         <div key={i} className="card-car">
                                             {/* Card Auto  */}
