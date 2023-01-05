@@ -91,7 +91,7 @@ export async function getStaticProps() {
     }
 }
 
-const Comprar = ({ vehicles }) => {
+const Vehicles = ({ vehicles }) => {
 
     const [filters, setFilters] = useState({});
     const [vehicleArr, setVehicleArr] = useState(vehicles);
@@ -398,11 +398,9 @@ const Comprar = ({ vehicles }) => {
                                     <option value={'all'}>None</option>
                                     {years.map((item, key) => {
                                         return (
-                                            <>
-                                                <option key={key} value={item}>
-                                                    {(yearlen === key + 1) ? '< ' + item : item}
-                                                </option>
-                                            </>
+                                            <option key={key} value={item}>
+                                                {(yearlen === key + 1) ? '< ' + item : item}
+                                            </option>
                                         )
                                     })}
                                 </NativeSelect>
@@ -425,11 +423,9 @@ const Comprar = ({ vehicles }) => {
                                     <option value={'all'}>None</option>
                                     {years.map((item, key) => {
                                         return (
-                                            <>
-                                                <option key={key} value={item}>
-                                                    {(yearlen === key + 1) ? '< ' + item : item}
-                                                </option>
-                                            </>
+                                            <option key={key} value={item}>
+                                                {(yearlen === key + 1) ? '< ' + item : item}
+                                            </option>
                                         )
                                     })}
                                 </NativeSelect>
@@ -570,30 +566,27 @@ const Comprar = ({ vehicles }) => {
                         {vehicleArr.map((item, i) => {
 
                             let images = JSON.parse(item.images)
-                            console.log(images)
+                            // console.log(images)
 
                             return (
-                                <>
-
-                                    <Link href={`/vehicles/${item.id}`} sx={{ color: 'black !important' }}>
-                                        <div key={i} className="card-car">
-                                            {/* Card Auto  */}
-                                            <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0].replace(/\\/g, "/")} alt="imagen auto nissan" />
-                                            <div className="info-car" data={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0].replace(/\\/g, "/")}>
-                                                {/* Vehicle data */}
-                                                <div className="car-brand">
-                                                    {/* <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" /> */}
-                                                    <h3>{item.brand} {item.model}</h3>
-                                                </div>
-                                                <div className="car-data">
-                                                    <p>Year: {item.year}</p>
-                                                    <p>Kilometros: {item.mileage}</p>
-                                                    <p>USD {item.price}</p>
-                                                </div>
+                                <Link key={i} href={`/vehicles/${item.id}`} sx={{ color: 'black !important' }}>
+                                    <div className="card-car">
+                                        {/* Card Auto  */}
+                                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0].replace(/\\/g, "/")} alt="imagen auto nissan" />
+                                        <div className="info-car" data={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0].replace(/\\/g, "/")}>
+                                            {/* Vehicle data */}
+                                            <div className="car-brand">
+                                                {/* <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" /> */}
+                                                <h3>{item.brand} {item.model}</h3>
+                                            </div>
+                                            <div className="car-data">
+                                                <p>Year: {item.year}</p>
+                                                <p>Kilometros: {item.mileage}</p>
+                                                <p>USD {item.price}</p>
                                             </div>
                                         </div>
-                                    </Link>
-                                </>
+                                    </div>
+                                </Link>
                             );
                         })}
                     </section>
@@ -609,5 +602,5 @@ const Comprar = ({ vehicles }) => {
     )
 }
 
-Comprar.layout = "AdminLayout";
-export default Comprar
+Vehicles.layout = "AdminLayout";
+export default Vehicles

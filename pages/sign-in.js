@@ -39,7 +39,7 @@ const SignIn = () => {
             var jsonResponce = await res.json();
             console.log(jsonResponce.token)
             context.setApikey(jsonResponce.token)
-            Router.push('/vender')
+            Router.push('/add-item')
         }
 
     }

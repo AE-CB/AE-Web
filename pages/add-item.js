@@ -36,7 +36,7 @@ const preview = (file) => {
 
 
 
-const Vender = () => {
+const AddItem = () => {
     var ranonce = false;
     useEffect(() => {
         if (!ranonce) {
@@ -476,5 +476,5 @@ const Vender = () => {
     )
 }
 
-Vender.layout = "AdminLayout";
-export default Vender
+AddItem.layout = "AdminLayout";
+export default AddItem
