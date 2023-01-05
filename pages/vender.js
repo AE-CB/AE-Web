@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import Footer from '../components/Footer'
 import NativeSelect from '@mui/material/NativeSelect';
 import { styled } from '@mui/material/styles';
@@ -23,7 +23,31 @@ const NativeSelectBox = styled(Box)(({ theme }) => ({
 
 }));
 
+const preview = (file) => {
+    const fr = new FileReader();
+    fr.onload = () => {
+        const img = document.createElement("img");
+        img.src = fr.result;  // String Base64 
+        img.alt = file.name;
+        document.querySelector('#preview').append(img);
+    };
+    fr.readAsDataURL(file);
+};
+
+
+
 const Vender = () => {
+    var ranonce = false;
+    useEffect(() => {
+        if (!ranonce) {
+            document.querySelector("#upload-image").addEventListener("change", (ev) => {
+                if (!ev.target.files) return; // Do nothing.
+                [...ev.target.files].forEach(preview);
+            });
+            ranonce = true
+        }
+    }, [])
+
     const context = useContext(AppContext)
 
     const ref_error_div = useRef(null);
@@ -58,7 +82,7 @@ const Vender = () => {
         formData.append('description', description);
         formData.append('mileage', mileage);
         formData.append('engine', engine);
-        formData.append('departament', departament);
+        // formData.append('departament', departament);
         formData.append('city', city);
         // formData.append('owner', owner);
         formData.append('price', price);
@@ -154,9 +178,9 @@ const Vender = () => {
                                 <h3>Year</h3>
                                 <input type="number" name="year" onChange={(e) => setYear(e.target.value)} placeholder="What is the year of your vehicle?" min="1960" max="2022" required />
                             </div>
-                            <Image width={1000} height={1000} className="nextimglogo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
+                            <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
                         </div>
-                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/vender/car-aside-1.webp"} alt="imagen auto" />
+                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/vender/car-aside-1.webp"} alt="imagen auto" />
                     </section>
                     <section className="cat-section"> {/* Categoria, Color y Descripcion */}
                         <div>
@@ -190,9 +214,9 @@ const Vender = () => {
                                 <textarea name="description" onChange={(e) => setDescription(e.target.value)}
                                     id="" cols="30" rows="10" placeholder="Write a description of your vehicle" minlength="25" maxlength="2500" required></textarea>
                             </div>
-                            <Image width={1000} height={1000} className="nextimglogo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
+                            <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
                         </div>
-                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/vender/car-aside-2.webp"} alt="imagen auto" />
+                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/vender/car-aside-2.webp"} alt="imagen auto" />
                     </section>
                     <section className="tec-section"> {/* Datos Tecnicos */}
                         <div>
@@ -207,9 +231,9 @@ const Vender = () => {
                                 <input type="text" name="motor" onChange={(e) => setEngine(e.target.value)}
                                     placeholder="What size is the engine of your vehicle?" autocomplete="off" required />
                             </div>
-                            <Image width={1000} height={1000} className="nextimglogo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
+                            <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
                         </div>
-                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/vender/car-aside-3.webp"} alt="imagen auto" />
+                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/vender/car-aside-3.webp"} alt="imagen auto" />
                     </section>
                     <section className="pictures-section"> {/* Fotos */}
                         <div>
@@ -218,13 +242,14 @@ const Vender = () => {
                             <div className="upload-image-box">
                                 <input type="file" name="images" ref={img_upload} id="upload-image" accept="image/*" multiple />
                                 <label for="upload-image">
-                                    <img src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/icons/camara-fotografica.png"} alt="Imagen de Camara" />
+                                    <img src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/camara-fotografica.png"} alt="Imagen de Camara" />
                                     <p>Add Photos</p>
                                 </label>
+                                <div id="preview"></div>
                             </div>
-                            <Image width={1000} height={1000} className="nextimglogo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
+                            <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
                         </div>
-                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/vender/car-aside-4.webp"} alt="imagen auto" />
+                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/vender/car-aside-4.webp"} alt="imagen auto" />
                     </section>
                     <section className="location-section"> {/* Ubicacion */}
                         <div>
@@ -281,9 +306,9 @@ const Vender = () => {
                                     <option value="">La Blanqueada</option>
                                 </select>
                             </div>
-                            <Image width={1000} height={1000} className="nextimglogo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
+                            <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
                         </div>
-                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/vender/car-aside-6.webp"} alt="imagen auto" />
+                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/vender/car-aside-6.webp"} alt="imagen auto" />
                     </section>
                     <section className="end-section"> {/* Finalizar Publicacion */}
                         <div>
@@ -311,11 +336,11 @@ const Vender = () => {
                                     <option value={"unregistered"}>Unregistered</option>
                                 </select>
                             </div>
-                            <Image width={1000} height={1000} className="nextimglogo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
+                            <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
                         </div>
-                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/vender/car-aside-5.webp"} alt="imagen auto" />
+                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/vender/car-aside-5.webp"} alt="imagen auto" />
                     </section>
-                    <input className="btn-publish" type="submit" value="End Publication" />
+                    <input className="btn-publish" type="submit" value="Publish" />
                 </form>
             </main>
 

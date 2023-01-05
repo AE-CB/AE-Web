@@ -39,8 +39,8 @@ const Car = ({ vehicle }) => {
 
                 <section className="car-info">
                     <div className="car-brand-model">
-                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar-home/volkswagen-logo.webp"} alt="Logo Volkswagen" />
-                        <h3>{vehicle.data.model}</h3>
+                        {/* <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar-home/volkswagen-logo.webp"} alt="Logo Volkswagen" /> */}
+                        <h3>{vehicle.data.brand} {vehicle.data.model}</h3>
                     </div>
                     <div className="year-km">
                         <p>Year: <span>{vehicle.data.year}</span></p>

@@ -3998,36 +3998,50 @@ select:hover {
   margin-left: 16px;
 }
 
-.mt-20{
+.mt-20 {
   margin-top: 20px !important;
 }
 
-.car-l-custom a{
+.car-l-custom a {
   color: black;
 }
 
-.sortimg:hover{
+.sortimg:hover {
   cursor: pointer;
 }
 
-.car-secondary-images img:hover{
+.car-secondary-images img:hover {
   cursor: pointer;
 }
 
-.nextimg{
+.nextimg {
   width: 100%;
   height: auto;
 }
 
-.width_50{
+.width_50 {
   width: 50%;
   height: auto;
 }
 
-.width_100{
+.width_100 {
   width: 100%;
 }
 
-.auto_height{
+.auto_height {
   height: auto;
+}
+
+#preview img {
+  max-height: 100px;
+  margin: 0px 2px;
+  border: 2px solid;
+  border-radius: 3px;
+}
+
+#preview{
+  margin-top: 5px;
+  margin-left:-2px;
+  overflow-y : auto;
+  height: 280px;
 }

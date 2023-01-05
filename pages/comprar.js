@@ -435,7 +435,7 @@ const Comprar = ({ vehicles }) => {
                                                 {/* Vehicle data */}
                                                 <div className="car-brand">
                                                     {/* <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar-home/nissan-logo.webp" alt="logo nissan" width="30" /> */}
-                                                    <h3>{item.model}</h3>
+                                                    <h3>{item.brand} {item.model}</h3>
                                                 </div>
                                                 <div className="car-data">
                                                     <p>Year: {item.year}</p>
