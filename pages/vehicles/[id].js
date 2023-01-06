@@ -190,7 +190,7 @@ export const getStaticProps = async ({ params: { id } }) => {
     })
 
     const vehicle = await res.json()
-    console.log(vehicle)
+    // console.log(vehicle)
 
 
     return {
@@ -199,17 +199,28 @@ export const getStaticProps = async ({ params: { id } }) => {
 }
 
 export const getStaticPaths = async () => {
-    const vehicles = [
-        { "id": 2, "name": "John", "age": 30, "car": null },
-        { "id": 31, "name": "John 2", "age": 32, "car": null },
-        { "id": 32, "name": "John 2", "age": 32, "car": null },
-        { "id": 33, "name": "John 2", "age": 32, "car": null },
-        { "id": 34, "name": "John 2", "age": 32, "car": null },
-        { "id": 35, "name": "John 2", "age": 32, "car": null },
-        { "id": 36, "name": "John 2", "age": 32, "car": null },
-        { "id": 37, "name": "John 2", "age": 32, "car": null },
-        { "id": 38, "name": "John 2", "age": 32, "car": null },
-    ]
+
+    const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles', {
+        method: 'get',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + process.env.API_KEY,
+        })
+    })
+
+    const vehicles = await res.json()
+    // console.log(vehicles)
+
+    // const vehicles = [
+    //     { "id": 2, "name": "John", "age": 30, "car": null },
+    //     { "id": 31, "name": "John 2", "age": 32, "car": null },
+    //     { "id": 32, "name": "John 2", "age": 32, "car": null },
+    //     { "id": 33, "name": "John 2", "age": 32, "car": null },
+    //     { "id": 34, "name": "John 2", "age": 32, "car": null },
+    //     { "id": 35, "name": "John 2", "age": 32, "car": null },
+    //     { "id": 36, "name": "John 2", "age": 32, "car": null },
+    //     { "id": 37, "name": "John 2", "age": 32, "car": null },
+    //     { "id": 38, "name": "John 2", "age": 32, "car": null },
+    // ]
 
     const paths = vehicles.map((vehicle) => ({
         params: {
