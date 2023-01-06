@@ -9,6 +9,7 @@ const Home = () => {
   return (
     <>
       <section className="banner">
+        
         <Image className="width_50 banner-img" width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/banner-wallpaper.webp"}
           alt="imagen de auto" /> {/* Imagen del banner */}
         <div className="banner-content"> {/* Primera parte del banner */}
