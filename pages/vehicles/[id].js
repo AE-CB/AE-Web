@@ -5,13 +5,13 @@ import React, { useRef, useState } from 'react'
 const Car = ({ vehicle }) => {
 
     let images = JSON.parse(vehicle.data.images)
-    console.log(images)
+    // console.log(images)
 
     const [selectedImg, setSelectedImg] = useState(images[0]);
     const carsectionRef = useRef(null);
 
     const handleImg = (event) => {
-        setSelectedImg(event.target.attributes.dataImg.value)
+        setSelectedImg(event.target.attributes.dataimg.value)
         carsectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
@@ -29,9 +29,7 @@ const Car = ({ vehicle }) => {
                     <div className="car-secondary-images">
                         {images.map((image, key) => {
                             return (
-                                <>
-                                    <Image className='nextimg' width={1000} height={1000} key={key} dataImg={image} onClick={(event) => handleImg(event)} src={process.env.NEXT_PUBLIC_IMAGE_HOST + image} alt="Volkswagen Golf GTI costado" />
-                                </>
+                                <Image className='nextimg' width={1000} height={1000} key={key} dataimg={image} onClick={(event) => handleImg(event)} src={process.env.NEXT_PUBLIC_IMAGE_HOST + image} alt="Volkswagen Golf GTI costado" />
                             )
                         })}
                     </div>
@@ -109,10 +107,10 @@ const Car = ({ vehicle }) => {
                 <h3>Vehículos Similares</h3>
                 <div className="list-similar-cars">
                     <a className="card-car" href="./car.html"> {/* Card Auto */}
-                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar/nissan-kicks.webp"} alt="imagen auto nissan" />
+                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/nissan-kicks.webp"} alt="imagen auto nissan" />
                         <div className="info-car"> {/* Datos Vehiculo */}
                             <div className="car-brand">
-                                <Image className='nextimg' width={30} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar-home/nissan-logo.webp"} alt="logo nissan" />
+                                <Image className='nextimg' width={30} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/nissan-logo.webp"} alt="logo nissan" />
                                 <h3>Nissan Kicks</h3>
                             </div>
                             <div className="car-data">
@@ -123,10 +121,10 @@ const Car = ({ vehicle }) => {
                         </div>
                     </a>
                     <a className="card-car" href="./car.html"> {/* Card Auto */}
-                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar/clio.webp"} alt="imagen auto renault" />
+                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/clio.webp"} alt="imagen auto renault" />
                         <div> {/* Datos Vehiculo */}
                             <div className="car-brand">
-                                <Image className='nextimg' width={50} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar-home/renault-logo.webp"} alt="logo renault" />
+                                <Image className='nextimg' width={50} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/renault-logo.webp"} alt="logo renault" />
                                 <h3>Renault Clio</h3>
                             </div>
                             <div>
@@ -137,10 +135,10 @@ const Car = ({ vehicle }) => {
                         </div>
                     </a>
                     <a className="card-car" href="./car.html"> {/* Card Auto */}
-                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar/swift.webp"} alt="imagen auto suzuki" />
+                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/swift.webp"} alt="imagen auto suzuki" />
                         <div> {/* Datos Vehiculo */}
                             <div className="car-brand">
-                                <Image className='nextimg' width={30} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar-home/suzuki_logo.webp"} alt="logo suzuki" />
+                                <Image className='nextimg' width={30} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/suzuki_logo.webp"} alt="logo suzuki" />
                                 <h3>Suzuki Swift</h3>
                             </div>
                             <div>
@@ -151,10 +149,10 @@ const Car = ({ vehicle }) => {
                         </div>
                     </a>
                     <a className="card-car" href="./car.html"> {/* Card Auto */}
-                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar/accent.webp"} alt="imagen auto hyundai" />
+                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/accent.webp"} alt="imagen auto hyundai" />
                         <div> {/* Datos Vehiculo */}
                             <div className="car-brand">
-                                <Image className='nextimg' width={40} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST+"/assets/img/images/comprar-home/hyundai-logo.webp"} alt="logo hyundai" />
+                                <Image className='nextimg' width={40} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/hyundai-logo.webp"} alt="logo hyundai" />
                                 <h3>Hyundai Accent</h3>
                             </div>
                             <div>
@@ -207,8 +205,13 @@ export const getStaticPaths = async () => {
         })
     })
 
-    const vehicles = await res.json()
-    // console.log(vehicles)
+    const vehiclesitems = await res.json()
+    // console.log(vehiclesitems)
+
+    // vehiclesitems.map((vehicle) => {
+    //     console.log(vehicle.id.toString());
+    // })
+
 
     // const vehicles = [
     //     { "id": 2, "name": "John", "age": 30, "car": null },
@@ -222,7 +225,13 @@ export const getStaticPaths = async () => {
     //     { "id": 38, "name": "John 2", "age": 32, "car": null },
     // ]
 
-    const paths = vehicles.map((vehicle) => ({
+    // const paths = vehicles.map((vehicle) => ({
+    //     params: {
+    //         id: vehicle.id.toString()
+    //     }
+    // }));
+
+    const paths = vehiclesitems.map((vehicle) => ({
         params: {
             id: vehicle.id.toString()
         }
