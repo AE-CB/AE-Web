@@ -200,18 +200,13 @@ export const getStaticPaths = async () => {
 
     const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles', {
         method: 'get',
-        headers: new Headers({
-            'Authorization': 'Bearer ' + process.env.API_KEY,
-        })
+        // headers: new Headers({
+        //     'Authorization': 'Bearer ' + process.env.API_KEY,
+        // })
     })
 
     const vehiclesitems = await res.json()
     // console.log(vehiclesitems)
-
-    // vehiclesitems.map((vehicle) => {
-    //     console.log(vehicle.id.toString());
-    // })
-
 
     // const vehicles = [
     //     { "id": 2, "name": "John", "age": 30, "car": null },
@@ -225,13 +220,9 @@ export const getStaticPaths = async () => {
     //     { "id": 38, "name": "John 2", "age": 32, "car": null },
     // ]
 
-    // const paths = vehicles.map((vehicle) => ({
-    //     params: {
-    //         id: vehicle.id.toString()
-    //     }
-    // }));
 
-    const paths = vehiclesitems.map((vehicle) => ({
+
+    const paths = vehiclesitems.data.map((vehicle) => ({
         params: {
             id: vehicle.id.toString()
         }

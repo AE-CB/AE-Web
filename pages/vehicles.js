@@ -65,20 +65,14 @@ function generateArrayOfYears() {
 years = generateArrayOfYears();
 const yearlen = years.length;
 
-const handlePagination = (event, value) => {
-
-};
-
-
-
 export async function getStaticProps() {
-    console.log(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles');
+    // console.log(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles');
 
-    const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles', {
-        method: 'get',
-        headers: new Headers({
-            'Authorization': 'Bearer ' + process.env.API_KEY,
-        })
+    const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles', {
+        method: 'post',
+        // headers: new Headers({
+        //     'Authorization': 'Bearer ' + process.env.API_KEY,
+        // })
     })
 
     const vehicles = await res.json()
@@ -91,10 +85,20 @@ export async function getStaticProps() {
     }
 }
 
+var brands = [
+    "Acura", "Alfa-Romeo", "Aprilia", "Ashok-Leyland", "Aston", "Atco", "Audi", "Austin", "Bajaj", "Bentley", "BMW", "Cadillac", "Cal", "CAT", "Ceygra", "Changan", "Chery",
+    "Chevrolet", "Chrysler", "Citroen", "Corvette", "Daewoo", "Daido", "Daihatsu", "Datsun", "Demak", "Dfac", "DFSK", "Ducati", "Eicher", "FAW", "Ferrari", "Fiat", "Force", "Ford", "Foton", "Hero", "Hero-Honda", "Higer", "Hillman", "HINO", "Hitachi", "Honda", "Hummer", "Hyundai", "IHI", "Isuzu",
+    "Iveco", "JAC", "Jaguar", "JCB", "Jeep", "JiaLing", "JMC", "John-Deere", "Jonway", "KAPLA", "Kawasaki", "Kia",
+    "Kinetic", "KMC", "Kobelco", "Komatsu", "KTM", "Kubota", "Lamborghini", "Land-Rover", "Lexus", "Loncin", "Longjia", "Lotus", "Lti", "Mahindra", "Maserati", "Massey-Ferguson", "Mazda", "Mercedes-Benz", "Metrocab", "MG", "Mg-Rover", "Micro", "Mini", "Minnelli",
+    "Mitsubishi", "Morgan", "Morris", "New-Holland", "Nissan", "Opel", "Other", "Perodua", "Peugeot",
+    "Piaggio", "Porsche", "Powertrac", "Proton", "Range-Rover", "Ranomoto", "Renault", "Reva", "Rolls-Royce", "Saab", "Sakai", "Seat", "Singer", "Skoda", "Smart", "Sonalika", "Subaru", "Suzuki", "Swaraj", "Syuk",
+    "TAFE", "Tata", "Tesla", "Toyota", "Triumph", "TVS", "Vauxhall", "Vespa", "Volkswagen", "Volvo", "Wave", "Willys", "Yamaha", "Yanmar", "Yuejin", "Zongshen", "Zotye"
+]
+
 const Vehicles = ({ vehicles }) => {
 
     const [filters, setFilters] = useState({});
-    const [vehicleArr, setVehicleArr] = useState(vehicles);
+    const [vehicleArr, setVehicleArr] = useState(vehicles.data);
     const filtersRef = useRef(null);
 
     const [brand, setBrand] = useState("all");
@@ -109,6 +113,11 @@ const Vehicles = ({ vehicles }) => {
     const [fuel, setFuel] = useState("all");
     const [city, setCity] = useState("all");
 
+    const [pagecount, setPagecount] = useState(Math.ceil(vehicles.total / vehicles.per_page));
+    const [page, setPage] = useState(1);
+
+    const [sortfilter, setSortfilter] = useState('date');
+    
 
     const handleFilters = (type) => (event) => {
         let tempArr = filters;
@@ -128,20 +137,25 @@ const Vehicles = ({ vehicles }) => {
         formData.append('gear', gear);
         formData.append('fuel', fuel);
         formData.append('city', city);
+        formData.append('sortfilter', sortfilter);
 
-        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles', {
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles?page=1', {
             method: 'POST',
             body: formData,
         })
 
 
         const vehicleFiltered = await res.json()
-        setVehicleArr(vehicleFiltered)
+        setVehicleArr(vehicleFiltered.data)
         filtersRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        setPagecount(Math.ceil(vehicleFiltered.total / vehicleFiltered.per_page))
+        setPage(1)
         // console.log(vehicles)
     }
 
     const setSort = async (e) => {
+        await setSortfilter(e.target.value)
+
         let formData = new FormData();
         formData.append('brand', brand);
         formData.append('condition', condition);
@@ -154,19 +168,62 @@ const Vehicles = ({ vehicles }) => {
         formData.append('gear', gear);
         formData.append('fuel', fuel);
         formData.append('city', city);
-
         formData.append('sortfilter', e.target.value);
+        
 
-        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles', {
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles?page=1', {
             method: 'POST',
             body: formData,
         })
 
         const vehicleFiltered = await res.json()
-        setVehicleArr(vehicleFiltered)
+        setVehicleArr(vehicleFiltered.data)
         filtersRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
-
     }
+
+
+
+    const changeBrand = (e) => {
+        let modeltmp = e.target.value
+        setModel(modeltmp)
+        const wordarr = modeltmp.split(" ");
+
+        const lowercased = wordarr.map(function (item) {
+            return item.toLowerCase();
+        });
+
+        brands.forEach(item => {
+            if (lowercased.includes(item.toLowerCase())) {
+                setBrand(item)
+            }
+        });
+    }
+
+    const handlePagination = async (event, value) => {
+        let formData = new FormData();
+        formData.append('brand', brand);
+        formData.append('condition', condition);
+        formData.append('model', model);
+        formData.append('yearMax', yearMax);
+        formData.append('yearMin', yearMin);
+        formData.append('priceMax', priceMax);
+        formData.append('priceMin', priceMin);
+        formData.append('category', category);
+        formData.append('gear', gear);
+        formData.append('fuel', fuel);
+        formData.append('city', city);
+        formData.append('sortfilter', sortfilter);
+
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles?page=' + value, {
+            method: 'POST',
+            body: formData,
+        })
+
+        const vehicleFiltered = await res.json()
+        setVehicleArr(vehicleFiltered.data)
+        filtersRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        setPage(value)
+    };
 
     return (
         <>
@@ -181,7 +238,7 @@ const Vehicles = ({ vehicles }) => {
             <main className="main-comprar">
                 <section className="amount-sort-section">
                     {/*  Cantidad de vehiculos y ordenamiento  */}
-                    <p className="total-vehicles">{vehicles.length} vehicles have been found</p>
+                    <p className="total-vehicles">{vehicles.data.length} vehicles have been found</p>
                     <div className="sort-vehicles">
                         {/*  Ordenamiento  */}
                         <Image width={25} height={25} className='sortimg' src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/orderasc.png"} alt="icono ordenamiento" />
@@ -239,137 +296,16 @@ const Vehicles = ({ vehicles }) => {
                                         className: 'select-filters'
                                     }}
                                     onChange={(e) => setBrand(e.target.value)}
+                                    value={brand}
                                 >
                                     <option value={'all'}>All</option>
-                                    <option value="Acura">Acura</option>
-                                    <option value="Alfa-Romeo">Alfa-Romeo</option>
-                                    <option value="Aprilia">Aprilia</option>
-                                    <option value="Ashok-Leyland">Ashok-Leyland</option>
-                                    <option value="Aston">Aston</option>
-                                    <option value="Atco">Atco</option>
-                                    <option value="Audi">Audi</option>
-                                    <option value="Austin">Austin</option>
-                                    <option value="Bajaj">Bajaj</option>
-                                    <option value="Bentley">Bentley</option>
-                                    <option value="BMW">BMW</option>
-                                    <option value="Cadillac">Cadillac</option>
-                                    <option value="Cal">Cal</option>
-                                    <option value="CAT">CAT</option>
-                                    <option value="Ceygra">Ceygra</option>
-                                    <option value="Changan">Changan</option>
-                                    <option value="Chery">Chery</option>
-                                    <option value="Chevrolet">Chevrolet</option>
-                                    <option value="Chrysler">Chrysler</option>
-                                    <option value="Citroen">Citroen</option>
-                                    <option value="Corvette">Corvette</option>
-                                    <option value="Daewoo">Daewoo</option>
-                                    <option value="Daido">Daido</option>
-                                    <option value="Daihatsu">Daihatsu</option>
-                                    <option value="Datsun">Datsun</option>
-                                    <option value="Demak">Demak</option>
-                                    <option value="Dfac">Dfac</option>
-                                    <option value="DFSK">DFSK</option>
-                                    <option value="Ducati">Ducati</option>
-                                    <option value="Eicher">Eicher</option>
-                                    <option value="FAW">FAW</option>
-                                    <option value="Ferrari">Ferrari</option>
-                                    <option value="Fiat">Fiat</option>
-                                    <option value="Force">Force</option>
-                                    <option value="Ford">Ford</option>
-                                    <option value="Foton">Foton</option>
-                                    <option value="Hero">Hero</option>
-                                    <option value="Hero-Honda">Hero-Honda</option>
-                                    <option value="Higer">Higer</option>
-                                    <option value="Hillman">Hillman</option>
-                                    <option value="HINO">HINO</option>
-                                    <option value="Hitachi">Hitachi</option>
-                                    <option value="Honda">Honda</option>
-                                    <option value="Hummer">Hummer</option>
-                                    <option value="Hyundai">Hyundai</option>
-                                    <option value="IHI">IHI</option>
-                                    <option value="Isuzu">Isuzu</option>
-                                    <option value="Iveco">Iveco</option>
-                                    <option value="JAC">JAC</option>
-                                    <option value="Jaguar">Jaguar</option>
-                                    <option value="JCB">JCB</option>
-                                    <option value="Jeep">Jeep</option>
-                                    <option value="JiaLing">JiaLing</option>
-                                    <option value="JMC">JMC</option>
-                                    <option value="John-Deere">John-Deere</option>
-                                    <option value="Jonway">Jonway</option>
-                                    <option value="KAPLA">KAPLA</option>
-                                    <option value="Kawasaki">Kawasaki</option>
-                                    <option value="Kia">Kia</option>
-                                    <option value="Kinetic">Kinetic</option>
-                                    <option value="KMC">KMC</option>
-                                    <option value="Kobelco">Kobelco</option>
-                                    <option value="Komatsu">Komatsu</option>
-                                    <option value="KTM">KTM</option>
-                                    <option value="Kubota">Kubota</option>
-                                    <option value="Lamborghini">Lamborghini</option>
-                                    <option value="Land-Rover">Land-Rover</option>
-                                    <option value="Lexus">Lexus</option>
-                                    <option value="Loncin">Loncin</option>
-                                    <option value="Longjia">Longjia</option>
-                                    <option value="Lotus">Lotus</option>
-                                    <option value="Lti">Lti</option>
-                                    <option value="Mahindra">Mahindra</option>
-                                    <option value="Maserati">Maserati</option>
-                                    <option value="Massey-Ferguson">Massey-Ferguson</option>
-                                    <option value="Mazda">Mazda</option>
-                                    <option value="Mercedes-Benz">Mercedes-Benz</option>
-                                    <option value="Metrocab">Metrocab</option>
-                                    <option value="MG">MG</option>
-                                    <option value="Mg-Rover">Mg-Rover</option>
-                                    <option value="Micro">Micro</option>
-                                    <option value="Mini">Mini</option>
-                                    <option value="Minnelli">Minnelli</option>
-                                    <option value="Mitsubishi">Mitsubishi</option>
-                                    <option value="Morgan">Morgan</option>
-                                    <option value="Morris">Morris</option>
-                                    <option value="New-Holland">New-Holland</option>
-                                    <option value="Nissan">Nissan</option>
-                                    <option value="Opel">Opel</option>
-                                    <option value="Other">Other</option>
-                                    <option value="Perodua">Perodua</option>
-                                    <option value="Peugeot">Peugeot</option>
-                                    <option value="Piaggio">Piaggio</option>
-                                    <option value="Porsche">Porsche</option>
-                                    <option value="Powertrac">Powertrac</option>
-                                    <option value="Proton">Proton</option>
-                                    <option value="Range-Rover">Range-Rover</option>
-                                    <option value="Ranomoto">Ranomoto</option>
-                                    <option value="Renault">Renault</option>
-                                    <option value="Reva">Reva</option>
-                                    <option value="Rolls-Royce">Rolls-Royce</option>
-                                    <option value="Saab">Saab</option>
-                                    <option value="Sakai">Sakai</option>
-                                    <option value="Seat">Seat</option>
-                                    <option value="Singer">Singer</option>
-                                    <option value="Skoda">Skoda</option>
-                                    <option value="Smart">Smart</option>
-                                    <option value="Sonalika">Sonalika</option>
-                                    <option value="Subaru">Subaru</option>
-                                    <option value="Suzuki">Suzuki</option>
-                                    <option value="Swaraj">Swaraj</option>
-                                    <option value="Syuk">Syuk</option>
-                                    <option value="TAFE">TAFE</option>
-                                    <option value="Tata">Tata</option>
-                                    <option value="Tesla">Tesla</option>
-                                    <option value="Toyota">Toyota</option>
-                                    <option value="Triumph">Triumph</option>
-                                    <option value="TVS">TVS</option>
-                                    <option value="Vauxhall">Vauxhall</option>
-                                    <option value="Vespa">Vespa</option>
-                                    <option value="Volkswagen">Volkswagen</option>
-                                    <option value="Volvo">Volvo</option>
-                                    <option value="Wave">Wave</option>
-                                    <option value="Willys">Willys</option>
-                                    <option value="Yamaha">Yamaha</option>
-                                    <option value="Yanmar">Yanmar</option>
-                                    <option value="Yuejin">Yuejin</option>
-                                    <option value="Zongshen">Zongshen</option>
-                                    <option value="Zotye">Zotye</option>
+                                    {brands.map((item, key) => {
+                                        return (
+                                            <option key={key} value={item}>
+                                                {item}
+                                            </option>
+                                        )
+                                    })}
                                 </NativeSelect>
                             </FormControl>
                         </NativeSelectBox>
@@ -378,7 +314,7 @@ const Vehicles = ({ vehicles }) => {
                                 {/* <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
                                     Model 
                                 </InputLabel> */}
-                                <TextField id="standard-basic" label="Model" variant="standard" onChange={(e) => setModel(e.target.value)} />
+                                <TextField id="standard-basic" label="Model" variant="standard" onChange={changeBrand} />
                             </FormControl>
                         </TextFieldBox>
                         <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
@@ -594,7 +530,7 @@ const Vehicles = ({ vehicles }) => {
 
                 <section className="pages">
                     <PaginatioStack spacing={2}>
-                        <Pagination count={10} variant="outlined" onChange={handlePagination} shape="rounded" />
+                        <Pagination page={page} count={pagecount} variant="outlined" onChange={handlePagination} shape="rounded" />
                     </PaginatioStack>
                 </section>
             </main>
