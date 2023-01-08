@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import AppContext from '../context/AppContext'
 import Image from 'next/image';
+import Router from 'next/router';
 
 const NativeSelectBox = styled(Box)(({ theme }) => ({
     '.MuiInputBase-root': {
@@ -100,6 +101,7 @@ const AddItem = () => {
         setErrors([])
 
         if (context.apikey) {
+            
             const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/vehicles', {
                 method: 'POST',
                 body: formData,
@@ -114,8 +116,8 @@ const AddItem = () => {
                 window.location.hash = '#display_errors';
             }
 
-            if (res.status == 200) {
-                // Router.push('/sign-in')
+            if (res.status == 201) {
+                Router.push('/vehicles')
             }
         } else {
             await setErrors(['Please sign in before create vehicles']);
@@ -336,7 +338,7 @@ const AddItem = () => {
                                     placeholder="What color is your vehicle?" autocomplete="off" required />
                             </div>
                             <div className="sign-up-field">
-                                <h3>Descripción</h3>
+                                <h3>Description</h3>
                                 <textarea name="description" onChange={(e) => setDescription(e.target.value)}
                                     id="" cols="30" rows="10" placeholder="Write a description of your vehicle" minlength="25" maxlength="2500" required></textarea>
                             </div>

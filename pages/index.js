@@ -1,18 +1,24 @@
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Footer from '../components/Footer'
 import styles from '../styles/Home.module.css'
-
-import React from 'react'
+import Router from 'next/router';
 
 const Home = () => {
+
+  useEffect(() => {
+    Router.push('/vehicles')
+  }, [])
+  
+
   return (
     <>
-      <section className="banner">
+      {/* <section className="banner">
         
         <Image className="width_50 banner-img" width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/banner-wallpaper.webp"}
-          alt="imagen de auto" /> {/* Imagen del banner */}
-        <div className="banner-content"> {/* Primera parte del banner */}
+          alt="imagen de auto" /> 
+        <div className="banner-content"> 
           <h1>The <b>Best Platform</b> to <br />Sell and Buy Cars</h1>
           <p>The best platform to sell or buy cars has arrived in US. <br />At CarHouse we make it easy for you.</p>
           <a className="btn-explorar" href="#main">Explore</a>
@@ -26,7 +32,7 @@ const Home = () => {
           <Image className="width_50" width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/vender.svg"} alt="imagen Businessman" />
           <div data-aos="fade-left" data-aos-duration="1500">
             <h3>Sell ​​your car <br /><b>quickly and safely</b></h3>
-            <a className="btn-vender" href="./pages/vender.html">Sell</a> {/* Boton Vender */}
+            <a className="btn-vender" href="./pages/vender.html">Sell</a> 
           </div>
         </section>
 
@@ -34,7 +40,7 @@ const Home = () => {
           <Image className="width_50" width={1000} height={1000} data-aos="fade-left" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/auto-verde.webp"} alt="imagen auto verde" />
           <div data-aos="fade-right" data-aos-duration="1500">
             <h3>Find the Car of your <br /><b>Dreams</b></h3>
-            <a className="btn-comprar" href="./pages/comprar-home.html">Buy</a> {/* Boton Comprar */}
+            <a className="btn-comprar" href="./pages/comprar-home.html">Buy</a>
           </div>
         </section>
 
@@ -72,7 +78,7 @@ const Home = () => {
             <a className="btn-contacto" href="./pages/user.html">Go to my profile</a>
           </div>
         </section>
-      </main>
+      </main> */}
 
     </>
   )

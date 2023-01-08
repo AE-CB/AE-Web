@@ -67,13 +67,13 @@ const SignUp = () => {
             <div className="sign-in-container">
 
                 <Image width={1000} height={1000} className="width_100 sign-in-banner" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/sign-in-up/car-image.webp"} alt="imagen auto" /> {/* Parte de la Imagen */}
-                <a href="../index.html" className="btn-volver-siu">
+                <Link href={`/`} className="btn-volver-siu">
                     <svg className="svg-inline--fa fa-arrow-left" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg>
-                </a>
+                </Link>
 
 
                 <main className="sign-in-content"> {/* Parte del Formulario */}
-                    <a href="../index.html"><Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" /></a>
+                    <Link href={`/`}><Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" /></Link>
                     <h1>Register</h1>
 
                     <div id="display_errors" className="display_errors" ref={ref_error_div}>
@@ -117,31 +117,33 @@ const SignUp = () => {
                                 <input type="password" onChange={validatePassword} ref={ref_confirm_password} name="password-repeat" placeholder="Repeat your password" required />
                             </div>
                             <div className="sign-up-field">
-                                <h3 className="input-heading">Location</h3>
+                                <h3 className="input-heading">City</h3>
                                 <select name="localidad" id=""
                                     onChange={(e) => setLocation(e.target.value)} required>
-                                    <option value="" selected disabled>Select a location</option>
-                                    <option value="">Aguada</option>
-                                    <option value="">Aires Puros</option>
-                                    <option value="">Barra de Carrasco</option>
-                                    <option value="">Barrio Sur</option>
-                                    <option value="">Paso Molino</option>
-                                    <option value="">Brazo Oriental</option>
-                                    <option value="">Buceo</option>
-                                    <option value="">Capurro</option>
-                                    <option value="">Carrasco Norte</option>
-                                    <option value="">Casabo</option>
-                                    <option value="">Casavalle</option>
-                                    <option value="">Centro</option>
-                                    <option value="">Cerrito</option>
-                                    <option value="">Ciudad Vieja</option>
-                                    <option value="">Colon</option>
-                                    <option value="">Conciliacion</option>
-                                    <option value="">Cordon</option>
-                                    <option value="">Flor de Maroñas</option>
-                                    <option value="">Jacinto Vera</option>
-                                    <option value="">Jardines del Hipodromo</option>
-                                    <option value="">La Blanqueada</option>
+                                    <option value="" selected disabled>Select a city</option>
+                                    <option value="Colombo">Colombo</option>
+                                    <option value="Dehiwala-Mount-Lavinia">Dehiwala-Mount-Lavinia</option>
+                                    <option value="Moratuwa">Moratuwa</option>
+                                    <option value="Kotte">Kotte</option>
+                                    <option value="Battaramulla">Battaramulla</option>
+                                    <option value="Maharagama">Maharagama</option>
+                                    <option value="Kotikawatta">Kotikawatta</option>
+                                    <option value="Kolonnawa">Kolonnawa</option>
+                                    <option value="Keselwatta">Keselwatta</option>
+                                    <option value="Homagama">Homagama</option>
+                                    <option value="Mulleriyawa">Mulleriyawa</option>
+                                    <option value="Kesbewa">Kesbewa</option>
+                                    <option value="Avissawella">Avissawella</option>
+                                    <option value="Kaduwela">Kaduwela</option>
+                                    <option value="Boralesgamuwa">Boralesgamuwa</option>
+                                    <option value="Piliyandala">Piliyandala</option>
+                                    <option value="Nugegoda">Nugegoda</option>
+                                    <option value="Nawala">Nawala</option>
+                                    <option value="Padukka">Padukka</option>
+                                    <option value="Kottawa">Kottawa</option>
+                                    <option value="Pannipitiya">Pannipitiya</option>
+                                    <option value="Malabe">Malabe</option>
+                                    <option value="Hanwella">Hanwella</option>
                                 </select>
                             </div>
                         </div>

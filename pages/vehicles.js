@@ -18,7 +18,11 @@ const NativeSelectBox = styled(Box)(({ theme }) => ({
         marginBottom: '0 !important'
     },
     '.MuiFormControl-root': {
-        marginBottom: '0 !important'
+        marginBottom: '0 !important',
+        fontSize: '16px'
+    },
+    '.MuiNativeSelect-select' :{
+        fontSize: 16
     }
 }));
 
@@ -117,6 +121,7 @@ const Vehicles = ({ vehicles }) => {
     const [page, setPage] = useState(1);
 
     const [sortfilter, setSortfilter] = useState('date');
+    const [totalItems, setTotalItems] = useState(vehicles.total);
     
 
     const handleFilters = (type) => (event) => {
@@ -147,6 +152,7 @@ const Vehicles = ({ vehicles }) => {
 
         const vehicleFiltered = await res.json()
         setVehicleArr(vehicleFiltered.data)
+        setTotalItems(vehicleFiltered.total)
         filtersRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
         setPagecount(Math.ceil(vehicleFiltered.total / vehicleFiltered.per_page))
         setPage(1)
@@ -155,6 +161,7 @@ const Vehicles = ({ vehicles }) => {
 
     const setSort = async (e) => {
         await setSortfilter(e.target.value)
+        
 
         let formData = new FormData();
         formData.append('brand', brand);
@@ -178,7 +185,9 @@ const Vehicles = ({ vehicles }) => {
 
         const vehicleFiltered = await res.json()
         setVehicleArr(vehicleFiltered.data)
+        setTotalItems(vehicleFiltered.total)
         filtersRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        setPage(1)
     }
 
 
@@ -221,6 +230,7 @@ const Vehicles = ({ vehicles }) => {
 
         const vehicleFiltered = await res.json()
         setVehicleArr(vehicleFiltered.data)
+        setTotalItems(vehicleFiltered.total)
         filtersRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
         setPage(value)
     };
@@ -238,7 +248,7 @@ const Vehicles = ({ vehicles }) => {
             <main className="main-comprar">
                 <section className="amount-sort-section">
                     {/*  Cantidad de vehiculos y ordenamiento  */}
-                    <p className="total-vehicles">{vehicles.data.length} vehicles have been found</p>
+                    <p className="total-vehicles">{totalItems} vehicles have been found</p>
                     <div className="sort-vehicles">
                         {/*  Ordenamiento  */}
                         <Image width={25} height={25} className='sortimg' src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/orderasc.png"} alt="icono ordenamiento" />
