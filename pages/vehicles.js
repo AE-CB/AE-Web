@@ -80,7 +80,7 @@ export async function getStaticProps() {
     })
 
     const vehicles = await res.json()
-    console.log(vehicles)
+    // console.log(vehicles)
 
     return {
         props: {
@@ -100,6 +100,8 @@ var brands = [
 ]
 
 const Vehicles = ({ vehicles }) => {
+
+    console.log(vehicles)
 
     const [filters, setFilters] = useState({});
     const [vehicleArr, setVehicleArr] = useState(vehicles.data);

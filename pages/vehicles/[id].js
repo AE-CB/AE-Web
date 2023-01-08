@@ -61,17 +61,17 @@ const Car = ({ vehicle }) => {
                 </section>
 
                 <section className="car-seller-info">
-                    <h3>Información sobre el Vendedor</h3>
+                    <h3>Seller Information</h3>
                     <div className="seller-info">
-                        <p>Nombre: <span>Nombre Apellido</span></p>
+                        <p>Name: <span>First Last</span></p>
                         <p>Email: <span>example@gmail.com</span></p>
-                        <p>Celular: <span>000 000 000</span></p>
+                        <p>Phone Number: <span>000 000 000</span></p>
                     </div>
-                    <a className="btn-seller-contact" href="#">Contactar</a>
+                    <a className="btn-seller-contact" href="#">Contact</a>
                 </section>
 
                 <section className="car-description">
-                    <h3>Descripción</h3>
+                    <h3>Description</h3>
                     <p>Volkswagen Golf GTI del 2020 en excelentes condiciones, único dueño, no tiene ningun detalle, ningún rayón ni choque. Todos los services realizados en tiempo y forma.</p>
                 </section>
 
