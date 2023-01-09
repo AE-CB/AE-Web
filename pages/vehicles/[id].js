@@ -72,43 +72,46 @@ const Car = ({ vehicle }) => {
 
                 <section className="car-description">
                     <h3>Description</h3>
-                    <p>Volkswagen Golf GTI del 2020 en excelentes condiciones, único dueño, no tiene ningun detalle, ningún rayón ni choque. Todos los services realizados en tiempo y forma.</p>
+                    <p>
+                        {vehicle.data.description}
+                    </p>
                 </section>
 
                 <section className="car-location">
-                    <h3>Ubicación del Vehículo</h3>
+                    <h3>Vehicle Location</h3>
                     <div className="location">
-                        <p>Departamento: <span>Montevideo</span></p>
-                        <p>Localidad: <span>Carrasco</span></p>
+                        <p>City: <span>{vehicle.data.city}</span></p>
                     </div>
                 </section>
 
                 <section className="car-questions">
                     <div className="question">
                         <form className="question-form">
-                            <h3>¿Quiéres Preguntarle algo al Vendedor?</h3>
-                            <textarea name="question" cols="30" rows="10" placeholder="Escribe tu Pregunta" minLength="5" maxLength="2500" required></textarea>
+                            <h3>Do you want to ask the seller something?s</h3>
+                            <textarea name="question" cols="30" rows="10" placeholder="Write your question" minLength="5" maxLength="2500" required></textarea>
                             <input className="btn-preguntar" type="submit" value="Preguntar" />
                         </form>
                     </div>
                     <div className="previous-questions">
-                        <h3>Preguntas Anteriores</h3>
+                        <h3>Previous Questions</h3>
                         <div className="previous-question">
-                            <h4>¿Qué uso se le dio al auto?</h4>
+                            <h4>What use was given to the car?</h4>
                             <div className="answer">
-                                <p>El mayor uso del auto fue en ciudad, para los viajes cotidianos, ya sea ir a trabajar, salir a comer, etc. Tiene unos viajes en ruta también. Saludos</p>
+                                <p>
+                                    The greatest use of the car was in the city, for daily trips, be it going to work, going out to eat, etc. It has a few road trips as well. Regard
+                                </p>
                             </div>
                         </div>
                     </div>
                 </section>
             </section>
 
-            <section className="similar-cars">
-                <h3>Vehículos Similares</h3>
+            {/* <section className="similar-cars">
+                <h3>Similar vehicles</h3>
                 <div className="list-similar-cars">
-                    <a className="card-car" href="./car.html"> {/* Card Auto */}
+                    <a className="card-car" href="./car.html"> 
                         <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/nissan-kicks.webp"} alt="imagen auto nissan" />
-                        <div className="info-car"> {/* Datos Vehiculo */}
+                        <div className="info-car">
                             <div className="car-brand">
                                 <Image className='nextimg' width={30} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/nissan-logo.webp"} alt="logo nissan" />
                                 <h3>Nissan Kicks</h3>
@@ -120,9 +123,9 @@ const Car = ({ vehicle }) => {
                             </div>
                         </div>
                     </a>
-                    <a className="card-car" href="./car.html"> {/* Card Auto */}
+                    <a className="card-car" href="./car.html"> 
                         <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/clio.webp"} alt="imagen auto renault" />
-                        <div> {/* Datos Vehiculo */}
+                        <div> 
                             <div className="car-brand">
                                 <Image className='nextimg' width={50} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/renault-logo.webp"} alt="logo renault" />
                                 <h3>Renault Clio</h3>
@@ -134,9 +137,9 @@ const Car = ({ vehicle }) => {
                             </div>
                         </div>
                     </a>
-                    <a className="card-car" href="./car.html"> {/* Card Auto */}
+                    <a className="card-car" href="./car.html"> 
                         <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/swift.webp"} alt="imagen auto suzuki" />
-                        <div> {/* Datos Vehiculo */}
+                        <div> 
                             <div className="car-brand">
                                 <Image className='nextimg' width={30} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/suzuki_logo.webp"} alt="logo suzuki" />
                                 <h3>Suzuki Swift</h3>
@@ -148,9 +151,9 @@ const Car = ({ vehicle }) => {
                             </div>
                         </div>
                     </a>
-                    <a className="card-car" href="./car.html"> {/* Card Auto */}
+                    <a className="card-car" href="./car.html">
                         <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/accent.webp"} alt="imagen auto hyundai" />
-                        <div> {/* Datos Vehiculo */}
+                        <div> 
                             <div className="car-brand">
                                 <Image className='nextimg' width={40} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/hyundai-logo.webp"} alt="logo hyundai" />
                                 <h3>Hyundai Accent</h3>
@@ -169,7 +172,7 @@ const Car = ({ vehicle }) => {
                         <i className="fas fa-chevron-right"></i>
                     </div>
                 </div>
-            </section>
+            </section> */}
         </main>
 
     )
