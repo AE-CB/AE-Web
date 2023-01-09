@@ -9,17 +9,17 @@ const Header = () => {
   return (
     <>
       <header>
-        <section className="navbar"> {/* Barra de Navegacion */}
+        <section className="navbar">
           <div className="container-1600">
             <div>
               <Link className="logo" href={`/`}>
-                <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" />
+                {/* <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" /> */}
               </Link>
 
               <button id="hamburguer" className="hamburguer"><i className="fas fa-bars"></i></button>
             </div>
 
-            <nav id="main-nav" className="main-nav"> {/* Navegacion */}
+            <nav id="main-nav" className="main-nav"> 
               <ul>
                 <li>
                   <Link className="nav-link" href={`/vehicles`}>Buy</Link>

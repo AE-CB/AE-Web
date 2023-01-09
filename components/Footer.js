@@ -6,7 +6,7 @@ const Footer = () => {
             <hr/>
                 <div className="footer-bar"> {/* Barra Footer */}
                     <a href="./index.html"> {/* Logo */}
-                        <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse"/>
+                        {/* <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse"/> */}
                     </a>
                     <div className="social-media"> {/* Redes Footer */}
                         <ul>
