@@ -21,7 +21,7 @@ const NativeSelectBox = styled(Box)(({ theme }) => ({
         marginBottom: '0 !important',
         fontSize: '16px'
     },
-    '.MuiNativeSelect-select' :{
+    '.MuiNativeSelect-select': {
         fontSize: 16
     }
 }));
@@ -124,7 +124,7 @@ const Vehicles = ({ vehicles }) => {
 
     const [sortfilter, setSortfilter] = useState('date');
     const [totalItems, setTotalItems] = useState(vehicles.total);
-    
+
 
     const handleFilters = (type) => (event) => {
         let tempArr = filters;
@@ -163,7 +163,7 @@ const Vehicles = ({ vehicles }) => {
 
     const setSort = async (e) => {
         await setSortfilter(e.target.value)
-        
+
 
         let formData = new FormData();
         formData.append('brand', brand);
@@ -178,7 +178,7 @@ const Vehicles = ({ vehicles }) => {
         formData.append('fuel', fuel);
         formData.append('city', city);
         formData.append('sortfilter', e.target.value);
-        
+
 
         const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles?page=1', {
             method: 'POST',
@@ -509,7 +509,7 @@ const Vehicles = ({ vehicles }) => {
                         </ButtonBox>
                     </section>
 
-                    <section className="cars-list car-l-custom">
+                    <section className="cars-list car-l-custom vehiclelist">
                         {/* List Vehicles  */}
                         {vehicleArr.map((item, i) => {
 
@@ -537,14 +537,19 @@ const Vehicles = ({ vehicles }) => {
                                 </Link>
                             );
                         })}
+
+                        <section className="pages vehicle_pagination">
+                            <PaginatioStack spacing={2}>
+                                <Pagination page={page} count={pagecount} variant="outlined" onChange={handlePagination} shape="rounded" />
+                            </PaginatioStack>
+                        </section>
+
                     </section>
+
+
                 </section>
 
-                <section className="pages">
-                    <PaginatioStack spacing={2}>
-                        <Pagination page={page} count={pagecount} variant="outlined" onChange={handlePagination} shape="rounded" />
-                    </PaginatioStack>
-                </section>
+
             </main>
         </>
     )

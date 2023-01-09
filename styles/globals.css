@@ -4045,3 +4045,13 @@ select:hover {
   overflow-y : auto;
   height: 280px;
 }
+
+.vehiclelist{
+  position: relative;
+  bottom: 130px;
+}
+
+.vehicle_pagination{
+  position: absolute;
+  bottom: -130px;
+}
