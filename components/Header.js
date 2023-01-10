@@ -14,6 +14,7 @@ const Header = () => {
             <div>
               <Link className="logo" href={`/`}>
                 {/* <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" /> */}
+                <h1 className='logotext'><span>AUTO</span>ESCAPE</h1>
               </Link>
 
               <button id="hamburguer" className="hamburguer"><i className="fas fa-bars"></i></button>

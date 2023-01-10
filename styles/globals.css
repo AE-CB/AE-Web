@@ -4048,10 +4048,20 @@ select:hover {
 
 .vehiclelist{
   position: relative;
-  bottom: 130px;
+  /* bottom: 130px; */
+  padding-bottom: 65px;
 }
 
 .vehicle_pagination{
   position: absolute;
-  bottom: -130px;
+  bottom: -65px;
+}
+
+.logotext{
+  color: #0097D3;
+  font-size: 30px;
+}
+
+.logotext span{
+  color: #0D367F;
 }

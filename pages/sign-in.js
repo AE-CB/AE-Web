@@ -54,6 +54,7 @@ const SignIn = () => {
 
                 <div className="sign-in-content"> {/* Parte del Formulario */}
                     <Link href={`/`}>
+                        <h1 className='logotext'><span>AUTO</span>ESCAPE</h1>
                         {/* <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" /> */}
                     </Link>
                     <h1>Log in</h1>
