@@ -14,7 +14,7 @@ export default function Document() {
                 <link rel="shortcut icon" href="./assets/img/logo/icon-shortcut.png" />
                 {/* Fontawesome */}
                 <Script src="https://kit.fontawesome.com/de0eb60c48.js" crossOrigin="anonymous"></Script>
-
+                <script type="text/javascript" src="assets/js/custom.js"></script>
             </Head>
             <body>
                 {/* <Header /> */}

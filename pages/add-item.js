@@ -47,6 +47,8 @@ const AddItem = () => {
             });
             ranonce = true
         }
+        
+
     }, [])
 
     const context = useContext(AppContext)
@@ -296,11 +298,11 @@ const AddItem = () => {
                                     </NativeSelect>
                                 </NativeSelectBox> */}
 
-                                {/* <input type="text" name="brand" placeholder="¿Cuál es la marca de tu vehículo?" autocomplete="off" required /> */}
+                                {/* <input type="text" name="brand" placeholder="¿Cuál es la marca de tu vehículo?" autoComplete="off" required /> */}
                             </div>
                             <div className="sign-up-field">
                                 <h3>Model</h3>
-                                <input type="text" name="model" onChange={(e) => setModel(e.target.value)} placeholder="What is the model of your vehicle?" autocomplete="off" required />
+                                <input type="text" name="model" onChange={(e) => setModel(e.target.value)} placeholder="What is the model of your vehicle?" autoComplete="off" required />
                             </div>
                             <div className="sign-up-field">
                                 <h3>Year</h3>
@@ -335,12 +337,12 @@ const AddItem = () => {
                             <div className="sign-up-field">
                                 <h3>Color</h3>
                                 <input type="text" name="color" onChange={(e) => setColor(e.target.value)}
-                                    placeholder="What color is your vehicle?" autocomplete="off" required />
+                                    placeholder="What color is your vehicle?" autoComplete="off" required />
                             </div>
                             <div className="sign-up-field">
                                 <h3>Description</h3>
                                 <textarea name="description" onChange={(e) => setDescription(e.target.value)}
-                                    id="" cols="30" rows="10" placeholder="Write a description of your vehicle" minlength="25" maxlength="2500" required></textarea>
+                                    id="" cols="30" rows="10" placeholder="Write a description of your vehicle" minLength="25" maxLength="2500" required></textarea>
                             </div>
                             <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
                         </div>
@@ -357,7 +359,7 @@ const AddItem = () => {
                             <div className="sign-up-field">
                                 <h3>Engine</h3>
                                 <input type="text" name="motor" onChange={(e) => setEngine(e.target.value)}
-                                    placeholder="What size is the engine of your vehicle?" autocomplete="off" required />
+                                    placeholder="What size is the engine of your vehicle?" autoComplete="off" required />
                             </div>
                             <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
                         </div>
@@ -369,7 +371,7 @@ const AddItem = () => {
                             <p>(Minimum 4 photos, one per side of the vehicle)</p>
                             <div className="upload-image-box">
                                 <input type="file" name="images" ref={img_upload} id="upload-image" accept="image/*" multiple />
-                                <label for="upload-image">
+                                <label htmlFor="upload-image">
                                     <img src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/camara-fotografica.png"} alt="Imagen de Camara" />
                                     <p>Add Photos</p>
                                 </label>
@@ -446,7 +448,7 @@ const AddItem = () => {
                             {/* <div className="sign-up-field">
                                 <h3>Owner&apos;s Name</h3>
                                 <input type="text" name="owner" onChange={(e) => setOwner(e.target.value)}
-                                    placeholder="Whose name is the vehicle in?" autocomplete="off" required />
+                                    placeholder="Whose name is the vehicle in?" autoComplete="off" required />
                             </div> */}
                             <div className="sign-up-field">
                                 <h3>Price</h3>
