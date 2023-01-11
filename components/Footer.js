@@ -7,6 +7,7 @@ const Footer = () => {
                 <div className="footer-bar"> {/* Barra Footer */}
                     <a href="./index.html"> {/* Logo */}
                         {/* <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse"/> */}
+                        <h1 className='logotext'><span>AUTO</span>ESCAPE</h1>
                     </a>
                     <div className="social-media"> {/* Redes Footer */}
                         <ul>
