@@ -44,7 +44,7 @@ const Car = ({ vehicle }) => {
                         <p>Year: <span>{vehicle.data.year}</span></p>
                         <p>Kilometers: <span>{vehicle.data.mileage}</span></p>
                     </div>
-                    <h4 className="car-price">Usd <span>{vehicle.data.price}</span></h4>
+                    <h4 className="car-price">Rs. <span>{vehicle.data.price}</span></h4>
                 </section>
 
                 <section className="car-technical-data">

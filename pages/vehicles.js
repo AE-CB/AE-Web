@@ -609,7 +609,7 @@ const Vehicles = ({ vehicles }) => {
                                             <div className="car-data">
                                                 <p>Year: {item.year}</p>
                                                 <p>Kilometers: {item.mileage}</p>
-                                                <p>USD {item.price}</p>
+                                                <p>Rs. {item.price}</p>
                                             </div>
                                         </div>
                                     </div>
