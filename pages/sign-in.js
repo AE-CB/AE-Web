@@ -105,7 +105,7 @@ const SignIn = () => {
                     <footer className="sign-in-footer footer-sign-in">
                         <hr />
                         <div>
-                            <h3>© 2021 CarHouse, Inc.</h3>
+                            <h3>© {new Date().getFullYear()} AUTOESCAPE, Inc.</h3>
                             <div className="social-media"> {/* Redes Footer */}
                                 <ul>
                                     <li> {/* Instagram */}

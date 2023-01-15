@@ -50,7 +50,7 @@ const Footer = () => {
                         </ul>
                     </section>
                 </div>
-                <h3>© 2021 CarHouse, Inc.</h3>
+                <h3>© {new Date().getFullYear()} AUTOESCAPE, Inc.</h3>
                 <div className="developed-by">
                     <h6>Developed by cdazzdev</h6>
                     {/* <a target="_blank" rel="noreferrer" href="https://github.com/mathiramilo"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="bi bi-github" viewBox="0 0 16 16">
