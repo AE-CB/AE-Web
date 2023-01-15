@@ -590,6 +590,9 @@ const Vehicles = ({ vehicles }) => {
 
                     <section className="cars-list car-l-custom vehiclelist">
                         {/* List Vehicles  */}
+
+                        { !vehicleArr?.length > 0 && <p>No items matching your criteria</p>}
+
                         {vehicleArr.map((item, i) => {
 
                             let images = JSON.parse(item.images)

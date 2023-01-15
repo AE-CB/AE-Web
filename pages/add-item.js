@@ -484,7 +484,6 @@ const AddItem = ({ session }) => {
                                 <div className="field-price">
                                     <h4>Rs.</h4>
                                     <input type="number" name="price" onChange={(e) => setPrice(e.target.value)}
-                                        min="1500" max="1000000"
                                         placeholder="How much do you want to sell your vehicle for?" required />
                                 </div>
                             </div>

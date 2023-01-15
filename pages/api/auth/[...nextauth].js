@@ -18,10 +18,10 @@ var accessToken = null
 
 const options = {
     providers: [
-        GitHubProvider({
-            clientId: process.env.GITHUB_ID,
-            clientSecret: process.env.GITHUB_SECRET
-        }),
+        // GitHubProvider({
+        //     clientId: process.env.GITHUB_ID,
+        //     clientSecret: process.env.GITHUB_SECRET
+        // }),
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_SECRET,
@@ -122,33 +122,33 @@ const options = {
                     }
                     
                     return true;
-                case 'github':
-                    accessToken = null
+                // case 'github':
+                //     accessToken = null
 
-                    var body = {
-                        key: process.env.FRONT_APP_KEY,
-                        name: profile.login,
-                        email: profile.email,
-                        password: password,
-                        password_confirmation: password
-                    }
+                //     var body = {
+                //         key: process.env.FRONT_APP_KEY,
+                //         name: profile.login,
+                //         email: profile.email,
+                //         password: password,
+                //         password_confirmation: password
+                //     }
 
-                    var res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/social_register', {
-                        method: 'POST',
-                        body: JSON.stringify(body),
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                    })
+                //     var res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/social_register', {
+                //         method: 'POST',
+                //         body: JSON.stringify(body),
+                //         headers: {
+                //             'Accept': 'application/json',
+                //             'Content-Type': 'application/json'
+                //         },
+                //     })
 
-                    if (res.status == 200) {
-                        var jsonResponce = await res.json();
-                        // console.log(jsonResponce.token)
-                        accessToken = jsonResponce.token
-                    }
+                //     if (res.status == 200) {
+                //         var jsonResponce = await res.json();
+                //         // console.log(jsonResponce.token)
+                //         accessToken = jsonResponce.token
+                //     }
                     
-                    return true;
+                //     return true;
 
                 case 'credentials': 
                     return true;
