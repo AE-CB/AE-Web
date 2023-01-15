@@ -8,7 +8,9 @@ import AdminLayout from '../components/Layouts/AdminLayout'
 import NormalLayout from '../components/Layouts/NormalLayout';
 // import AOS from 'aos';
 const AOS = require('aos');
-import 'aos/dist/aos.css'; 
+import 'aos/dist/aos.css';
+import { SessionProvider } from "next-auth/react"
+
 
 config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
@@ -29,10 +31,12 @@ export default function App({ Component, pageProps }) {
 
 
   return (
-    <AppContext.Provider value={{ apikey, setApikey }}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </AppContext.Provider>
+    <SessionProvider session={pageProps.session}>
+      <AppContext.Provider value={{ apikey, setApikey }}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AppContext.Provider>
+    </SessionProvider>
   )
 }

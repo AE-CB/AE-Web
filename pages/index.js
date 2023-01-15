@@ -7,18 +7,13 @@ import Router from 'next/router';
 
 const Home = () => {
 
-  useEffect(() => {
-    Router.push('/vehicles')
-  }, [])
-  
-
   return (
     <>
-      {/* <section className="banner">
-        
+      <section className="banner">
+
         <Image className="width_50 banner-img" width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/banner-wallpaper.webp"}
-          alt="imagen de auto" /> 
-        <div className="banner-content"> 
+          alt="imagen de auto" />
+        <div className="banner-content">
           <h1>The <b>Best Platform</b> to <br />Sell and Buy Cars</h1>
           <p>The best platform to sell or buy cars has arrived in US. <br />At CarHouse we make it easy for you.</p>
           <a className="btn-explorar" href="#main">Explore</a>
@@ -32,7 +27,7 @@ const Home = () => {
           <Image className="width_50" width={1000} height={1000} data-aos="fade-right" data-aos-duration="1500" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/landing-page/vender.svg"} alt="imagen Businessman" />
           <div data-aos="fade-left" data-aos-duration="1500">
             <h3>Sell ​​your car <br /><b>quickly and safely</b></h3>
-            <a className="btn-vender" href="./pages/vender.html">Sell</a> 
+            <a className="btn-vender" href="./pages/vender.html">Sell</a>
           </div>
         </section>
 
@@ -78,7 +73,7 @@ const Home = () => {
             <a className="btn-contacto" href="./pages/user.html">Go to my profile</a>
           </div>
         </section>
-      </main> */}
+      </main>
 
     </>
   )
@@ -87,3 +82,9 @@ const Home = () => {
 Home.layout = "AdminLayout";
 export default Home
 
+export async function getServerSideProps(context) {
+  
+  return {
+    redirect: { destination: "/vehicles" },
+  };
+}

@@ -87,7 +87,7 @@ const Car = ({ vehicle }) => {
                 <section className="car-questions">
                     <div className="question">
                         <form className="question-form">
-                            <h3>Do you want to ask the seller something?s</h3>
+                            <h3>Do you want to ask the seller something?</h3>
                             <textarea name="question" cols="30" rows="10" placeholder="Write your question" minLength="5" maxLength="2500" required></textarea>
                             <input className="btn-preguntar" type="submit" value="Preguntar" />
                         </form>

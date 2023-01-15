@@ -1872,7 +1872,29 @@ select:hover {
   transition: all 0.3s ease;
 }
 
+
 .btn-register:hover {
+  border-color: #A655C7;
+  background-color: #A655C7;
+  color: #FFFFFF;
+}
+
+.social-btn{
+  display: block;
+  text-align: center;
+  margin: auto;
+  border: none;
+  width: 100%;
+  color: #60B0F4;
+  border: 3px solid #60B0F4;
+  padding: 6px 20px;
+  border-radius: 50px;
+  font-size: 2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
   border-color: #A655C7;
   background-color: #A655C7;
   color: #FFFFFF;

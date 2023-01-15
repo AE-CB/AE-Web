@@ -101,11 +101,12 @@ var brands = [
 
 const Vehicles = ({ vehicles }) => {
 
-    console.log(vehicles)
+    // console.log(vehicles)
 
     const [filters, setFilters] = useState({});
     const [vehicleArr, setVehicleArr] = useState(vehicles.data);
     const filtersRef = useRef(null);
+    const searchRef = useRef(null);
 
     const [brand, setBrand] = useState("all");
     const [condition, setCondition] = useState("all");
@@ -118,6 +119,7 @@ const Vehicles = ({ vehicles }) => {
     const [gear, setGear] = useState("all");
     const [fuel, setFuel] = useState("all");
     const [city, setCity] = useState("all");
+    const [searchtext, setSearchtext] = useState("");
 
     const [pagecount, setPagecount] = useState(Math.ceil(vehicles.total / vehicles.per_page));
     const [page, setPage] = useState(1);
@@ -145,6 +147,7 @@ const Vehicles = ({ vehicles }) => {
         formData.append('fuel', fuel);
         formData.append('city', city);
         formData.append('sortfilter', sortfilter);
+        formData.append('search', searchtext);
 
         const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles?page=1', {
             method: 'POST',
@@ -196,7 +199,8 @@ const Vehicles = ({ vehicles }) => {
 
     const changeBrand = (e) => {
         let modeltmp = e.target.value
-        setModel(modeltmp)
+        let hasBrand = false
+        // setModel(modeltmp)
         const wordarr = modeltmp.split(" ");
 
         const lowercased = wordarr.map(function (item) {
@@ -204,10 +208,28 @@ const Vehicles = ({ vehicles }) => {
         });
 
         brands.forEach(item => {
-            if (lowercased.includes(item.toLowerCase())) {
+            if(lowercased[0] == item.toLowerCase()){
                 setBrand(item)
+                hasBrand = true
             }
+            // if (lowercased.includes(item.toLowerCase())) {
+            //     setBrand(item)
+            // }
         });
+
+        if(wordarr.length > 1){
+            if(hasBrand){
+                setModel(modeltmp.replace(wordarr[0]+' ',''))
+            }            
+        }else{
+            if(hasBrand){
+                setModel('')
+            }else{
+                setModel(e.target.value)
+            }
+            
+        }      
+
     }
 
     const handlePagination = async (event, value) => {
@@ -237,15 +259,50 @@ const Vehicles = ({ vehicles }) => {
         setPage(value)
     };
 
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        setSearchtext(searchRef.current.value)
+
+        let formData = new FormData();
+        formData.append('brand', brand);
+        formData.append('condition', condition);
+        formData.append('model', model);
+        formData.append('yearMax', yearMax);
+        formData.append('yearMin', yearMin);
+        formData.append('priceMax', priceMax);
+        formData.append('priceMin', priceMin);
+        formData.append('category', category);
+        formData.append('gear', gear);
+        formData.append('fuel', fuel);
+        formData.append('city', city);
+        formData.append('sortfilter', sortfilter);
+        formData.append('search', searchRef.current.value);
+
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles?page=1', {
+            method: 'POST',
+            body: formData,
+        })
+
+
+        const vehicleFiltered = await res.json()
+        setVehicleArr(vehicleFiltered.data)
+        setTotalItems(vehicleFiltered.total)
+        filtersRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        setPagecount(Math.ceil(vehicleFiltered.total / vehicleFiltered.per_page))
+        setPage(1)
+    }
+
     return (
         <>
             {/* form 1 */}
 
             <form className="search-form">
                 {/* Barra Busqueda  */}
-                <input className="search-bar" type="search" placeholder="What are you looking for?" />
-                <button className="search-btn"><Image width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/magnifying-glass.png"} alt="icono busqueda" /></button>
+                <input ref={searchRef} className="search-bar" type="search" placeholder="What are you looking for?" />
+                <button className="search-btn" onClick={handleSearch}><Image width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/magnifying-glass.png"} alt="icono busqueda" /></button>
             </form>
+
+            
 
             <main className="main-comprar">
                 <section className="amount-sort-section">
@@ -326,7 +383,7 @@ const Vehicles = ({ vehicles }) => {
                                 {/* <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
                                     Model 
                                 </InputLabel> */}
-                                <TextField id="standard-basic" label="Model" variant="standard" onChange={changeBrand} />
+                                <TextField id="standard-basic" label="Model"  variant="standard" onChange={changeBrand} />
                             </FormControl>
                         </TextFieldBox>
                         <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
@@ -501,6 +558,28 @@ const Vehicles = ({ vehicles }) => {
                                     <option value="Pannipitiya">Pannipitiya</option>
                                     <option value="Malabe">Malabe</option>
                                     <option value="Hanwella">Hanwella</option>
+                                    <option value="Gampaha">Gampaha</option><option value="Negombo">Negombo</option><option value="Katunayake">Katunayake</option><option value="Hendala">Hendala</option><option value="Welisara">Welisara</option><option value="Ragama">Ragama</option><option value="Kandana">Kandana</option><option value="Ja-Ela">Ja-Ela</option><option value="Wattala">Wattala</option><option value="Kelaniya">Kelaniya</option><option value="Peliyagoda">Peliyagoda</option><option value="Minuwangoda">Minuwangoda</option><option value="Kadawatha">Kadawatha</option><option value="Dompe">Dompe</option><option value="Divulapitiya">Divulapitiya</option><option value="Nittambuwa">Nittambuwa</option><option value="Mirigama">Mirigama</option><option value="Kiribathgoda">Kiribathgoda</option><option value="Veyangoda">Veyangoda</option><option value="Ganemulla">Ganemulla</option>
+                                    <option value="Kandy">Kandy</option><option value="Gampola">Gampola</option><option value="Nawalapitiya">Nawalapitiya</option><option value="Wattegama">Wattegama</option><option value="Harispattuwa">Harispattuwa</option><option value="Kadugannawa">Kadugannawa</option>
+                                    <option value="Kurunegala">Kurunegala</option><option value="Kuliyapitiya">Kuliyapitiya</option><option value="Polgahawela">Polgahawela</option><option value="Pannala">Pannala</option>
+                                    <option value="Ratnapura">Ratnapura</option><option value="Balangoda">Balangoda</option><option value="Eheliyagoda">Eheliyagoda</option><option value="Kalawana">Kalawana</option><option value="Embilipitiya">Embilipitiya</option>
+                                    <option value="Kalutara">Kalutara</option><option value="Beruwala">Beruwala</option><option value="Panadura">Panadura</option><option value="Horana">Horana</option><option value="Matugama">Matugama</option><option value="Bandaragama">Bandaragama</option><option value="Puttalam">Puttalam</option><option value="Chilaw">Chilaw</option><option value="Nattandiya">Nattandiya</option><option value="Wennappuwa">Wennappuwa</option><option value="Marawila">Marawila</option><option value="Dankotuwa">Dankotuwa</option><option value="Kegalle">Kegalle</option><option value="Mawanella">Mawanella</option><option value="Warakapola">Warakapola</option>
+                                    <option value="Matale">Matale</option><option value="Dambulla">Dambulla</option><option value="Sigiriya">Sigiriya</option>
+                                    <option value="Badulla">Badulla</option><option value="Bandarawela">Bandarawela</option><option value="Haputale">Haputale</option><option value="Welimada">Welimada</option><option value="Mahiyanganaya">Mahiyanganaya</option>
+                                    <option value="Nuwara-Eliya">Nuwara-Eliya</option><option value="Hatton">Hatton</option><option value="Talawakele">Talawakele</option>
+                                    <option value="Galle">Galle</option><option value="Ambalangoda">Ambalangoda</option>
+                                    <option value="Matara">Matara</option><option value="Weligama">Weligama</option>
+                                    <option value="Hambantota">Hambantota</option><option value="Tangalle">Tangalle</option>
+                                    <option value="Batticaloa">Batticaloa</option><option value="Kattankudy">Kattankudy</option><option value="Eravur">Eravur</option>
+                                    <option value="Ampara">Ampara</option><option value="Kalmunai">Kalmunai</option>
+                                    <option value="Jaffna">Jaffna</option><option value="Chavakacheri">Chavakacheri</option><option value="Valvettithurai">Valvettithurai</option>
+                                    <option value="Anuradapura">Anuradapura</option>
+                                    <option value="Polonnaruwa">Polonnaruwa</option>
+                                    <option value="Moneragala">Moneragala</option>
+                                    <option value="Trincomalee">Trincomalee</option>
+                                    <option value="Mannar">Mannar</option>
+                                    <option value="Vavuniya">Vavuniya</option>
+                                    <option value="Kilinochchi">Kilinochchi</option>
+                                    <option value="Mullaitivu">Mullaitivu</option>
                                 </NativeSelect>
                             </FormControl>
                         </NativeSelectBox>

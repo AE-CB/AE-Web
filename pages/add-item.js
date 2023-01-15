@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import AppContext from '../context/AppContext'
 import Image from 'next/image';
 import Router from 'next/router';
+import { getProviders, getSession, useSession } from "next-auth/react"
 
 const NativeSelectBox = styled(Box)(({ theme }) => ({
     '.MuiInputBase-root': {
@@ -37,7 +38,12 @@ const preview = (file) => {
 
 
 
-const AddItem = () => {
+const AddItem = ({ session }) => {
+
+    // console.log('---------------session---------------')
+    // console.log(session.accessToken[0])
+    // console.log('---------------session---------------')
+
     var ranonce = false;
     useEffect(() => {
         if (!ranonce) {
@@ -47,7 +53,7 @@ const AddItem = () => {
             });
             ranonce = true
         }
-        
+
 
     }, [])
 
@@ -102,13 +108,13 @@ const AddItem = () => {
         formData.append('TotalFiles', ins);
         setErrors([])
 
-        if (context.apikey) {
-            
+        if (session.accessToken[0]) {
+
             const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/vehicles', {
                 method: 'POST',
                 body: formData,
                 headers: new Headers({
-                    'Authorization': 'Bearer ' + context.apikey,
+                    'Authorization': 'Bearer ' + session.accessToken[0],
                 })
             })
 
@@ -131,6 +137,7 @@ const AddItem = () => {
 
     return (
         <>
+            {/* <p>zxX</p> */}
             <section className="vender-banner">
                 <div className="gradient-div"></div>
                 <h1>Sell ​​your car <br /><b>quickly and safely</b></h1>
@@ -436,6 +443,28 @@ const AddItem = () => {
                                     <option value="Pannipitiya">Pannipitiya</option>
                                     <option value="Malabe">Malabe</option>
                                     <option value="Hanwella">Hanwella</option>
+                                    <option value="Gampaha">Gampaha</option><option value="Negombo">Negombo</option><option value="Katunayake">Katunayake</option><option value="Hendala">Hendala</option><option value="Welisara">Welisara</option><option value="Ragama">Ragama</option><option value="Kandana">Kandana</option><option value="Ja-Ela">Ja-Ela</option><option value="Wattala">Wattala</option><option value="Kelaniya">Kelaniya</option><option value="Peliyagoda">Peliyagoda</option><option value="Minuwangoda">Minuwangoda</option><option value="Kadawatha">Kadawatha</option><option value="Dompe">Dompe</option><option value="Divulapitiya">Divulapitiya</option><option value="Nittambuwa">Nittambuwa</option><option value="Mirigama">Mirigama</option><option value="Kiribathgoda">Kiribathgoda</option><option value="Veyangoda">Veyangoda</option><option value="Ganemulla">Ganemulla</option>
+                                    <option value="Kandy">Kandy</option><option value="Gampola">Gampola</option><option value="Nawalapitiya">Nawalapitiya</option><option value="Wattegama">Wattegama</option><option value="Harispattuwa">Harispattuwa</option><option value="Kadugannawa">Kadugannawa</option>
+                                    <option value="Kurunegala">Kurunegala</option><option value="Kuliyapitiya">Kuliyapitiya</option><option value="Polgahawela">Polgahawela</option><option value="Pannala">Pannala</option>
+                                    <option value="Ratnapura">Ratnapura</option><option value="Balangoda">Balangoda</option><option value="Eheliyagoda">Eheliyagoda</option><option value="Kalawana">Kalawana</option><option value="Embilipitiya">Embilipitiya</option>
+                                    <option value="Kalutara">Kalutara</option><option value="Beruwala">Beruwala</option><option value="Panadura">Panadura</option><option value="Horana">Horana</option><option value="Matugama">Matugama</option><option value="Bandaragama">Bandaragama</option><option value="Puttalam">Puttalam</option><option value="Chilaw">Chilaw</option><option value="Nattandiya">Nattandiya</option><option value="Wennappuwa">Wennappuwa</option><option value="Marawila">Marawila</option><option value="Dankotuwa">Dankotuwa</option><option value="Kegalle">Kegalle</option><option value="Mawanella">Mawanella</option><option value="Warakapola">Warakapola</option>
+                                    <option value="Matale">Matale</option><option value="Dambulla">Dambulla</option><option value="Sigiriya">Sigiriya</option>
+                                    <option value="Badulla">Badulla</option><option value="Bandarawela">Bandarawela</option><option value="Haputale">Haputale</option><option value="Welimada">Welimada</option><option value="Mahiyanganaya">Mahiyanganaya</option>
+                                    <option value="Nuwara-Eliya">Nuwara-Eliya</option><option value="Hatton">Hatton</option><option value="Talawakele">Talawakele</option>
+                                    <option value="Galle">Galle</option><option value="Ambalangoda">Ambalangoda</option>
+                                    <option value="Matara">Matara</option><option value="Weligama">Weligama</option>
+                                    <option value="Hambantota">Hambantota</option><option value="Tangalle">Tangalle</option>
+                                    <option value="Batticaloa">Batticaloa</option><option value="Kattankudy">Kattankudy</option><option value="Eravur">Eravur</option>
+                                    <option value="Ampara">Ampara</option><option value="Kalmunai">Kalmunai</option>
+                                    <option value="Jaffna">Jaffna</option><option value="Chavakacheri">Chavakacheri</option><option value="Valvettithurai">Valvettithurai</option>
+                                    <option value="Anuradapura">Anuradapura</option>
+                                    <option value="Polonnaruwa">Polonnaruwa</option>
+                                    <option value="Moneragala">Moneragala</option>
+                                    <option value="Trincomalee">Trincomalee</option>
+                                    <option value="Mannar">Mannar</option>
+                                    <option value="Vavuniya">Vavuniya</option>
+                                    <option value="Kilinochchi">Kilinochchi</option>
+                                    <option value="Mullaitivu">Mullaitivu</option>
                                 </select>
                             </div>
                             <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" />
@@ -482,3 +511,19 @@ const AddItem = () => {
 
 AddItem.layout = "AdminLayout";
 export default AddItem
+
+export async function getServerSideProps(context) {
+    const { req } = context;
+    const session = await getSession({ req });
+
+    if (!session) {
+        return {
+            redirect: { destination: "/" },
+        };
+    }
+
+    const providers = await getProviders()
+    return {
+        props: { providers, session },
+    }
+}
