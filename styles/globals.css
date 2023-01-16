@@ -4084,7 +4084,8 @@ select:hover {
   font-size: 30px;
 }
 
-.logotext span, .small_logotext span{
+.logotext span,
+.small_logotext span {
   color: #0D367F;
 }
 
@@ -4094,6 +4095,45 @@ select:hover {
   margin-left: 40%;
 }
 
-.normal_text{
+.normal_text {
   text-transform: none;
+}
+
+.arrow_circle_wrap {
+  background-color: white;
+  padding: 9px 11px;
+  border: 2px solid;
+  border-radius: 20px;
+  position: absolute;
+  opacity: 0.8;
+}
+
+.left_circle {
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  height: 40px;
+  margin-left: 10px;
+}
+
+.right_circle {
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  height: 40px;
+  margin-right: 10px;
+  right: 0px;
+}
+
+.arrow_circle_wrap:hover{
+  cursor: pointer;
+  opacity: 1;
+}
+
+.sliderImgWrap {
+  position: relative;
+}
+
+.sliderImgWrap>img {
+  border-radius: 25px;
 }

@@ -45,8 +45,8 @@ const Footer = () => {
                     <section className="section-footer-contacto"> {/* Contactanos */}
                         <h4>contact us</h4>
                         <ul>
-                            <li><a href="#"><img className="mail-icon" src="./assets/img/icons/email.png" alt="icono email" width="35" height="35"/><span>info@CarHouse.com.uy</span></a></li>
-                            <li><a href="#"><img className="phone-icon" src="./assets/img/icons/phone-call.png" alt="icono phone-call" width="35" height="35"/><span>000 000 000</span></a></li>
+                            <li><a href="#"><img className="mail-icon" src="/assets/img/icons/email.png" alt="icono email" width="35" height="35"/><span>info@CarHouse.com.uy</span></a></li>
+                            <li><a href="#"><img className="phone-icon" src="/assets/img/icons/phone-call.png" alt="icono phone-call" width="35" height="35"/><span>000 000 000</span></a></li>
                         </ul>
                     </section>
                 </div>
