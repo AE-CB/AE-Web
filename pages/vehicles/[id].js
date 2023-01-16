@@ -4,6 +4,8 @@ import React, { useRef, useState } from 'react'
 import Price from '../../components/Price';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import axios from "axios";
+
 
 const Car = ({ vehicle }) => {
 
@@ -22,7 +24,7 @@ const Car = ({ vehicle }) => {
     const leftClick = () => {
         var min = 0;
         var place = parseInt(imagePlace);
-        if(imagePlace > min){
+        if (imagePlace > min) {
             setImagePlace(imagePlace - 1)
             place = parseInt(imagePlace) - 1;
             setSelectedImg(images[place])
@@ -32,7 +34,7 @@ const Car = ({ vehicle }) => {
     const rightClick = () => {
         var max = images.length - 1;
         var place = parseInt(imagePlace);
-        if(imagePlace < max){
+        if (imagePlace < max) {
             setImagePlace(imagePlace + 1)
             place = parseInt(imagePlace) + 1;
             setSelectedImg(images[place])
@@ -59,7 +61,7 @@ const Car = ({ vehicle }) => {
                         </span>
                         <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_IMAGE_HOST + selectedImg} alt="Volkswagen Golf GTI" />
                     </div>
-                    
+
                     <div className="car-secondary-images">
                         {images.map((image, key) => {
                             return (
@@ -236,6 +238,17 @@ export const getStaticProps = async ({ params: { id } }) => {
 
 export const getStaticPaths = async () => {
 
+    console.log('-------------------------')
+    var res2 = [];
+    
+    await axios.get(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles').then((response) => {
+        // console.log(response);
+        res2 = response
+    });
+
+    console.log(res2.data.data)
+    console.log('-------------------------')
+
     const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles', {
         method: 'get',
         // headers: new Headers({
@@ -260,7 +273,7 @@ export const getStaticPaths = async () => {
 
 
 
-    const paths = vehiclesitems.data.map((vehicle) => ({
+    const paths = res2.data.data.map((vehicle) => ({
         params: {
             id: vehicle.id.toString()
         }
