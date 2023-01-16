@@ -11,7 +11,7 @@ const Header = () => {
   const context = useContext(AppContext)
   const { data: session } = useSession();
 
-  console.log(session)
+  // console.log(session)
 
   const handleSignin = (e) => {
     e.preventDefault()

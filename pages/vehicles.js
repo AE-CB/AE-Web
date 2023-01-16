@@ -29,7 +29,8 @@ const NativeSelectBox = styled(Box)(({ theme }) => ({
 
 const ButtonBox = styled(Box)(({ theme }) => ({
     '.MuiButtonBase-root': {
-        fontSize: 12
+        fontSize: 12,
+        backgroundColor: '#0D367F'
     }
 }));
 

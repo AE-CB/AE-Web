@@ -2857,7 +2857,8 @@ select:hover {
 .btn-preguntar {
   margin-top: 2rem;
   border: none;
-  background-color: #1F1F1F;
+  /* background-color: #1F1F1F; */
+  background-color: #0D367F;
   color: #FFFFFF;
   padding: 10px 50px;
   border-radius: 5px;
@@ -2865,7 +2866,8 @@ select:hover {
 }
 
 .btn-preguntar:hover {
-  background-color: #363636;
+  /* background-color: #363636; */
+  opacity: 0.8;
 }
 
 .previous-questions {
