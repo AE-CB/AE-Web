@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react'
+import Price from '../../components/Price';
 
 const Car = ({ vehicle }) => {
 
@@ -44,7 +45,8 @@ const Car = ({ vehicle }) => {
                         <p>Year: <span>{vehicle.data.year}</span></p>
                         <p>Kilometers: <span>{vehicle.data.mileage}</span></p>
                     </div>
-                    <h4 className="car-price">Rs. <span>{vehicle.data.price}</span></h4>
+                    {/* <h4 className="car-price normal_text">Rs. <span>{vehicle.data.price}</span></h4> */}
+                    <h4 className="car-price normal_text"><Price type='Rs.' price={vehicle.data.price}></Price></h4>
                 </section>
 
                 <section className="car-technical-data">

@@ -12,6 +12,7 @@ import Stack from '@mui/material/Stack';
 import { TextField } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
+import Price from '../components/Price';
 
 const NativeSelectBox = styled(Box)(({ theme }) => ({
     '.MuiInputBase-root': {
@@ -328,7 +329,7 @@ const Vehicles = ({ vehicles }) => {
                         <div ref={filtersRef} className="filter-title">
                             <Image width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/simbolo-de-herramienta-llena-de-filtro.png"} alt="icono filtrar" />
                             <p>Filters:</p>
-                            <a href="#">Filtrar</a>
+                            <a href="#">Filters</a>
                         </div>
                         <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
                             <FormControl fullWidth sx={{ marginBottom: 0 }}>
@@ -612,7 +613,7 @@ const Vehicles = ({ vehicles }) => {
                                             <div className="car-data">
                                                 <p>Year: {item.year}</p>
                                                 <p>Kilometers: {item.mileage}</p>
-                                                <p>Rs. {item.price}</p>
+                                                <p><Price type='Rs.' price={item.price}></Price></p>
                                             </div>
                                         </div>
                                     </div>

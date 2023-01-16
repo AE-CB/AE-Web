@@ -45,9 +45,6 @@ const options = {
 
                 if (res.status == 200) {
                     var jsonResponce = await res.json();
-                    // console.log('--------first-----------------')
-                    // console.log(jsonResponce.token)
-                    // console.log('--------first-----------------')
                     accessToken = jsonResponce.token
                     return {
                         token: jsonResponce.token,
@@ -91,7 +88,7 @@ const options = {
                         if (res.status == 200) {
                             var jsonResponce = await res.json();
                             // console.log(jsonResponce.token)
-                            // accessToken = jsonResponce.token
+                            accessToken = jsonResponce.token
                         }
                     }
                     return profile.email_verified
@@ -160,10 +157,6 @@ const options = {
             return true // Do different verification for other providers that don't have `email_verified`
         },
         async session({ session, token, user }) {
-            // Send properties to the client, like an access_token from a provider.
-            // console.log('--------second-----------------')
-            // console.log(accessToken);
-            // console.log('--------second-----------------')
             session.accessToken = accessToken
             return session
         }
