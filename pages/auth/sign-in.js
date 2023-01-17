@@ -98,7 +98,7 @@ const SignIn = ({ providers }) => {
                   onChange={(e) => setPassword(e.target.value)}
                   name="password" placeholder="Enter Your password" required />
               </div>
-              <a href="#">Did you forget your password?</a>
+              {/* <a href="#">Did you forget your password?</a> */}
             </div>
             <div className="sign-in-btns"> {/* Botones */}
               {/* <div className="remember-me">
@@ -108,7 +108,7 @@ const SignIn = ({ providers }) => {
               <div className="sign-in-up">
                 <input type="submit" value="Log in" />
                 <div className="register-section"> {/* Registrarse */}
-                  <Link className="btn-register" href={`/sign-up`}>Sign Up</Link>
+                  <Link className="btn-register" href={`/auth/sign-up`}>Sign Up</Link>
                   <p>Don&apos;t you have an account yet?</p>
                 </div>
               </div>

@@ -1874,8 +1874,8 @@ select:hover {
 
 
 .btn-register:hover {
-  border-color: #A655C7;
-  background-color: #A655C7;
+  border-color: #0D367F;
+  background-color: #0D367F;
   color: #FFFFFF;
 }
 
@@ -1892,12 +1892,14 @@ select:hover {
   font-size: 2rem;
   font-weight: 500;
   transition: all 0.3s ease;
+  background-color: white;
 }
 
 .social-btn:hover {
-  border-color: #A655C7;
-  background-color: #A655C7;
+  border-color: #0D367F;
+  background-color: #0D367F;
   color: #FFFFFF;
+  cursor: pointer;
 }
 
 .sign-in-footer {

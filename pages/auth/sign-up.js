@@ -156,7 +156,7 @@ const SignUp = () => {
                         <div className="sign-in-up"> {/* Botones */}
                             <input type="submit" value="Register" />
                             <div className="register-section"> {/* Iniciar Sesion */}
-                                <Link className="btn-register" href={`/sign-in`}>Sign In</Link>
+                                <Link className="btn-register" href={`/auth/sign-in`}>Sign In</Link>
                                 <p>Already have an account?</p>
                             </div>
                         </div>
