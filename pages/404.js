@@ -1,9 +1,11 @@
 // pages/404.js
+import React from 'react'
+import ErrorPage from 'next/error'
 
 
 const Custom404 = () => {
-    return <h1>404 - Page Not Found</h1>
+    return <ErrorPage statusCode={404} />
 }
 
-Custom404.layout = "AdminLayout";
+Custom404.layout = "NormalLayout";
 export default Custom404

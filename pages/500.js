@@ -1,9 +1,12 @@
 // pages/500.js
 
+import React from 'react'
+import ErrorPage from 'next/error'
+
 
 const Custom500 = () => {
-    return <h1>404 - Page Not Found</h1>
+    return <ErrorPage statusCode={500} />
 }
 
-Custom500.layout = "AdminLayout";
+Custom500.layout = "NormalLayout";
 export default Custom500
