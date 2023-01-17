@@ -7,19 +7,19 @@ const Footer = () => {
             <hr/>
                 <div className="footer-bar"> {/* Barra Footer */}
                     <a href="./index.html"> {/* Logo */}
-                        {/* <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse"/> */}
+                        {/* <Image src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse"/> */}
                         <h1 className='logotext'><span>AUTO</span>ESCAPE</h1>
                     </a>
                     <div className="social-media"> {/* Redes Footer */}
                         <ul>
                             <li> {/* Instagram */}
-                                <a className="social-media-item" href="#" target="_blank" rel="noreferrer"><img src="../assets/img/icons/instagram-oscuro.png" alt="icono instagram" width="40" height="40"/></a>
+                                <a className="social-media-item" href="#" target="_blank" rel="noreferrer"><Image src="/assets/img/icons/instagram-oscuro.png" alt="icono instagram" width="40" height="40"/></a>
                             </li>
                             <li> {/* Facebook */}
-                                <a className="social-media-item" href="#" target="_blank" rel="noreferrer"><img src="../assets/img/icons/facebook-oscuro.png" alt="icono facebook" width="40" height="40"/></a>
+                                <a className="social-media-item" href="#" target="_blank" rel="noreferrer"><Image src="/assets/img/icons/facebook-oscuro.png" alt="icono facebook" width="40" height="40"/></a>
                             </li>
                             <li> {/* Whatsapp */}
-                                <a className="social-media-item" href="#" target="_blank" rel="noreferrer"><img src="../assets/img/icons/whatsapp-oscuro.png" alt="icono whatsapp" width="40" height="40"/></a>
+                                <a className="social-media-item" href="#" target="_blank" rel="noreferrer"><Image src="/assets/img/icons/whatsapp-oscuro.png" alt="icono whatsapp" width="40" height="40"/></a>
                             </li>
                         </ul>
                     </div>
@@ -46,8 +46,8 @@ const Footer = () => {
                     <section className="section-footer-contacto"> {/* Contactanos */}
                         <h4>contact us</h4>
                         <ul>
-                            <li><a href="#"><img className="mail-icon" src="/assets/img/icons/email.png" alt="icono email" width="35" height="35"/><span>info@CarHouse.com.uy</span></a></li>
-                            <li><a href="#"><img className="phone-icon" src="/assets/img/icons/phone-call.png" alt="icono phone-call" width="35" height="35"/><span>000 000 000</span></a></li>
+                            <li><a href="#"><Image className="mail-icon" src="/assets/img/icons/email.png" alt="icono email" width="35" height="35"/><span>info@CarHouse.com.uy</span></a></li>
+                            <li><a href="#"><Image className="phone-icon" src="/assets/img/icons/phone-call.png" alt="icono phone-call" width="35" height="35"/><span>000 000 000</span></a></li>
                         </ul>
                     </section>
                 </div>
