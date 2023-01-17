@@ -13,6 +13,8 @@ import { TextField } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
 import Price from '../components/Price';
+import { setCookie, hasCookie } from 'cookies-next';
+import { useSession } from 'next-auth/react';
 
 const NativeSelectBox = styled(Box)(({ theme }) => ({
     '.MuiInputBase-root': {
@@ -102,6 +104,16 @@ var brands = [
 ]
 
 const Vehicles = ({ vehicles }) => {
+
+    const { data: session, status } = useSession()
+
+    // console.log(session);
+
+    if(!hasCookie('accessToken') && session && session.accessToken){
+        setCookie('accessToken', session.accessToken[0]);
+    }
+
+    
 
     // console.log(vehicles)
 
@@ -210,7 +222,7 @@ const Vehicles = ({ vehicles }) => {
         });
 
         brands.forEach(item => {
-            if(lowercased[0] == item.toLowerCase()){
+            if (lowercased[0] == item.toLowerCase()) {
                 setBrand(item)
                 hasBrand = true
             }
@@ -219,18 +231,18 @@ const Vehicles = ({ vehicles }) => {
             // }
         });
 
-        if(wordarr.length > 1){
-            if(hasBrand){
-                setModel(modeltmp.replace(wordarr[0]+' ',''))
-            }            
-        }else{
-            if(hasBrand){
+        if (wordarr.length > 1) {
+            if (hasBrand) {
+                setModel(modeltmp.replace(wordarr[0] + ' ', ''))
+            }
+        } else {
+            if (hasBrand) {
                 setModel('')
-            }else{
+            } else {
                 setModel(e.target.value)
             }
-            
-        }      
+
+        }
 
     }
 
@@ -304,7 +316,7 @@ const Vehicles = ({ vehicles }) => {
                 <button className="search-btn" onClick={handleSearch}><Image width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/magnifying-glass.png"} alt="icono busqueda" /></button>
             </form>
 
-            
+
 
             <main className="main-comprar">
                 <section className="amount-sort-section">
@@ -385,7 +397,7 @@ const Vehicles = ({ vehicles }) => {
                                 {/* <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
                                     Model 
                                 </InputLabel> */}
-                                <TextField id="standard-basic" label="Model"  variant="standard" onChange={changeBrand} />
+                                <TextField id="standard-basic" label="Model" variant="standard" onChange={changeBrand} />
                             </FormControl>
                         </TextFieldBox>
                         <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
@@ -593,7 +605,7 @@ const Vehicles = ({ vehicles }) => {
                     <section className="cars-list car-l-custom vehiclelist">
                         {/* List Vehicles  */}
 
-                        { !vehicleArr?.length > 0 && <p>No items matching your criteria</p>}
+                        {!vehicleArr?.length > 0 && <p>No items matching your criteria</p>}
 
                         {vehicleArr.map((item, i) => {
 

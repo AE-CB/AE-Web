@@ -94,7 +94,6 @@ const options = {
                     return profile.email_verified
                 case 'facebook':
                     accessToken = null
-
                     var body = {
                         key: process.env.FRONT_APP_KEY,
                         name: profile.name,

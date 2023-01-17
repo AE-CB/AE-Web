@@ -7,6 +7,8 @@ import AppContext from '../context/AppContext'
 import Image from 'next/image';
 import Router from 'next/router';
 import { getProviders, getSession, useSession } from "next-auth/react"
+import { getCookie, hasCookie } from 'cookies-next';
+
 
 const NativeSelectBox = styled(Box)(({ theme }) => ({
     '.MuiInputBase-root': {
@@ -39,6 +41,10 @@ const preview = (file) => {
 
 
 const AddItem = ({ session }) => {
+    // console.log(session)
+
+    // console.log(getCookie('accessToken'))
+
 
     // console.log('---------------session---------------')
     // console.log(session.accessToken[0])
@@ -108,13 +114,13 @@ const AddItem = ({ session }) => {
         formData.append('TotalFiles', ins);
         setErrors([])
 
-        if (session.accessToken[0]) {
-
+        // if (session.accessToken) {
+        if (hasCookie('accessToken')) {
             const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/vehicles', {
                 method: 'POST',
                 body: formData,
                 headers: new Headers({
-                    'Authorization': 'Bearer ' + session.accessToken[0],
+                    'Authorization': 'Bearer ' + getCookie('accessToken'),
                 })
             })
 
@@ -128,7 +134,7 @@ const AddItem = ({ session }) => {
                 Router.push('/vehicles')
             }
         } else {
-            await setErrors(['Please sign in before create vehicles']);
+            await setErrors(['Error occured please contact admin']);
             window.location.hash = '#display_errors';
         }
 
@@ -137,7 +143,6 @@ const AddItem = ({ session }) => {
 
     return (
         <>
-            {/* <p>zxX</p> */}
             <section className="vender-banner">
                 <div className="gradient-div"></div>
                 <h1>Sell ​​your car <br /><b>quickly and safely</b></h1>

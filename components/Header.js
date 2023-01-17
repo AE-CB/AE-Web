@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React, { useContext } from 'react'
 import AppContext from '../context/AppContext'
 import { useSession, signIn, signOut } from 'next-auth/react'
+import { deleteCookie, hasCookie } from 'cookies-next';
 
 const Header = () => {
 
@@ -17,8 +18,13 @@ const Header = () => {
     e.preventDefault()
     signIn()
   }
+
   const handleSignout = (e) => {
     e.preventDefault()
+    if (hasCookie('accessToken')) {
+      deleteCookie('accessToken');
+    }
+
     signOut()
   }
 

@@ -100,7 +100,7 @@ const SignIn = ({ providers }) => {
               </div>
               {/* <a href="#">Did you forget your password?</a> */}
             </div>
-            <div className="sign-in-btns"> {/* Botones */}
+            <div className="sign-in-btns">
               {/* <div className="remember-me">
                                 <input type="checkbox" id="remember" value="remember" />
                                 <label htmlFor="remember">Recordarme</label>
@@ -117,7 +117,7 @@ const SignIn = ({ providers }) => {
             <div>
               {Object.values(providers).map((provider) => (
                 <div key={provider.name} className="register-section">
-                  {provider.id != 'credentials' && <button className="social-btn" onClick={() => signIn(provider.id)}>
+                  {provider.id != 'credentials' && <button type='button' className="social-btn" onClick={() => signIn(provider.id)}>
                     Sign in with {provider.name}
                   </button>}
                 </div>
