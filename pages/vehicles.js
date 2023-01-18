@@ -195,6 +195,7 @@ const Vehicles = ({ vehicles }) => {
         formData.append('fuel', fuel);
         formData.append('city', city);
         formData.append('sortfilter', e.target.value);
+        formData.append('search', searchtext);
 
 
         const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles?page=1', {
