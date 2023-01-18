@@ -2,8 +2,27 @@ import React, { useRef, useState } from 'react'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Image from 'next/image';
+import {
+    GridList,
+    GridListTile,
+    Modal,
+    Backdrop,
+    Fade
+} from "@mui/material";
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 
 const Slider = ({ images }) => {
+    const [open, setOpen] = useState(false);
+    // const [image, setImage] = useState("false");
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleImage = (value) => {
+        setOpen(true);
+    };
 
     const [selectedImg, setSelectedImg] = useState(images[0]);
     const carsectionRef = useRef(null);
@@ -36,6 +55,29 @@ const Slider = ({ images }) => {
 
     return (
         <>
+            <Modal
+                className="slider_modal"
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)'}}
+            >
+                <span>
+                    <span onClick={leftClick} className='arrow_circle_wrap left_circle'>
+                        <ArrowBackIosNewIcon />
+                    </span>
+                    <span onClick={rightClick} className='arrow_circle_wrap right_circle'>
+                        <ArrowForwardIosIcon />
+                    </span>
+                    <Fade in={open} timeout={500} className="slider_img">
+                        <img
+                            src={process.env.NEXT_PUBLIC_IMAGE_HOST + selectedImg}
+                            alt="asd"
+                            style={{ maxHeight: "80%", maxWidth: "80%" }}
+                        />
+                    </Fade>
+                </span>
+            </Modal>
             <section className="car-img" ref={carsectionRef}>
                 <div className='sliderImgWrap'>
                     <span onClick={leftClick} className='arrow_circle_wrap left_circle'>
@@ -44,7 +86,12 @@ const Slider = ({ images }) => {
                     <span onClick={rightClick} className='arrow_circle_wrap right_circle'>
                         <ArrowForwardIosIcon />
                     </span>
-                    <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_IMAGE_HOST + selectedImg} alt="Volkswagen Golf GTI" />
+                    <Image
+                        className='nextimg'
+                        width={1000} height={1000}
+                        src={process.env.NEXT_PUBLIC_IMAGE_HOST + selectedImg}
+                        alt="Main Image"
+                        onClick={(e) => handleImage(process.env.NEXT_PUBLIC_IMAGE_HOST + selectedImg)} />
                 </div>
 
                 <div className="car-secondary-images">

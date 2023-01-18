@@ -4110,6 +4110,7 @@ select:hover {
   border-radius: 20px;
   position: absolute;
   opacity: 0.8;
+  z-index: 2;
 }
 
 .left_circle {
@@ -4129,7 +4130,7 @@ select:hover {
   right: 0px;
 }
 
-.arrow_circle_wrap:hover{
+.arrow_circle_wrap:hover {
   cursor: pointer;
   opacity: 1;
 }
@@ -4141,3 +4142,39 @@ select:hover {
 .sliderImgWrap>img {
   border-radius: 25px;
 }
+
+
+.slider_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider_img:hover{
+  background-color: red;
+}
+
+.slider_gridList {
+  text-align: center;
+}
+
+.slider_img {
+  outline: none;
+}
+
+.slider_img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4, */
