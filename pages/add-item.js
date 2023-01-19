@@ -64,7 +64,7 @@ const AddItem = ({ session }) => {
     const img_upload = useRef(null);
     const img_upload_error = useRef(null);
     const [showUpError, setShowUpError] = useState(false);
-    const imgCount = 1
+    const imgCount = 4
 
 
     const [brand, setBrand] = useState("");
@@ -106,7 +106,7 @@ const AddItem = ({ session }) => {
 
 
         var ins = img_upload.current.files.length;
-        // alert(ins)
+
         for (var x = 0; x < ins; x++) {
             // formData.append("fileToUpload[]", img_upload.current.files[x]);
             formData.append('files' + x, img_upload.current.files[x]);
