@@ -29,6 +29,8 @@ const NativeSelectBox = styled(Box)(({ theme }) => ({
 
 const preview = (file) => {
     const fr = new FileReader();
+    document.querySelectorAll("#preview img")
+        .forEach(img => img.remove());
     fr.onload = () => {
         const img = document.createElement("img");
         img.src = fr.result;  // String Base64 
@@ -41,14 +43,9 @@ const preview = (file) => {
 
 
 const AddItem = ({ session }) => {
-    // console.log(session)
 
     // console.log(getCookie('accessToken'))
-
-
-    // console.log('---------------session---------------')
     // console.log(session.accessToken[0])
-    // console.log('---------------session---------------')
 
     var ranonce = false;
     useEffect(() => {
@@ -59,14 +56,16 @@ const AddItem = ({ session }) => {
             });
             ranonce = true
         }
-
-
     }, [])
 
     const context = useContext(AppContext)
 
     const ref_error_div = useRef(null);
     const img_upload = useRef(null);
+    const img_upload_error = useRef(null);
+    const [showUpError, setShowUpError] = useState(false);
+    const imgCount = 1
+
 
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
@@ -87,6 +86,7 @@ const AddItem = ({ session }) => {
 
     const submitPublication = async (e) => {
         e.preventDefault()
+        setErrors([])
 
         let formData = new FormData();
         formData.append('brand', brand);
@@ -106,37 +106,46 @@ const AddItem = ({ session }) => {
 
 
         var ins = img_upload.current.files.length;
+        // alert(ins)
         for (var x = 0; x < ins; x++) {
             // formData.append("fileToUpload[]", img_upload.current.files[x]);
             formData.append('files' + x, img_upload.current.files[x]);
         }
 
         formData.append('TotalFiles', ins);
-        setErrors([])
 
-        // if (session.accessToken) {
-        if (hasCookie('accessToken')) {
-            const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/vehicles', {
-                method: 'POST',
-                body: formData,
-                headers: new Headers({
-                    'Authorization': 'Bearer ' + getCookie('accessToken'),
+        // check if images not added.
+        if (ins < imgCount) {
+            setShowUpError(true)
+            img_upload_error.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        } else {
+            // if (session.accessToken) {
+            if (hasCookie('accessToken')) {
+                const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/vehicles', {
+                    method: 'POST',
+                    body: formData,
+                    headers: new Headers({
+                        'Authorization': 'Bearer ' + getCookie('accessToken'),
+                    })
                 })
-            })
 
-            if (res.status == 422) {
-                terrors = await res.json();
-                await setErrors(terrors.errors)
+                if (res.status == 422) {
+                    terrors = await res.json();
+                    await setErrors(terrors.errors)
+                    window.location.hash = '#display_errors';
+                }
+
+                if (res.status == 201) {
+                    Router.push('/vehicles')
+                }
+            } else {
+                await setErrors(['Error occured please contact admin']);
                 window.location.hash = '#display_errors';
             }
-
-            if (res.status == 201) {
-                Router.push('/vehicles')
-            }
-        } else {
-            await setErrors(['Error occured please contact admin']);
-            window.location.hash = '#display_errors';
         }
+
+
+
 
 
     }
@@ -163,8 +172,8 @@ const AddItem = ({ session }) => {
                             <h2>1. Indicates Make, Model and Year of the Vehicle</h2>
                             <div className="sign-up-field">
                                 <h3>Brand</h3>
-                                <select name="brand" id="" onChange={(e) => setBrand(e.target.value)} required>
-                                    <option value="" selected disabled>Select a brand</option>
+                                <select defaultValue={''} name="brand" id="" onChange={(e) => setBrand(e.target.value)} required>
+                                    <option value="" disabled>Select a brand</option>
                                     <option value="Acura">Acura</option>
                                     <option value="Alfa-Romeo">Alfa-Romeo</option>
                                     <option value="Aprilia">Aprilia</option>
@@ -329,8 +338,8 @@ const AddItem = ({ session }) => {
                             <h2>2. Indicates Category, Color and a Description of the Vehicle</h2>
                             <div className="sign-up-field">
                                 <h3>Category</h3>
-                                <select name="category" id="" onChange={(e) => setCategory(e.target.value)} >
-                                    <option value="" selected disabled>Select a Category</option>
+                                <select defaultValue={''} name="category" id="" onChange={(e) => setCategory(e.target.value)} >
+                                    <option value="" disabled>Select a Category</option>
                                     <option value="cars">Car</option>
                                     <option value="vans">Van</option>
                                     <option value="suvs">SUV / Jeep</option>
@@ -381,6 +390,9 @@ const AddItem = ({ session }) => {
                         <div>
                             <h2>4. Upload Vehicle Quality Photos</h2>
                             <p>(Minimum 4 photos, one per side of the vehicle)</p>
+                            <span ref={img_upload_error}>
+                                {showUpError && <p className='img_up_errors' >Please add at least {imgCount} images</p>}
+                            </span>
                             <div className="upload-image-box">
                                 <input type="file" name="images" ref={img_upload} id="upload-image" accept="image/*" multiple />
                                 <label htmlFor="upload-image">
@@ -423,8 +435,8 @@ const AddItem = ({ session }) => {
                             </div> */}
                             <div className="sign-up-field">
                                 <h3>City</h3>
-                                <select name="localidad" id="" onChange={(e) => setCity(e.target.value)}>
-                                    <option value="" selected disabled>In what town is the vehicle?</option>
+                                <select defaultValue={''} name="localidad" id="" onChange={(e) => setCity(e.target.value)}>
+                                    <option value="" disabled>In what town is the vehicle?</option>
                                     <option value="Colombo">Colombo</option>
                                     <option value="Dehiwala-Mount-Lavinia">Dehiwala-Mount-Lavinia</option>
                                     <option value="Moratuwa">Moratuwa</option>

@@ -4024,6 +4024,10 @@ select:hover {
   margin-left: 16px;
 }
 
+.img_up_errors{
+  color: red !important;
+}
+
 .mt-20 {
   margin-top: 20px !important;
 }
@@ -4069,7 +4073,7 @@ select:hover {
   margin-top: 5px;
   margin-left: -2px;
   overflow-y: auto;
-  height: 280px;
+  height: 200px;
 }
 
 .vehiclelist {

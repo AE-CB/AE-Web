@@ -13,7 +13,7 @@ import { TextField } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
 import Price from '../components/Price';
-import { setCookie, hasCookie } from 'cookies-next';
+import { setCookie, hasCookie, getCookie } from 'cookies-next';
 import { useSession } from 'next-auth/react';
 
 const NativeSelectBox = styled(Box)(({ theme }) => ({
@@ -113,6 +113,9 @@ const Vehicles = ({ vehicles }) => {
         setCookie('accessToken', session.accessToken[0]);
     }
 
+
+    const token = getCookie('accessToken');
+    // console.log(getCookie('accessToken'))
     
 
     // console.log(vehicles)
