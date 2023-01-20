@@ -1685,7 +1685,8 @@ select:hover {
     gap: 2rem;
     justify-content: space-between;
     align-items: center;
-    width: 150px;
+    /* width: 150px; */
+    width: 100%;
   }
 
   .filters div:not(.filter-title) img {
@@ -4024,7 +4025,7 @@ select:hover {
   margin-left: 16px;
 }
 
-.img_up_errors{
+.img_up_errors {
   color: red !important;
 }
 
@@ -4154,7 +4155,7 @@ select:hover {
   justify-content: center;
 }
 
-.slider_img:hover{
+.slider_img:hover {
   background-color: red;
 }
 
@@ -4166,11 +4167,18 @@ select:hover {
   outline: none;
 }
 
-.slider_img{
+.slider_img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.custom_filters {
+  background: #F6F6F6;
+  margin-right: 15px;
+  padding: 15px;
+  border-radius: 15px;
 }
 
 /* position: 'absolute',

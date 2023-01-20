@@ -9,12 +9,14 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { TextField } from '@mui/material';
+import { IconButton, TextField } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
 import Price from '../components/Price';
 import { setCookie, hasCookie, getCookie } from 'cookies-next';
 import { useSession } from 'next-auth/react';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import LoupeIcon from '@mui/icons-material/Loupe';
 
 const NativeSelectBox = styled(Box)(({ theme }) => ({
     '.MuiInputBase-root': {
@@ -32,13 +34,20 @@ const NativeSelectBox = styled(Box)(({ theme }) => ({
 const ButtonBox = styled(Box)(({ theme }) => ({
     '.MuiButtonBase-root': {
         fontSize: 12,
-        backgroundColor: '#0D367F'
+        backgroundColor: '#0D367F',
+        width: '100%'
     }
 }));
 
 const PaginatioStack = styled(Stack)(({ theme }) => ({
     '.MuiPaginationItem-root': {
         fontSize: '12px !important'
+    }
+}));
+
+const CustomAdmore = styled(IconButton)(({ theme }) => ({
+    '.MuiIconButton-root': {
+        borderRadius: '12px !important'
     }
 }));
 
@@ -109,14 +118,14 @@ const Vehicles = ({ vehicles }) => {
 
     // console.log(session);
 
-    if(!hasCookie('accessToken') && session && session.accessToken){
+    if (!hasCookie('accessToken') && session && session.accessToken) {
         setCookie('accessToken', session.accessToken[0]);
     }
 
 
     const token = getCookie('accessToken');
     // console.log(getCookie('accessToken'))
-    
+
 
     // console.log(vehicles)
 
@@ -124,6 +133,7 @@ const Vehicles = ({ vehicles }) => {
     const [vehicleArr, setVehicleArr] = useState(vehicles.data);
     const filtersRef = useRef(null);
     const searchRef = useRef(null);
+    const [showMore, setShowMore] = useState(false);
 
     const [brand, setBrand] = useState("all");
     const [condition, setCondition] = useState("all");
@@ -250,6 +260,10 @@ const Vehicles = ({ vehicles }) => {
 
     }
 
+    const handleShowMore = () => {
+        setShowMore(true)
+    }
+
     const handlePagination = async (event, value) => {
         let formData = new FormData();
         formData.append('brand', brand);
@@ -341,35 +355,14 @@ const Vehicles = ({ vehicles }) => {
                 <section className="filter-cars">
 
                     {/* Filtrar y Vehiculos  */}
-                    <section className="filters">
+                    <section className="filters custom_filters">
                         {/* Filtrar  */}
                         <div ref={filtersRef} className="filter-title">
                             <Image width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/simbolo-de-herramienta-llena-de-filtro.png"} alt="icono filtrar" />
                             <p>Filters:</p>
                             <a href="#">Filters</a>
                         </div>
-                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
-                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
-                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
-                                    Condition
-                                </InputLabel>
-                                <NativeSelect
-                                    defaultValue={'all'}
-                                    inputProps={{
-                                        name: 'condition',
-                                        id: 'condition-native-drop',
-                                        className: 'select-filters'
-                                    }}
-                                    onChange={(e) => setCondition(e.target.value)}
-                                >
-                                    <option value={"all"}> All </option>
-                                    <option value={"antique"}>Antique</option>
-                                    <option value={"brand_new"}>Brand New</option>
-                                    <option value={"registered"}>Registered</option>
-                                    <option value={"unregistered"}>Unregistered</option>
-                                </NativeSelect>
-                            </FormControl>
-                        </NativeSelectBox>
+
                         <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
                             <FormControl fullWidth sx={{ marginBottom: 0 }}>
                                 <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
@@ -464,143 +457,172 @@ const Vehicles = ({ vehicles }) => {
                                 <TextField id="standard-basic" type={'number'} onChange={(e) => setPriceMax(e.target.value)} label="Max Price" variant="standard" />
                             </FormControl>
                         </TextFieldBox>
-                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
-                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
-                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
-                                    Type
-                                </InputLabel>
-                                <NativeSelect
-                                    defaultValue={'all'}
-                                    inputProps={{
-                                        name: 'type',
-                                        id: 'type-native-drop',
-                                        className: 'select-filters'
-                                    }}
-                                    onChange={(e) => setCategory(e.target.value)}
-                                >
-                                    <option value="All">All</option>
-                                    <option value="cars">Car</option>
-                                    <option value="vans">Van</option>
-                                    <option value="suvs">SUV / Jeep</option>
-                                    <option value="motorcycles">Motorcycle</option>
-                                    <option value="crew-cabs">Crew Cab</option>
-                                    <option value="pickups">Pickup / Double Cab</option>
-                                    <option value="buses">Bus</option>
-                                    <option value="lorries">Lorry</option>
-                                    <option value="three-wheels">Three Wheel</option>
-                                    <option value="others">Other</option>
-                                    <option value="tractors">Tractor</option>
-                                    <option value="heavy-duties">Heavy-Duty</option>
-                                    <option value="bicycles">Bicycle</option>
-                                </NativeSelect>
-                            </FormControl>
-                        </NativeSelectBox>
-                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
-                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
-                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
-                                    Gear
-                                </InputLabel>
-                                <NativeSelect
-                                    defaultValue={'all'}
-                                    inputProps={{
-                                        name: 'type',
-                                        id: 'type-native-drop',
-                                        className: 'select-filters'
-                                    }}
-                                    onChange={(e) => setGear(e.target.value)}
-                                >
-                                    <option value="all"> All </option>
-                                    <option value="Automatic">Auto</option>
-                                    <option value="Manual">Manual</option>
-                                </NativeSelect>
-                            </FormControl>
-                        </NativeSelectBox>
-                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
-                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
-                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
-                                    Fuel
-                                </InputLabel>
-                                <NativeSelect
-                                    defaultValue={'all'}
-                                    inputProps={{
-                                        name: 'type',
-                                        id: 'type-native-drop',
-                                        className: 'select-filters'
-                                    }}
-                                    onChange={(e) => setFuel(e.target.value)}
-                                >
-                                    <option value="All"> All </option>
-                                    <option value="petrol">Petrol</option>
-                                    <option value="diesel">Diesel</option>
-                                    <option value="electric">Electric</option>
-                                    <option value="hybrid">Hybrid</option>
-                                    <option value="gas">Gas</option>
-                                </NativeSelect>
-                            </FormControl>
-                        </NativeSelectBox>
-                        <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
-                            <FormControl fullWidth sx={{ marginBottom: 0 }}>
-                                <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
-                                    City
-                                </InputLabel>
-                                <NativeSelect
-                                    defaultValue={'all'}
-                                    inputProps={{
-                                        name: 'city',
-                                        id: 'city-native-drop',
-                                        className: 'select-filters'
-                                    }}
-                                    onChange={(e) => setCity(e.target.value)}
-                                >
-                                    <option value="All"> All </option>
-                                    <option value="Colombo">Colombo</option>
-                                    <option value="Dehiwala-Mount-Lavinia">Dehiwala-Mount-Lavinia</option>
-                                    <option value="Moratuwa">Moratuwa</option>
-                                    <option value="Kotte">Kotte</option>
-                                    <option value="Battaramulla">Battaramulla</option>
-                                    <option value="Maharagama">Maharagama</option>
-                                    <option value="Kotikawatta">Kotikawatta</option>
-                                    <option value="Kolonnawa">Kolonnawa</option>
-                                    <option value="Keselwatta">Keselwatta</option>
-                                    <option value="Homagama">Homagama</option>
-                                    <option value="Mulleriyawa">Mulleriyawa</option>
-                                    <option value="Kesbewa">Kesbewa</option>
-                                    <option value="Avissawella">Avissawella</option>
-                                    <option value="Kaduwela">Kaduwela</option>
-                                    <option value="Boralesgamuwa">Boralesgamuwa</option>
-                                    <option value="Piliyandala">Piliyandala</option>
-                                    <option value="Nugegoda">Nugegoda</option>
-                                    <option value="Nawala">Nawala</option>
-                                    <option value="Padukka">Padukka</option>
-                                    <option value="Kottawa">Kottawa</option>
-                                    <option value="Pannipitiya">Pannipitiya</option>
-                                    <option value="Malabe">Malabe</option>
-                                    <option value="Hanwella">Hanwella</option>
-                                    <option value="Gampaha">Gampaha</option><option value="Negombo">Negombo</option><option value="Katunayake">Katunayake</option><option value="Hendala">Hendala</option><option value="Welisara">Welisara</option><option value="Ragama">Ragama</option><option value="Kandana">Kandana</option><option value="Ja-Ela">Ja-Ela</option><option value="Wattala">Wattala</option><option value="Kelaniya">Kelaniya</option><option value="Peliyagoda">Peliyagoda</option><option value="Minuwangoda">Minuwangoda</option><option value="Kadawatha">Kadawatha</option><option value="Dompe">Dompe</option><option value="Divulapitiya">Divulapitiya</option><option value="Nittambuwa">Nittambuwa</option><option value="Mirigama">Mirigama</option><option value="Kiribathgoda">Kiribathgoda</option><option value="Veyangoda">Veyangoda</option><option value="Ganemulla">Ganemulla</option>
-                                    <option value="Kandy">Kandy</option><option value="Gampola">Gampola</option><option value="Nawalapitiya">Nawalapitiya</option><option value="Wattegama">Wattegama</option><option value="Harispattuwa">Harispattuwa</option><option value="Kadugannawa">Kadugannawa</option>
-                                    <option value="Kurunegala">Kurunegala</option><option value="Kuliyapitiya">Kuliyapitiya</option><option value="Polgahawela">Polgahawela</option><option value="Pannala">Pannala</option>
-                                    <option value="Ratnapura">Ratnapura</option><option value="Balangoda">Balangoda</option><option value="Eheliyagoda">Eheliyagoda</option><option value="Kalawana">Kalawana</option><option value="Embilipitiya">Embilipitiya</option>
-                                    <option value="Kalutara">Kalutara</option><option value="Beruwala">Beruwala</option><option value="Panadura">Panadura</option><option value="Horana">Horana</option><option value="Matugama">Matugama</option><option value="Bandaragama">Bandaragama</option><option value="Puttalam">Puttalam</option><option value="Chilaw">Chilaw</option><option value="Nattandiya">Nattandiya</option><option value="Wennappuwa">Wennappuwa</option><option value="Marawila">Marawila</option><option value="Dankotuwa">Dankotuwa</option><option value="Kegalle">Kegalle</option><option value="Mawanella">Mawanella</option><option value="Warakapola">Warakapola</option>
-                                    <option value="Matale">Matale</option><option value="Dambulla">Dambulla</option><option value="Sigiriya">Sigiriya</option>
-                                    <option value="Badulla">Badulla</option><option value="Bandarawela">Bandarawela</option><option value="Haputale">Haputale</option><option value="Welimada">Welimada</option><option value="Mahiyanganaya">Mahiyanganaya</option>
-                                    <option value="Nuwara-Eliya">Nuwara-Eliya</option><option value="Hatton">Hatton</option><option value="Talawakele">Talawakele</option>
-                                    <option value="Galle">Galle</option><option value="Ambalangoda">Ambalangoda</option>
-                                    <option value="Matara">Matara</option><option value="Weligama">Weligama</option>
-                                    <option value="Hambantota">Hambantota</option><option value="Tangalle">Tangalle</option>
-                                    <option value="Batticaloa">Batticaloa</option><option value="Kattankudy">Kattankudy</option><option value="Eravur">Eravur</option>
-                                    <option value="Ampara">Ampara</option><option value="Kalmunai">Kalmunai</option>
-                                    <option value="Jaffna">Jaffna</option><option value="Chavakacheri">Chavakacheri</option><option value="Valvettithurai">Valvettithurai</option>
-                                    <option value="Anuradapura">Anuradapura</option>
-                                    <option value="Polonnaruwa">Polonnaruwa</option>
-                                    <option value="Moneragala">Moneragala</option>
-                                    <option value="Trincomalee">Trincomalee</option>
-                                    <option value="Mannar">Mannar</option>
-                                    <option value="Vavuniya">Vavuniya</option>
-                                    <option value="Kilinochchi">Kilinochchi</option>
-                                    <option value="Mullaitivu">Mullaitivu</option>
-                                </NativeSelect>
-                            </FormControl>
-                        </NativeSelectBox>
+
+                        {showMore && <span>
+                            <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                                <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                    <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                        Condition
+                                    </InputLabel>
+                                    <NativeSelect
+                                        defaultValue={'all'}
+                                        inputProps={{
+                                            name: 'condition',
+                                            id: 'condition-native-drop',
+                                            className: 'select-filters'
+                                        }}
+                                        onChange={(e) => setCondition(e.target.value)}
+                                    >
+                                        <option value={"all"}> All </option>
+                                        <option value={"antique"}>Antique</option>
+                                        <option value={"brand_new"}>Brand New</option>
+                                        <option value={"registered"}>Registered</option>
+                                        <option value={"unregistered"}>Unregistered</option>
+                                    </NativeSelect>
+                                </FormControl>
+                            </NativeSelectBox>
+                            <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                                <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                    <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                        Type
+                                    </InputLabel>
+                                    <NativeSelect
+                                        defaultValue={'all'}
+                                        inputProps={{
+                                            name: 'type',
+                                            id: 'type-native-drop',
+                                            className: 'select-filters'
+                                        }}
+                                        onChange={(e) => setCategory(e.target.value)}
+                                    >
+                                        <option value="All">All</option>
+                                        <option value="cars">Car</option>
+                                        <option value="vans">Van</option>
+                                        <option value="suvs">SUV / Jeep</option>
+                                        <option value="motorcycles">Motorcycle</option>
+                                        <option value="crew-cabs">Crew Cab</option>
+                                        <option value="pickups">Pickup / Double Cab</option>
+                                        <option value="buses">Bus</option>
+                                        <option value="lorries">Lorry</option>
+                                        <option value="three-wheels">Three Wheel</option>
+                                        <option value="others">Other</option>
+                                        <option value="tractors">Tractor</option>
+                                        <option value="heavy-duties">Heavy-Duty</option>
+                                        <option value="bicycles">Bicycle</option>
+                                    </NativeSelect>
+                                </FormControl>
+                            </NativeSelectBox>
+                            <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                                <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                    <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                        Gear
+                                    </InputLabel>
+                                    <NativeSelect
+                                        defaultValue={'all'}
+                                        inputProps={{
+                                            name: 'type',
+                                            id: 'type-native-drop',
+                                            className: 'select-filters'
+                                        }}
+                                        onChange={(e) => setGear(e.target.value)}
+                                    >
+                                        <option value="all"> All </option>
+                                        <option value="Automatic">Auto</option>
+                                        <option value="Manual">Manual</option>
+                                    </NativeSelect>
+                                </FormControl>
+                            </NativeSelectBox>
+                            <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                                <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                    <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                        Fuel
+                                    </InputLabel>
+                                    <NativeSelect
+                                        defaultValue={'all'}
+                                        inputProps={{
+                                            name: 'type',
+                                            id: 'type-native-drop',
+                                            className: 'select-filters'
+                                        }}
+                                        onChange={(e) => setFuel(e.target.value)}
+                                    >
+                                        <option value="All"> All </option>
+                                        <option value="petrol">Petrol</option>
+                                        <option value="diesel">Diesel</option>
+                                        <option value="electric">Electric</option>
+                                        <option value="hybrid">Hybrid</option>
+                                        <option value="gas">Gas</option>
+                                    </NativeSelect>
+                                </FormControl>
+                            </NativeSelectBox>
+                            <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
+                                <FormControl fullWidth sx={{ marginBottom: 0 }}>
+                                    <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
+                                        City
+                                    </InputLabel>
+                                    <NativeSelect
+                                        defaultValue={'all'}
+                                        inputProps={{
+                                            name: 'city',
+                                            id: 'city-native-drop',
+                                            className: 'select-filters'
+                                        }}
+                                        onChange={(e) => setCity(e.target.value)}
+                                    >
+                                        <option value="All"> All </option>
+                                        <option value="Colombo">Colombo</option>
+                                        <option value="Dehiwala-Mount-Lavinia">Dehiwala-Mount-Lavinia</option>
+                                        <option value="Moratuwa">Moratuwa</option>
+                                        <option value="Kotte">Kotte</option>
+                                        <option value="Battaramulla">Battaramulla</option>
+                                        <option value="Maharagama">Maharagama</option>
+                                        <option value="Kotikawatta">Kotikawatta</option>
+                                        <option value="Kolonnawa">Kolonnawa</option>
+                                        <option value="Keselwatta">Keselwatta</option>
+                                        <option value="Homagama">Homagama</option>
+                                        <option value="Mulleriyawa">Mulleriyawa</option>
+                                        <option value="Kesbewa">Kesbewa</option>
+                                        <option value="Avissawella">Avissawella</option>
+                                        <option value="Kaduwela">Kaduwela</option>
+                                        <option value="Boralesgamuwa">Boralesgamuwa</option>
+                                        <option value="Piliyandala">Piliyandala</option>
+                                        <option value="Nugegoda">Nugegoda</option>
+                                        <option value="Nawala">Nawala</option>
+                                        <option value="Padukka">Padukka</option>
+                                        <option value="Kottawa">Kottawa</option>
+                                        <option value="Pannipitiya">Pannipitiya</option>
+                                        <option value="Malabe">Malabe</option>
+                                        <option value="Hanwella">Hanwella</option>
+                                        <option value="Gampaha">Gampaha</option><option value="Negombo">Negombo</option><option value="Katunayake">Katunayake</option><option value="Hendala">Hendala</option><option value="Welisara">Welisara</option><option value="Ragama">Ragama</option><option value="Kandana">Kandana</option><option value="Ja-Ela">Ja-Ela</option><option value="Wattala">Wattala</option><option value="Kelaniya">Kelaniya</option><option value="Peliyagoda">Peliyagoda</option><option value="Minuwangoda">Minuwangoda</option><option value="Kadawatha">Kadawatha</option><option value="Dompe">Dompe</option><option value="Divulapitiya">Divulapitiya</option><option value="Nittambuwa">Nittambuwa</option><option value="Mirigama">Mirigama</option><option value="Kiribathgoda">Kiribathgoda</option><option value="Veyangoda">Veyangoda</option><option value="Ganemulla">Ganemulla</option>
+                                        <option value="Kandy">Kandy</option><option value="Gampola">Gampola</option><option value="Nawalapitiya">Nawalapitiya</option><option value="Wattegama">Wattegama</option><option value="Harispattuwa">Harispattuwa</option><option value="Kadugannawa">Kadugannawa</option>
+                                        <option value="Kurunegala">Kurunegala</option><option value="Kuliyapitiya">Kuliyapitiya</option><option value="Polgahawela">Polgahawela</option><option value="Pannala">Pannala</option>
+                                        <option value="Ratnapura">Ratnapura</option><option value="Balangoda">Balangoda</option><option value="Eheliyagoda">Eheliyagoda</option><option value="Kalawana">Kalawana</option><option value="Embilipitiya">Embilipitiya</option>
+                                        <option value="Kalutara">Kalutara</option><option value="Beruwala">Beruwala</option><option value="Panadura">Panadura</option><option value="Horana">Horana</option><option value="Matugama">Matugama</option><option value="Bandaragama">Bandaragama</option><option value="Puttalam">Puttalam</option><option value="Chilaw">Chilaw</option><option value="Nattandiya">Nattandiya</option><option value="Wennappuwa">Wennappuwa</option><option value="Marawila">Marawila</option><option value="Dankotuwa">Dankotuwa</option><option value="Kegalle">Kegalle</option><option value="Mawanella">Mawanella</option><option value="Warakapola">Warakapola</option>
+                                        <option value="Matale">Matale</option><option value="Dambulla">Dambulla</option><option value="Sigiriya">Sigiriya</option>
+                                        <option value="Badulla">Badulla</option><option value="Bandarawela">Bandarawela</option><option value="Haputale">Haputale</option><option value="Welimada">Welimada</option><option value="Mahiyanganaya">Mahiyanganaya</option>
+                                        <option value="Nuwara-Eliya">Nuwara-Eliya</option><option value="Hatton">Hatton</option><option value="Talawakele">Talawakele</option>
+                                        <option value="Galle">Galle</option><option value="Ambalangoda">Ambalangoda</option>
+                                        <option value="Matara">Matara</option><option value="Weligama">Weligama</option>
+                                        <option value="Hambantota">Hambantota</option><option value="Tangalle">Tangalle</option>
+                                        <option value="Batticaloa">Batticaloa</option><option value="Kattankudy">Kattankudy</option><option value="Eravur">Eravur</option>
+                                        <option value="Ampara">Ampara</option><option value="Kalmunai">Kalmunai</option>
+                                        <option value="Jaffna">Jaffna</option><option value="Chavakacheri">Chavakacheri</option><option value="Valvettithurai">Valvettithurai</option>
+                                        <option value="Anuradapura">Anuradapura</option>
+                                        <option value="Polonnaruwa">Polonnaruwa</option>
+                                        <option value="Moneragala">Moneragala</option>
+                                        <option value="Trincomalee">Trincomalee</option>
+                                        <option value="Mannar">Mannar</option>
+                                        <option value="Vavuniya">Vavuniya</option>
+                                        <option value="Kilinochchi">Kilinochchi</option>
+                                        <option value="Mullaitivu">Mullaitivu</option>
+                                    </NativeSelect>
+                                </FormControl>
+                            </NativeSelectBox>
+
+                        </span>}
+                        {!showMore && <CustomAdmore onClick={handleShowMore} sx={{ borderRadius: '12px', fontWeight: 'bold', width: '100%', marginBottom: '5px' }}>
+                            <LoupeIcon sx={{ fontWeight: 'bold', marginRight: '5px' }} /> More Filters
+                        </CustomAdmore>}
                         <ButtonBox>
                             <Button size="large" variant="contained" onClick={filterItems}>Apply Filters</Button>
                         </ButtonBox>
