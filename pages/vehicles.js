@@ -82,7 +82,6 @@ function generateArrayOfYears() {
 years = generateArrayOfYears();
 const yearlen = years.length;
 
-// var
 
 export async function getStaticProps() {
     // console.log(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles');
