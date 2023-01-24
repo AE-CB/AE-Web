@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React, { useContext } from 'react'
 import AppContext from '../context/AppContext'
 import { useSession, signIn, signOut } from 'next-auth/react'
-import { deleteCookie, hasCookie } from 'cookies-next';
+import { deleteCookie, hasCookie, getCookie } from 'cookies-next';
 
 const Header = () => {
 
@@ -19,9 +19,20 @@ const Header = () => {
     signIn()
   }
 
-  const handleSignout = (e) => {
+  const handleSignout = async (e) => {
     e.preventDefault()
     if (hasCookie('accessToken')) {
+      // let data = {
+      //   token: getCookie('accessToken'),
+      // }
+      // const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/logout', {
+      //   method: 'POST',
+      //   body: JSON.stringify(data),
+      //   headers: {
+      //     'Accept': 'application/json',
+      //     'Content-Type': 'application/json'
+      //   },
+      // })
       deleteCookie('accessToken');
     }
 
