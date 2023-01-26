@@ -17,6 +17,7 @@ function generatePassword() {
 var accessToken = null
 
 const options = {
+    secret: process.env.NEXTAUTH_SECRET,
     providers: [
         // GitHubProvider({
         //     clientId: process.env.GITHUB_ID,
