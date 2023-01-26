@@ -6,7 +6,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['localhost', '18.181.183.230'],
+    domains: ['localhost', '18.181.183.230', 'autoescape.store'],
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.plugins.push(
