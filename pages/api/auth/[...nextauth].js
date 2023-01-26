@@ -22,14 +22,14 @@ const options = {
         //     clientId: process.env.GITHUB_ID,
         //     clientSecret: process.env.GITHUB_SECRET
         // }),
-        GoogleProvider({
-            clientId: process.env.GOOGLE_ID,
-            clientSecret: process.env.GOOGLE_SECRET,
-        }),
-        FacebookProvider({
-            clientId: process.env.FACEBOOK_ID,
-            clientSecret: process.env.FACEBOOK_SECRET
-        }),
+        // GoogleProvider({
+        //     clientId: process.env.GOOGLE_ID,
+        //     clientSecret: process.env.GOOGLE_SECRET,
+        // }),
+        // FacebookProvider({
+        //     clientId: process.env.FACEBOOK_ID,
+        //     clientSecret: process.env.FACEBOOK_SECRET
+        // }),
         CredentialProvider({
             async authorize(credentials) {
                 const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/login', {
@@ -64,60 +64,60 @@ const options = {
         async signIn({ account, profile }) {
             var password = generatePassword();
             switch (account.provider) {
-                case "google":
-                    if (profile.email_verified) {
-                        accessToken = null
+                // case "google":
+                //     if (profile.email_verified) {
+                //         accessToken = null
 
-                        let body = {
-                            key: process.env.FRONT_APP_KEY,
-                            name: profile.name,
-                            email: profile.email,
-                            password: password,
-                            password_confirmation: password
-                        }
+                //         let body = {
+                //             key: process.env.FRONT_APP_KEY,
+                //             name: profile.name,
+                //             email: profile.email,
+                //             password: password,
+                //             password_confirmation: password
+                //         }
 
-                        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/social_register', {
-                            method: 'POST',
-                            body: JSON.stringify(body),
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                            },
-                        })
+                //         const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/social_register', {
+                //             method: 'POST',
+                //             body: JSON.stringify(body),
+                //             headers: {
+                //                 'Accept': 'application/json',
+                //                 'Content-Type': 'application/json'
+                //             },
+                //         })
 
-                        if (res.status == 200) {
-                            var jsonResponce = await res.json();
-                            // console.log(jsonResponce.token)
-                            accessToken = jsonResponce.token
-                        }
-                    }
-                    return profile.email_verified
-                case 'facebook':
-                    accessToken = null
-                    var body = {
-                        key: process.env.FRONT_APP_KEY,
-                        name: profile.name,
-                        email: profile.email,
-                        password: password,
-                        password_confirmation: password
-                    }
+                //         if (res.status == 200) {
+                //             var jsonResponce = await res.json();
+                //             // console.log(jsonResponce.token)
+                //             accessToken = jsonResponce.token
+                //         }
+                //     }
+                //     return profile.email_verified
+                // case 'facebook':
+                //     accessToken = null
+                //     var body = {
+                //         key: process.env.FRONT_APP_KEY,
+                //         name: profile.name,
+                //         email: profile.email,
+                //         password: password,
+                //         password_confirmation: password
+                //     }
 
-                    const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/social_register', {
-                        method: 'POST',
-                        body: JSON.stringify(body),
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                    })
+                //     const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/social_register', {
+                //         method: 'POST',
+                //         body: JSON.stringify(body),
+                //         headers: {
+                //             'Accept': 'application/json',
+                //             'Content-Type': 'application/json'
+                //         },
+                //     })
 
-                    if (res.status == 200) {
-                        var jsonResponce = await res.json();
-                        // console.log(jsonResponce.token)
-                        accessToken = jsonResponce.token
-                    }
+                //     if (res.status == 200) {
+                //         var jsonResponce = await res.json();
+                //         // console.log(jsonResponce.token)
+                //         accessToken = jsonResponce.token
+                //     }
                     
-                    return true;
+                //     return true;
                 // case 'github':
                 //     accessToken = null
 
