@@ -640,7 +640,7 @@ const Vehicles = ({ vehicles }) => {
                             // console.log(images)
 
                             return (
-                                <Link key={i} href={`/vehicles/${item.id}`} sx={{ color: 'black !important' }}>
+                                <Link key={i} href={`/vehicles/${item.slug}`} sx={{ color: 'black !important' }}>
                                     <div className="card-car">
                                         {/* Card Auto  */}
                                         <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0].replace(/\\/g, "/")} alt="imagen auto nissan" />

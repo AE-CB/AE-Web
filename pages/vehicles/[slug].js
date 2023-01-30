@@ -12,9 +12,8 @@ const Car = ({ vehicle }) => {
     let images = JSON.parse(vehicle.data.images)
     // console.log(images)    
 
-    
-
     return (
+       
         <main className="main-car">
 
             <div className="return-comprar">
@@ -173,9 +172,10 @@ const Car = ({ vehicle }) => {
 Car.layout = "AdminLayout";
 export default Car
 
-export const getStaticProps = async ({ params: { id } }) => {
+// params: { slug } comes from url
+export const getStaticProps = async ({ params: { slug } }) => {
 
-    const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/vehicles/' + id, {
+    const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/vehicles/' + slug, {
         method: 'get',
         headers: new Headers({
             'Authorization': 'Bearer ' + process.env.API_KEY,
@@ -184,6 +184,13 @@ export const getStaticProps = async ({ params: { id } }) => {
 
     const vehicle = await res.json()
     // console.log(vehicle)
+
+   
+    if (!vehicle.data) {
+        return {
+            redirect: { destination: "/404" },
+        };
+    }
 
 
     return {
@@ -219,7 +226,7 @@ export const getStaticPaths = async () => {
 
     const paths = vehiclesitems.data.map((vehicle) => ({
         params: {
-            id: vehicle.id.toString()
+            slug: vehicle.slug.toString()
         }
     }));
 
