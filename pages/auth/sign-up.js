@@ -50,7 +50,7 @@ const SignUp = () => {
         }
 
         if (res.status == 200) {
-            Router.push('/sign-in')
+            Router.push('/sign-in/?message=register_success')
         }
     }
 

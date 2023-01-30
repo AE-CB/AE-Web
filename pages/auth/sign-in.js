@@ -5,8 +5,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Box } from '@mui/material';
 import { getProviders, signIn, getSession, csrfToken } from "next-auth/react"
+import { Alert } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { useRouter } from 'next/router'
+
+const SuccessAlert = styled(Alert)(({ theme }) => ({
+  '.MuiPaper-root': {
+    color: 'greeen',
+    fontSize: '14p !important'
+  }
+}));
 
 const SignIn = ({ providers }) => {
+
+  const router = useRouter()
+  const { message } = router.query
+
   const context = useContext(AppContext)
 
   const ref_error_div = useRef(null);
@@ -21,6 +35,7 @@ const SignIn = ({ providers }) => {
       {
         email,
         password,
+        callbackUrl: '/vehicles/?message=login_success'
       }
     )
   }
@@ -66,6 +81,9 @@ const SignIn = ({ providers }) => {
         </Link>
 
         <div className="sign-in-content"> {/* Parte del Formulario */}
+          {(message && message == 'register_success') && <SuccessAlert sx={{ color: 'green', fontSize: '14px !important', margin: 'auto', marginBottom: '20px' }} severity="success">
+            Thanks for registering to our site. Please sign in to continue.
+          </SuccessAlert>}
           <Link href={`/`}>
             <h1 className='logotext'><span>AUTO</span>ESCAPE</h1>
             {/* <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" /> */}
@@ -117,7 +135,8 @@ const SignIn = ({ providers }) => {
             <div>
               {Object.values(providers).map((provider) => (
                 <div key={provider.name} className="register-section">
-                  {provider.id != 'credentials' && <button type='button' className="social-btn" onClick={() => signIn(provider.id)}>
+                  {provider.id != 'credentials' && <button type='button' className="social-btn" onClick={() =>
+                    signIn(provider.id, { callbackUrl: '/vehicles/?message=login_success' })}>
                     Sign in with {provider.name}
                   </button>}
                 </div>

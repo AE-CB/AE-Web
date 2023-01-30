@@ -3,8 +3,20 @@ import React, { useContext } from 'react'
 import AppContext from '../context/AppContext'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { deleteCookie, hasCookie, getCookie } from 'cookies-next';
+import { Alert } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { useRouter } from 'next/router'
+
+const SuccessAlert = styled(Alert)(({ theme }) => ({
+  '.MuiPaper-root': {
+    color: 'greeen',
+    fontSize: '14p !important'
+  }
+}));
 
 const Header = () => {
+  const router = useRouter()
+  const { message } = router.query
 
   // const { data } = useSession()
   // const { accessToken } = data
@@ -74,7 +86,16 @@ const Header = () => {
             </nav>
           </div>
         </section>
+
       </header>
+      {(message && message == 'login_success') && <SuccessAlert sx={{ color: 'green', fontSize: '14px !important', width: '90%', margin: 'auto', marginTop: '20px' }} severity="success">
+        You are logged in successfully
+      </SuccessAlert>}
+
+      {(message && message == 'item_added') && <SuccessAlert sx={{ color: 'green', fontSize: '14px !important', width: '90%', margin: 'auto', marginTop: '20px' }} severity="success">
+        Your item added successfully. It will be showed after approval.
+      </SuccessAlert>}
+
     </>
   )
 }

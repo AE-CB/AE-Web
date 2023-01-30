@@ -136,7 +136,7 @@ const AddItem = ({ session }) => {
                 }
 
                 if (res.status == 201) {
-                    Router.push('/vehicles')
+                    Router.push('/vehicles?message=item_added')
                 }
             } else {
                 await setErrors(['Error occured please contact admin']);
