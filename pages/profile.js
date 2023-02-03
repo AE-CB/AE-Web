@@ -3,10 +3,10 @@ import Router from 'next/router';
 import Image from "next/image";
 import Link from "next/link";
 import { getProviders, signIn, getSession, csrfToken } from "next-auth/react"
+import { getCookie } from 'cookies-next';
 
-const SignUp = () => {
-    const ref_password = useRef(null);
-    const ref_confirm_password = useRef(null);
+const Profile = () => {
+
     const ref_error_div = useRef(null);
 
     const [name, setName] = useState("");
@@ -14,9 +14,36 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [mobile, setMobile] = useState("");
     const [password, setPassword] = useState("");
-    const [passwordconf, setPasswordconf] = useState("");
-    const [departament, setDepartament] = useState("");
     const [location, setLocation] = useState("");
+
+    var notran = true;
+    const token = getCookie('accessToken');
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        if (notran) {
+            const fetchData = async () => {
+                const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/loged_user', {
+                    method: 'POST',
+                    headers: new Headers({
+                        'Authorization': 'Bearer ' + token,
+                    })
+                })
+                setUser(await res.json())
+
+            }
+            fetchData();
+        }
+    }, [])
+
+    useEffect(() => {
+        setName(user?.name)
+        setDob(user?.dob)
+        setEmail(user?.email)
+        setMobile(user?.mobile)
+        setLocation(user?.location)
+    }, [user])
+
 
     var terrors = [];
     const [errors, setErrors] = useState([]);
@@ -52,26 +79,13 @@ const SignUp = () => {
         if (res.status == 200) {
             Router.push('/sign-in/?message=register_success')
         }
-
-        console.log(res.json());
     }
 
-    // Create custom validation for password match
-    function validatePassword() {
-        if (ref_password.current.value != ref_confirm_password.current.value) {
-            ref_confirm_password.current.setCustomValidity("Passwords Don't Match");
-        } else {
-            setPassword(ref_password.current.value)
-            setPasswordconf(ref_confirm_password.current.value)
-            ref_confirm_password.current.setCustomValidity('');
-        }
-    }
 
     return (
         <>
             <div className="sign-in-container">
-
-                <Image width={1000} height={1000} className="width_100 sign-in-banner" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/sign-in-up/car-image.webp"} alt="imagen auto" /> {/* Parte de la Imagen */}
+                <Image width={1000} height={1000} className="width_100 sign-in-banner" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/sign-in-up/car-image.webp"} alt="imagen auto" />
                 <Link href={`/`} className="btn-volver-siu">
                     <svg className="svg-inline--fa fa-arrow-left" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg>
                 </Link>
@@ -82,7 +96,7 @@ const SignUp = () => {
                         <h1 className='logotext'><span>AUTO</span>ESCAPE</h1>
                         {/* <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" /> */}
                     </Link>
-                    <h1>Register</h1>
+                    <h1>Profile</h1>
 
                     <div id="display_errors" className="display_errors" ref={ref_error_div}>
                         <ul>
@@ -98,37 +112,33 @@ const SignUp = () => {
                         <div className="sign-up-fields"> {/* Campos */}
                             <div className="sign-up-field">
                                 <h3 className="input-heading">Full name</h3>
-                                <input type="text" onChange={(e) => setName(e.target.value)}
+                                <input value={name} type="text" onChange={(e) => setName(e.target.value)}
                                     name="name" placeholder="Enter your first and last name" required />
                             </div>
                             <div className="sign-up-field birthdate-field">
                                 <h3 className="input-heading">Date of birth</h3>
-                                <input type="date" onChange={(e) => setDob(e.target.value)}
+                                <input value={dob} type="date" onChange={(e) => setDob(e.target.value)}
                                     name="birthdate" placeholder="Enter your date of birth" required />
                             </div>
                             <div className="sign-up-field">
                                 <h3 className="input-heading">Email</h3>
-                                <input type="email" onChange={(e) => setEmail(e.target.value)}
+                                <input value={email} type="email" onChange={(e) => setEmail(e.target.value)}
                                     name="email" placeholder="Enter your email" required />
                             </div>
                             <div className="sign-up-field">
                                 <h3 className="input-heading">Mobile</h3>
-                                <input type="tel" onChange={(e) => setMobile(e.target.value)}
+                                <input value={mobile} type="tel" onChange={(e) => setMobile(e.target.value)}
                                     name="mobile" placeholder="Enter your cell phone" required />
                             </div>
                             <div className="sign-up-field">
-                                <h3 className="input-heading">Password</h3>
-                                <input type="password" onChange={validatePassword} ref={ref_password} name="password" placeholder="Enter your password" required />
-                            </div>
-                            <div className="sign-up-field">
-                                <h3 className="input-heading">Repeat your password</h3>
-                                <input type="password" onChange={validatePassword} ref={ref_confirm_password} name="password-repeat" placeholder="Repeat your password" required />
+                                <h3 className="input-heading">Password (Keep empty if you need to use the same)</h3>
+                                <input type="password" onChange={(e) => setPassword(e.target.value)} name="password" placeholder="Enter your password" />
                             </div>
                             <div className="sign-up-field">
                                 <h3 className="input-heading">City</h3>
-                                <select name="localidad" id=""
+                                <select name="localidad" id="" value={location} 
                                     onChange={(e) => setLocation(e.target.value)} required>
-                                    <option value="" selected disabled>Select a city</option>
+                                    <option value="" disabled>Select a city</option>
                                     <option value="Colombo">Colombo</option>
                                     <option value="Dehiwala-Mount-Lavinia">Dehiwala-Mount-Lavinia</option>
                                     <option value="Moratuwa">Moratuwa</option>
@@ -156,11 +166,7 @@ const SignUp = () => {
                             </div>
                         </div>
                         <div className="sign-in-up"> {/* Botones */}
-                            <input type="submit" value="Register" />
-                            <div className="register-section"> {/* Iniciar Sesion */}
-                                <Link className="btn-register" href={`/auth/sign-in`}>Sign In</Link>
-                                <p>Already have an account?</p>
-                            </div>
+                            <input type="submit" value="Update profile" />
                         </div>
                     </form>
 
@@ -184,9 +190,6 @@ const SignUp = () => {
                         </div>
                         <div className="developed-by">
                             <h6>Developed by cdazzdev</h6>
-                            {/* <a target="_blank" rel="noreferrer" href="https://github.com/mathiramilo"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="bi bi-github" viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-                            </svg></a> */}
                         </div>
                     </footer>
                 </main>
@@ -202,7 +205,7 @@ export async function getServerSideProps(context) {
     const { req } = context;
     const session = await getSession({ req });
 
-    if (session) {
+    if (!session) {
         return {
             redirect: { destination: "/" },
         };
@@ -214,6 +217,6 @@ export async function getServerSideProps(context) {
     }
 }
 
-SignUp.layout = "NormalLayout";
-export default SignUp
+Profile.layout = "NormalLayout";
+export default Profile
 
