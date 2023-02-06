@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProviders, signIn, getSession, csrfToken } from "next-auth/react"
 import { getCookie } from 'cookies-next';
+import { Alert } from '@mui/material';
 
 const Profile = () => {
 
@@ -15,6 +16,8 @@ const Profile = () => {
     const [mobile, setMobile] = useState("");
     const [password, setPassword] = useState("");
     const [location, setLocation] = useState("");
+
+    const [returnMessage, setReturnMessage] = useState("");
 
     var notran = true;
     const token = getCookie('accessToken');
@@ -46,6 +49,7 @@ const Profile = () => {
 
 
     var terrors = [];
+    var message = ""
     const [errors, setErrors] = useState([]);
 
     const submitLogin = async (e) => {
@@ -55,19 +59,18 @@ const Profile = () => {
         formData.append('name', name);
         formData.append('email', email);
         formData.append('password', password);
-        formData.append('password_confirmation', passwordconf);
         formData.append('dob', dob);
         formData.append('mobile', mobile);
-        formData.append('departament', departament);
         formData.append('location', location);
-
-        // console.log(formData)
 
         setErrors([])
 
-        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/register', {
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/update_user', {
             method: 'POST',
             body: formData,
+            headers: new Headers({
+                'Authorization': 'Bearer ' + token,
+            })
         })
 
         if (res.status == 422) {
@@ -77,7 +80,9 @@ const Profile = () => {
         }
 
         if (res.status == 200) {
-            Router.push('/sign-in/?message=register_success')
+            message = await res.json();
+            await setReturnMessage(message?.message);
+            ref_error_div.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }
     }
 
@@ -96,9 +101,17 @@ const Profile = () => {
                         <h1 className='logotext'><span>AUTO</span>ESCAPE</h1>
                         {/* <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" /> */}
                     </Link>
+
                     <h1>Profile</h1>
 
                     <div id="display_errors" className="display_errors" ref={ref_error_div}>
+                        {(returnMessage && returnMessage == 'user_updated') && <Alert sx={{ color: 'green', fontSize: '14px !important', width: '90%', marginTop: '20px' }} severity="success">
+                            Data updated successfully
+                        </Alert>}
+
+                        {(returnMessage && returnMessage == 'error_occured') && <Alert sx={{ color: '#d32f2f', fontSize: '14px !important', width: '90%', marginTop: '20px' }} severity="error">
+                            Error occured please contact admin
+                        </Alert>}
                         <ul>
                             {errors.map((item, key) => {
                                 return (
@@ -136,7 +149,7 @@ const Profile = () => {
                             </div>
                             <div className="sign-up-field">
                                 <h3 className="input-heading">City</h3>
-                                <select name="localidad" id="" value={location} 
+                                <select name="localidad" id="" value={location}
                                     onChange={(e) => setLocation(e.target.value)} required>
                                     <option value="" disabled>Select a city</option>
                                     <option value="Colombo">Colombo</option>
