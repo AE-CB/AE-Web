@@ -4181,6 +4181,24 @@ select:hover {
   border-radius: 15px;
 }
 
+.btn_profile {
+  color: #60B0F4;
+  border: solid 3px #60B0F4;
+  border-radius: 50px;
+  padding: 0px 24px;
+  transition: all 0.3s ease;
+  font-size: 2.8rem;
+}
+
+.btn_profile:hover {
+  color: #FFFFFF;
+  background-color: #60B0F4;
+  cursor: pointer;
+}
+
+.menu_link{
+  color: black;
+}
 
 /* position: 'absolute',
   top: '50%',

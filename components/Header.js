@@ -1,20 +1,30 @@
 import Link from 'next/link'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import AppContext from '../context/AppContext'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { deleteCookie, hasCookie, getCookie } from 'cookies-next';
 import { Alert } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useRouter } from 'next/router'
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import { fontSize } from '@mui/system';
 
-const SuccessAlert = styled(Alert)(({ theme }) => ({
-  '.MuiPaper-root': {
-    color: 'greeen',
-    fontSize: '14p !important'
-  }
-}));
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
+
 
 const Header = () => {
+  const SuccessAlert = styled(Alert)(({ theme }) => ({
+    '.MuiPaper-root': {
+      color: 'greeen',
+      fontSize: '14p !important'
+    }
+  }));
+
+
+  
   const router = useRouter()
   const { message } = router.query
 
@@ -30,6 +40,16 @@ const Header = () => {
     e.preventDefault()
     signIn()
   }
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   const handleSignout = async (e) => {
     e.preventDefault()
@@ -78,12 +98,28 @@ const Header = () => {
                   <a className="nav-link" href="./pages/concesionarias.html">Dealerships</a>
                 </li> */}
                 <li>
-                  {session && <a href="#" onClick={handleSignout} className="nav-link btn-ingresar">Sign out</a>}
+                  {session && <a
+                    aria-controls={open ? 'basic-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                    className="nav-link btn_profile">
+                    {/* Sign out */}
+                    <PersonOutlineIcon sx={{ fontSize: 24 }} />
+                  </a>}
                   {!session && <a href="#" onClick={handleSignin} className="nav-link btn-ingresar">Sign in</a>}
-                  {/* <Link className="nav-link btn-ingresar" href={`/sign-in`}>Sign In</Link> */}
                 </li>
               </ul>
             </nav>
+            <Menu
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              
+            >
+              <MenuItem sx={{fontSize: 15, color: 'black'}}><Link className='menu_link' href={`/profile`}>Profile</Link></MenuItem>
+              <MenuItem sx={{fontSize: 15, color: 'black'}} onClick={handleSignout}>Logout</MenuItem>
+            </Menu>
           </div>
         </section>
 
