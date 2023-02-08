@@ -230,7 +230,7 @@ const Car = ({ vehicle }) => {
                                 <div key={key} className="previous-question">
                                     <h4>{item.question}</h4>
                                     <div className="answer">
-                                        <p>You haven't answer this question yet. Answer
+                                        <p>You have not answer this question yet. Answer
                                             <span onClick={() => handleClickOpen(item)} className='answer_here'> here</span></p>
                                     </div>
                                     <br /><br />
