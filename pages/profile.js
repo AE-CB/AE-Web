@@ -36,6 +36,8 @@ const Profile = () => {
 
             }
             fetchData();
+
+            notran = false
         }
     }, [])
 
@@ -52,7 +54,7 @@ const Profile = () => {
     var message = ""
     const [errors, setErrors] = useState([]);
 
-    const submitLogin = async (e) => {
+    const submitUpdate = async (e) => {
         e.preventDefault()
 
         let formData = new FormData();
@@ -121,7 +123,7 @@ const Profile = () => {
                         </ul>
                     </div>
 
-                    <form className="sign-up-form" onSubmit={submitLogin}> {/* Formulario Registro */}
+                    <form className="sign-up-form" onSubmit={submitUpdate}> {/* Formulario Registro */}
                         <div className="sign-up-fields"> {/* Campos */}
                             <div className="sign-up-field">
                                 <h3 className="input-heading">Full name</h3>

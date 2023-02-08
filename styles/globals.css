@@ -4200,6 +4200,14 @@ select:hover {
   color: black;
 }
 
+.answer_here{
+  color: red;
+}
+
+.answer_here:hover{
+  cursor: pointer;
+}
+
 /* position: 'absolute',
   top: '50%',
   left: '50%',
