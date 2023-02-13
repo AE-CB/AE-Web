@@ -14,12 +14,17 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useSession } from 'next-auth/react'
+import Slide from '@mui/material/Slide';
+
 
 import { Alert } from '@mui/material';
 
 const Car = ({ vehicle }) => {
 
     const [open, setOpen] = useState(false);
+    const [openLogin, setOpenLogin] = useState(false);
+    const [openEditQuestion, setOpenEditQuestion] = useState(false);
     const [questionId, setQuestionId] = useState(null);
     const [questionText, setQuestionText] = useState("");
     const [questionAnswer, setQuestionAnswer] = useState("");
@@ -28,14 +33,25 @@ const Car = ({ vehicle }) => {
 
     const success_alert = useRef(null);
 
-    const handleClickOpen = (item) => {
+    const handleClickOpen = (item, type) => {
         setQuestionId(item.id)
         setQuestionText(item.question)
-        setOpen(true);
+
+        if (type == 'unAnswered') {
+            setOpen(true);
+        }
+
+        if (type == 'unApproved') {
+            setOpenEditQuestion(true);
+        }
     };
+
+
 
     const handleClose = () => {
         setOpen(false);
+        setOpenLogin(false)
+        setOpenEditQuestion(false)
     };
 
     const submitAnswer = async () => {
@@ -67,7 +83,8 @@ const Car = ({ vehicle }) => {
         if (notran) {
             getAnsweredQuestions()
             getUnAnsweredQuestions()
-
+            getUnAnApprovedQuestions()
+            getUnApprovedAnswers()
             notran = false
         }
     }, [])
@@ -77,10 +94,27 @@ const Car = ({ vehicle }) => {
     // console.log(images)    
 
     const [question, setQuestion] = useState("");
-    // Answered questions for vehicle
+    // Unapproved questions for vehicle
+    const [unApprovedQuestions, setUnApprovedQuestions] = useState([]);
+    // Answered questions(Approved Answers) for vehicle
     const [answeredQuestions, setAnsweredQuestions] = useState([]);
+    // Unapproved answers for vehicle
+    const [unApprovedAnswers, setUnApprovedAnswers] = useState([]);
     // Unanswered questions for vehicle(Visible only to user)
     const [unAnsweredQuestions, setUnAnsweredQuestions] = useState([]);
+
+    const getUnApprovedAnswers = async () => {
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/unapproved_answers/' + vehicle.data.id, {
+            method: 'GET',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + token,
+            })
+        })
+
+        if (res.status == 200) {
+            setUnApprovedAnswers(await res.json())
+        }
+    }
 
     const getAnsweredQuestions = async () => {
         const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/answered_questions/' + vehicle.data.id, {
@@ -103,32 +137,78 @@ const Car = ({ vehicle }) => {
         if (res.status == 200) {
             setUnAnsweredQuestions(await res.json())
         }
-
-
     }
+
+    const getUnAnApprovedQuestions = async () => {
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/unapproved_questions/' + vehicle.data.id, {
+            method: 'GET',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + token,
+            })
+        })
+
+        if (res.status == 200) {
+            setUnApprovedQuestions(await res.json())
+        }
+    }
+
 
     const token = getCookie('accessToken');
 
+    const { data: session } = useSession();
     const submitQuestion = async (e) => {
         e.preventDefault();
 
-        let formData = new FormData();
-        formData.append('question', question);
-        formData.append('vehicle_id', vehicle.data.id);
+        if (session) {
+            let formData = new FormData();
+            formData.append('question', question);
+            formData.append('vehicle_id', vehicle.data.id);
 
-        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/questions', {
-            method: 'POST',
-            body: formData
-        })
+            const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/questions', {
+                method: 'POST',
+                body: formData,
+                headers: new Headers({
+                    'Authorization': 'Bearer ' + token,
+                })
+            })
 
-        // console.log(question)
-        if (res.status == 201) {
-            setShowAlert(true);
-            setAlertMsg('Thanks for asking the question. Vehicle owner will answer soon.')
-            success_alert.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            // console.log(question)
+            if (res.status == 201) {
+                setShowAlert(true);
+                setAlertMsg('Thanks for asking the question. Vehicle owner will answer soon.')
+                getUnAnApprovedQuestions()
+                success_alert.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+
+            setQuestion("")
+        } else {
+            setOpenLogin(true)
         }
+    }
 
-        setQuestion("")
+    const editQuestion = async (e) => {
+        if (session) {
+            let formData = new FormData();
+            formData.append('id', questionId);
+            formData.append('question', questionText);
+
+            const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/edit_question', {
+                method: 'POST',
+                body: formData,
+                headers: new Headers({
+                    'Authorization': 'Bearer ' + token,
+                })
+            })
+
+            if (res.status == 200) {
+                setShowAlert(true);
+                setAlertMsg('Your question is edited')
+                getUnAnApprovedQuestions()
+                success_alert.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+            
+            setOpenEditQuestion(false)
+        }
     }
 
     return (
@@ -212,16 +292,22 @@ const Car = ({ vehicle }) => {
                     </div>
                     <div className="previous-questions">
                         <h3>Previous Questions</h3>
-                        {answeredQuestions.map((item, key) => {
+                        {unApprovedQuestions.map((item, key) => {
+                            return (
+                                <div key={key} className="previous-question">
+                                    <h4>{item.question} <span onClick={() => handleClickOpen(item, 'unApproved')} className='edit_question'> Edit </span></h4>
+                                    <br /><br />
+                                </div>
+                            )
+                        })}
+                        {unApprovedAnswers.map((item, key) => {
                             return (
                                 <div key={key} className="previous-question">
                                     <h4>{item.question}</h4>
                                     <div className="answer">
-                                        <p>
-                                            {item.answer}
-                                        </p>
+                                        <p>{item.answer}
+                                            <span onClick={() => handleClickOpen(item, 'unAnswered')} className='answer_here'> Edit</span></p>
                                     </div>
-                                    <br /><br />
                                 </div>
                             )
                         })}
@@ -231,7 +317,21 @@ const Car = ({ vehicle }) => {
                                     <h4>{item.question}</h4>
                                     <div className="answer">
                                         <p>You have not answer this question yet. Answer
-                                            <span onClick={() => handleClickOpen(item)} className='answer_here'> here</span></p>
+                                            <span onClick={() => handleClickOpen(item, 'unAnswered')} className='answer_here'> here</span></p>
+                                    </div>
+                                    <br /><br />
+                                </div>
+                            )
+                        })}
+
+                        {answeredQuestions.map((item, key) => {
+                            return (
+                                <div key={key} className="previous-question">
+                                    <h4>{item.question}</h4>
+                                    <div className="answer">
+                                        <p>
+                                            {item.answer}
+                                        </p>
                                     </div>
                                     <br /><br />
                                 </div>
@@ -258,6 +358,50 @@ const Car = ({ vehicle }) => {
                             <DialogActions>
                                 <Button onClick={handleClose}>Cancel</Button>
                                 <Button onClick={submitAnswer}>Submit</Button>
+                            </DialogActions>
+                        </Dialog>
+
+                        <Dialog
+                            open={openLogin}
+                            onClose={handleClose} fullWidth maxWidth="sm"
+                        >
+                            <DialogTitle>{"Please login before ask a question !"}</DialogTitle>
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-slide-description">
+                                    You need to login before ask a question. Please create an account
+                                    if you do not have one. It is so easy.
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose}>Ok</Button>
+                            </DialogActions>
+                        </Dialog>
+
+                        <Dialog
+                            open={openEditQuestion}
+                            onClose={handleClose} fullWidth maxWidth="sm"
+                        >
+                            <DialogTitle>Edit your question</DialogTitle>
+                            <DialogContent>
+                                {/* <DialogContentText id="alert-dialog-slide-description" defaultValue="Hello World">
+                                    
+                                </DialogContentText> */}
+                                <TextField
+                                    autoFocus
+                                    required
+                                    margin="dense"
+                                    id="name"
+                                    label="Your question"
+                                    type="text"
+                                    fullWidth
+                                    variant="standard"
+                                    defaultValue={questionText}
+                                    onChange={(e) => setQuestionText(e.target.value)}
+                                />
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose}>Cancel</Button>
+                                <Button onClick={editQuestion}>Submit</Button>
                             </DialogActions>
                         </Dialog>
                         {/* <div className="previous-question">

@@ -74,7 +74,7 @@ const SignUp = () => {
 
                 <main className="sign-in-content"> {/* Parte del Formulario */}
                     <Link href={`/`}>
-                        <h1 className='logotext'><span>AUTO</span>ESCAPE</h1>
+                        <h1 className='logotext'><span>AUTO</span>XCAPE</h1>
                         {/* <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" /> */}
                     </Link>
                     <h1>Register</h1>
@@ -162,7 +162,7 @@ const SignUp = () => {
                     <footer className="sign-in-footer sign-up-footer">
                         <hr />
                         <div>
-                            <h3>© {new Date().getFullYear()} AUTOESCAPE, Inc.</h3>
+                            <h3>© {new Date().getFullYear()} AUTOXCAPE, Inc.</h3>
                             <div className="social-media"> {/* Redes Footer */}
                                 <ul>
                                     <li> {/* Instagram */}

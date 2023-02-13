@@ -12,7 +12,8 @@ import { fontSize } from '@mui/system';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
+import { setCookie } from 'cookies-next';
+import SetToken from '../hooks/SetToken'
 
 
 const Header = () => {
@@ -23,8 +24,8 @@ const Header = () => {
     }
   }));
 
+  SetToken();
 
-  
   const router = useRouter()
   const { message } = router.query
 
@@ -32,7 +33,9 @@ const Header = () => {
   // const { accessToken } = data
 
   const context = useContext(AppContext)
+
   const { data: session } = useSession();
+
 
   // console.log(session)
 
@@ -80,7 +83,7 @@ const Header = () => {
             <div>
               <Link className="logo" href={`/`}>
                 {/* <img src="../assets/img/logo/carhouse-logo.png" alt="logo CarHouse" /> */}
-                <h1 className='logotext'><span>AUTO</span>ESCAPE</h1>
+                <h1 className='logotext'><span>AUTO</span>XCAPE</h1>
               </Link>
 
               <button id="hamburguer" className="hamburguer"><i className="fas fa-bars"></i></button>
@@ -115,10 +118,10 @@ const Header = () => {
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
-              
+
             >
-              <MenuItem sx={{fontSize: 15, color: 'black'}}><Link className='menu_link' href={`/profile`}>Profile</Link></MenuItem>
-              <MenuItem sx={{fontSize: 15, color: 'black'}} onClick={handleSignout}>Logout</MenuItem>
+              <MenuItem sx={{ fontSize: 15, color: 'black' }}><Link className='menu_link' href={`/profile`}>Profile</Link></MenuItem>
+              <MenuItem sx={{ fontSize: 15, color: 'black' }} onClick={handleSignout}>Logout</MenuItem>
             </Menu>
           </div>
         </section>

@@ -115,14 +115,11 @@ var brands = [
 
 const Vehicles = ({ vehicles }) => {
 
-    const { data: session, status } = useSession()
-
+    // const { data: session, status } = useSession()
     // console.log(session);
-
-    if (!hasCookie('accessToken') && session && session.accessToken) {
-        setCookie('accessToken', session.accessToken[0]);
-    }
-
+    // if (!hasCookie('accessToken') && session && session.accessToken) {
+    //     setCookie('accessToken', session.accessToken[0]);
+    // }
 
     const token = getCookie('accessToken');
     // console.log(getCookie('accessToken'))

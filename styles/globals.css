@@ -4208,6 +4208,16 @@ select:hover {
   cursor: pointer;
 }
 
+.edit_question{
+  color: green;
+}
+
+.edit_question:hover{
+  cursor: pointer;
+}
+
+
+
 /* position: 'absolute',
   top: '50%',
   left: '50%',
