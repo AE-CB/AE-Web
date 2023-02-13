@@ -10,8 +10,10 @@ export default function Document() {
     return (
         <Html lang='en'>
             <Head>
-                {/* <title> Autoescape </title> */}
-                <link rel="shortcut icon" href="./assets/img/logo/icon-shortcut.png" />
+                <title>
+                    AUTOXCAPE
+                </title>
+                <link rel="shortcut icon" href="./assets/img/logo/logo.png" />
                 {/* Fontawesome */}
                 <Script src="https://kit.fontawesome.com/de0eb60c48.js" crossOrigin="anonymous"></Script>
                 {/* <Script strategy="beforeInteractive" type="text/javascript" src="assets/js/custom.js"></Script> */}

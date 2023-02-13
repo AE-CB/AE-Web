@@ -188,23 +188,23 @@ const Profile = () => {
                     <footer className="sign-in-footer sign-up-footer">
                         <hr />
                         <div>
-                            <h3>© {new Date().getFullYear()} AUTOXCAPE, Inc.</h3>
-                            <div className="social-media"> {/* Redes Footer */}
+                            <h3>© {new Date().getFullYear()} AUTOXCAPE.COM</h3>
+                            {/* <div className="social-media"> 
                                 <ul>
-                                    <li> {/* Instagram */}
+                                    <li>
                                         <a href="#" target="_blank" rel="noreferrer"><Image className='nextimg' width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/instagram-oscuro.png"} alt="icono instagram" /></a>
                                     </li>
-                                    <li> {/* Facebook */}
+                                    <li> 
                                         <a href="#" target="_blank" rel="noreferrer"><Image className='nextimg' width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/facebook-oscuro.png"} alt="icono facebook" /></a>
                                     </li>
-                                    <li> {/* Whatsapp */}
+                                    <li> 
                                         <a href="#" target="_blank" rel="noreferrer"><Image className='nextimg' width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/whatsapp-oscuro.png"} alt="icono whatsapp" /></a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="developed-by">
-                            <h6>Developed by cdazzdev</h6>
+                            <h6>Developed by <a href='https://cdazzdev.com/'>cdazzdev</a></h6>
                         </div>
                     </footer>
                 </main>
