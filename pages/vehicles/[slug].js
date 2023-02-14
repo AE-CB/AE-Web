@@ -25,6 +25,7 @@ const Car = ({ vehicle }) => {
     const [open, setOpen] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
     const [openEditQuestion, setOpenEditQuestion] = useState(false);
+    const [openEditAnswer, setOpenEditAnswer] = useState(false);
     const [questionId, setQuestionId] = useState(null);
     const [questionText, setQuestionText] = useState("");
     const [questionAnswer, setQuestionAnswer] = useState("");
@@ -36,6 +37,7 @@ const Car = ({ vehicle }) => {
     const handleClickOpen = (item, type) => {
         setQuestionId(item.id)
         setQuestionText(item.question)
+        setQuestionAnswer(item.answer)
 
         if (type == 'unAnswered') {
             setOpen(true);
@@ -43,6 +45,10 @@ const Car = ({ vehicle }) => {
 
         if (type == 'unApproved') {
             setOpenEditQuestion(true);
+        }
+
+        if (type == 'unApprovedAnswer') {
+            setOpenEditAnswer(true);
         }
     };
 
@@ -52,6 +58,7 @@ const Car = ({ vehicle }) => {
         setOpen(false);
         setOpenLogin(false)
         setOpenEditQuestion(false)
+        setOpenEditAnswer(false)
     };
 
     const submitAnswer = async () => {
@@ -211,6 +218,31 @@ const Car = ({ vehicle }) => {
         }
     }
 
+    const editAnswer = async (e) => {
+        if (session) {
+            let formData = new FormData();
+            formData.append('id', questionId);
+            formData.append('answer', questionAnswer);
+
+            const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/answer_question', {
+                method: 'POST',
+                body: formData,
+                headers: new Headers({
+                    'Authorization': 'Bearer ' + token,
+                })
+            })
+
+            if (res.status == 200) {
+                setShowAlert(true);
+                setAlertMsg('Your answer is edited')
+                getUnApprovedAnswers()
+                success_alert.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+            
+            setOpenEditAnswer(false)
+        }
+    }
+
     return (
 
         <main className="main-car">
@@ -306,7 +338,7 @@ const Car = ({ vehicle }) => {
                                     <h4>{item.question}</h4>
                                     <div className="answer">
                                         <p>{item.answer}
-                                            <span onClick={() => handleClickOpen(item, 'unAnswered')} className='answer_here'> Edit</span></p>
+                                            <span onClick={() => handleClickOpen(item, 'unApprovedAnswer')} className='answer_here'> Edit</span></p>
                                     </div>
                                 </div>
                             )
@@ -376,7 +408,7 @@ const Car = ({ vehicle }) => {
                                 <Button onClick={handleClose}>Ok</Button>
                             </DialogActions>
                         </Dialog>
-
+                        
                         <Dialog
                             open={openEditQuestion}
                             onClose={handleClose} fullWidth maxWidth="sm"
@@ -402,6 +434,33 @@ const Car = ({ vehicle }) => {
                             <DialogActions>
                                 <Button onClick={handleClose}>Cancel</Button>
                                 <Button onClick={editQuestion}>Submit</Button>
+                            </DialogActions>
+                        </Dialog>
+                        <Dialog
+                            open={openEditAnswer}
+                            onClose={handleClose} fullWidth maxWidth="sm"
+                        >
+                            <DialogTitle>Edit your Answer</DialogTitle>
+                            <DialogContent>
+                                {/* <DialogContentText id="alert-dialog-slide-description" defaultValue="Hello World">
+                                    
+                                </DialogContentText> */}
+                                <TextField
+                                    autoFocus
+                                    required
+                                    margin="dense"
+                                    id="editAnswer"
+                                    label="Your answer"
+                                    type="text"
+                                    fullWidth
+                                    variant="standard"
+                                    defaultValue={questionAnswer}
+                                    onChange={(e) => setQuestionAnswer(e.target.value)}
+                                />
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose}>Cancel</Button>
+                                <Button onClick={editAnswer}>Submit</Button>
                             </DialogActions>
                         </Dialog>
                         {/* <div className="previous-question">
