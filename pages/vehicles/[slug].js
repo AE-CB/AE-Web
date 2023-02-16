@@ -261,8 +261,8 @@ const Car = ({ vehicle }) => {
                         <h3>{vehicle.data.brand} {vehicle.data.model}</h3>
                     </div>
                     <div className="year-km">
-                        <p>Year: <span>{vehicle.data.year}</span></p>
-                        <p>Kilometers: <span>{vehicle.data.mileage}</span></p>
+                        <p>Manufactured Year: <span>{vehicle.data.year}</span></p>
+                        <p>Kilometers: <span>{vehicle.data.mileage} Km</span></p>
                     </div>
                     {/* <h4 className="car-price normal_text">Rs. <span>{vehicle.data.price}</span></h4> */}
                     <h4 className="car-price normal_text"><Price type='Rs.' price={vehicle.data.price}></Price></h4>
@@ -273,8 +273,8 @@ const Car = ({ vehicle }) => {
                     <div className="technical-data">
                         <p>Brand: <span>{vehicle.data.brand}</span></p>
                         <p>Model: <span>{vehicle.data.model}</span></p>
-                        <p>Year: <span>{vehicle.data.year}</span></p>
-                        <p>Mileage: <span>{vehicle.data.mileages}</span></p>
+                        <p>Manufactured Year: <span>{vehicle.data.year}</span></p>
+                        <p>Mileage: <span>{vehicle.data.mileage} Km</span></p>
                         <p>Color: <span>{vehicle.data.color}</span></p>
                         <p>Engine: <span>{vehicle.data.engine}</span></p>
                         {/* <p>Transmission: <span>6</span> velocidades</p> */}

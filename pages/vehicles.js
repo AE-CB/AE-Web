@@ -83,7 +83,7 @@ years = generateArrayOfYears();
 const yearlen = years.length;
 
 
-export async function getServerSideProps () {
+export async function getServerSideProps() {
     // console.log(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles');
 
     const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles', {
@@ -343,7 +343,8 @@ const Vehicles = ({ vehicles }) => {
                         <Image width={25} height={25} className='sortimg' src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/orderasc.png"} alt="icono ordenamiento" />
                         <p>Sort by:</p>
                         <select name="ordenamiento" id="" onChange={setSort}>
-                            <option value="date">Date Added</option>
+                            <option value="date">Latest first</option>
+                            {/* <option value="date_old">Oldest first</option> */}
                             <option value="priceasc">Lowest price</option>
                             <option value="pricedec">highest price</option>
                         </select>
@@ -398,7 +399,7 @@ const Vehicles = ({ vehicles }) => {
                         <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
                             <FormControl fullWidth sx={{ marginBottom: 0 }}>
                                 <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
-                                    Year Min
+                                    Manufactured Year Min
                                 </InputLabel>
                                 <NativeSelect
                                     defaultValue={'all'}
@@ -423,7 +424,7 @@ const Vehicles = ({ vehicles }) => {
                         <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
                             <FormControl fullWidth sx={{ marginBottom: 0 }}>
                                 <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
-                                    Year Max
+                                    Manufactured Year Max
                                 </InputLabel>
                                 <NativeSelect
                                     defaultValue={'all'}
@@ -648,8 +649,8 @@ const Vehicles = ({ vehicles }) => {
                                                 <h3>{item.brand} {item.model}</h3>
                                             </div>
                                             <div className="car-data">
-                                                <p>Year: {item.year}</p>
-                                                <p>Kilometers: {item.mileage}</p>
+                                                <p>Manufactured Year: {item.year}</p>
+                                                <p>Kilometers: {item.mileage} Km</p>
                                                 <p><Price type='Rs.' price={item.price}></Price></p>
                                             </div>
                                         </div>
