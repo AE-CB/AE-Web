@@ -353,9 +353,9 @@ const Vehicles = ({ vehicles }) => {
                 <section className="filter-cars">
 
                     {/* Filtrar y Vehiculos  */}
-                    <section className="filters custom_filters">
+                    <section className="filters custom_filters" ref={filtersRef}>
                         {/* Filtrar  */}
-                        <div ref={filtersRef} className="filter-title">
+                        <div className="filter-title">
                             <Image width={25} height={25} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/simbolo-de-herramienta-llena-de-filtro.png"} alt="icono filtrar" />
                             <p>Filters:</p>
                             <a href="#">Filters</a>
