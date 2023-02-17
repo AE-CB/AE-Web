@@ -343,8 +343,8 @@ const Vehicles = ({ vehicles }) => {
                         <Image width={25} height={25} className='sortimg' src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/icons/orderasc.png"} alt="icono ordenamiento" />
                         <p>Sort by:</p>
                         <select name="ordenamiento" id="" onChange={setSort}>
-                            <option value="date">Latest first</option>
-                            {/* <option value="date_old">Oldest first</option> */}
+                            <option value="date">Date Addded Latest First</option>
+                            <option value="date_old">Date Addded Oldest First</option>
                             <option value="priceasc">Lowest price</option>
                             <option value="pricedec">highest price</option>
                         </select>
