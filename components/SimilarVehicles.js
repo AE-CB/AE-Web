@@ -54,7 +54,7 @@ const SimilarVehicles = ({ city }) => {
                     let images = JSON.parse(item.images)
 
                     return (
-                        <a className="card-car" href={`/vehicles/${item.slug}`}>
+                        <a className="card-car" href={`/vehicles/${item.slug}`} key={i}>
                             <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_IMAGE_HOST + images[0].replace(/\\/g, "/")} alt="imagen auto nissan" />
                             <div className="info-car">
                                 <div className="car-brand">
