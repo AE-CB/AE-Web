@@ -4196,27 +4196,77 @@ select:hover {
   cursor: pointer;
 }
 
-.menu_link{
+.menu_link {
   color: black;
 }
 
-.answer_here{
+.answer_here {
   color: red;
 }
 
-.answer_here:hover{
+.answer_here:hover {
   cursor: pointer;
 }
 
-.edit_question{
+.edit_question {
   color: green;
 }
 
-.edit_question:hover{
+.edit_question:hover {
   cursor: pointer;
 }
 
+.item {
+  height: 10rem;
+  background: #4dc7a0;
+  padding: 1rem;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+.owl-prev {
+  width: 15px;
+  height: 100px;
+  position: absolute;
+  top: 40%;
+  margin-left: -20px;
+  display: block !important;
+  border:0px solid black;
+}
+
+.owl-next {
+  width: 15px;
+  height: 100px;
+  position: absolute;
+  top: 40%;
+  right: -25px;
+  display: block !important;
+  border:0px solid black;
+}
+.owl-prev i, .owl-next i {transform : scale(1,6); color: #ccc;}
+
+.similar_cars .owl-prev {
+  background: #fafafa !important;
+  height: 40px;
+  width: 40px;
+  margin-left: -44px;
+  border-radius: 20px;
+  border: 1px solid #939393 !important;
+}
+
+.similar_cars .owl-prev span {
+  top: -2px;
+  position: relative;
+}
+
+.similar_cars .owl-next {
+  background: #fafafa !important;
+  height: 40px;
+  width: 40px;
+  margin-right: -18px;
+  border-radius: 20px;
+  border: 1px solid #939393 !important;
+}
 
 /* position: 'absolute',
   top: '50%',

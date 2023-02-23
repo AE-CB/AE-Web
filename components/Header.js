@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react'
 import AppContext from '../context/AppContext'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { deleteCookie, hasCookie, getCookie } from 'cookies-next';
-import { Alert } from '@mui/material';
+import { Alert, Badge } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useRouter } from 'next/router'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
@@ -14,6 +14,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { setCookie } from 'cookies-next';
 import SetToken from '../hooks/SetToken'
+import MailIcon from '@mui/icons-material/Mail';
+
 
 
 const Header = () => {
@@ -121,6 +123,12 @@ const Header = () => {
 
             >
               <MenuItem sx={{ fontSize: 15, color: 'black' }}><Link className='menu_link' href={`/profile`}>Profile</Link></MenuItem>
+              {/* <MenuItem sx={{ fontSize: 15, color: 'black' }}>
+                Ntifications
+                <Badge sx={{ marginLeft: 1 }} badgeContent={4} color="primary">
+                  <MailIcon color="action" />
+                </Badge>
+              </MenuItem> */}
               <MenuItem sx={{ fontSize: 15, color: 'black' }} onClick={handleSignout}>Logout</MenuItem>
             </Menu>
           </div>

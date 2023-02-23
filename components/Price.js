@@ -1,9 +1,13 @@
 import React from 'react'
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const Price = ({type, price}) => {
   return (
     <>
-        {type} <span>{price}</span>
+        {type} <span>{numberWithCommas(price)}</span>
     </>
   )
 }

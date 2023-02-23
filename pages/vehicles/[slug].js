@@ -16,6 +16,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useSession } from 'next-auth/react'
 import Slide from '@mui/material/Slide';
+import SimilarVehicles from '../../components/SimilarVehicles';
 
 
 import { Alert } from '@mui/material';
@@ -213,7 +214,7 @@ const Car = ({ vehicle }) => {
                 getUnAnApprovedQuestions()
                 success_alert.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
             }
-            
+
             setOpenEditQuestion(false)
         }
     }
@@ -238,7 +239,7 @@ const Car = ({ vehicle }) => {
                 getUnApprovedAnswers()
                 success_alert.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
             }
-            
+
             setOpenEditAnswer(false)
         }
     }
@@ -408,7 +409,7 @@ const Car = ({ vehicle }) => {
                                 <Button onClick={handleClose}>Ok</Button>
                             </DialogActions>
                         </Dialog>
-                        
+
                         <Dialog
                             open={openEditQuestion}
                             onClose={handleClose} fullWidth maxWidth="sm"
@@ -471,73 +472,7 @@ const Car = ({ vehicle }) => {
                 </section>
             </section>
 
-            {/* <section className="similar-cars">
-                <h3>Similar vehicles</h3>
-                <div className="list-similar-cars">
-                    <a className="card-car" href="./car.html"> 
-                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/nissan-kicks.webp"} alt="imagen auto nissan" />
-                        <div className="info-car">
-                            <div className="car-brand">
-                                <Image className='nextimg' width={30} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/nissan-logo.webp"} alt="logo nissan" />
-                                <h3>Nissan Kicks</h3>
-                            </div>
-                            <div className="car-data">
-                                <p>Año: 2021</p>
-                                <p>Kilometros: 23500</p>
-                                <p>USD 29700</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a className="card-car" href="./car.html"> 
-                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/clio.webp"} alt="imagen auto renault" />
-                        <div> 
-                            <div className="car-brand">
-                                <Image className='nextimg' width={50} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/renault-logo.webp"} alt="logo renault" />
-                                <h3>Renault Clio</h3>
-                            </div>
-                            <div>
-                                <p>Año: 2018</p>
-                                <p>Kilometros: 46900</p>
-                                <p>USD 17600</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a className="card-car" href="./car.html"> 
-                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/swift.webp"} alt="imagen auto suzuki" />
-                        <div> 
-                            <div className="car-brand">
-                                <Image className='nextimg' width={30} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/suzuki_logo.webp"} alt="logo suzuki" />
-                                <h3>Suzuki Swift</h3>
-                            </div>
-                            <div>
-                                <p>Año: 2017</p>
-                                <p>Kilometros: 90600</p>
-                                <p>USD 14600</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a className="card-car" href="./car.html">
-                        <Image className='nextimg' width={1000} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar/accent.webp"} alt="imagen auto hyundai" />
-                        <div> 
-                            <div className="car-brand">
-                                <Image className='nextimg' width={40} height={1000} src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/comprar-home/hyundai-logo.webp"} alt="logo hyundai" />
-                                <h3>Hyundai Accent</h3>
-                            </div>
-                            <div>
-                                <p>Año: 2018</p>
-                                <p>Kilometros: 108500</p>
-                                <p>USD 21800</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div className="left-arrow">
-                        <i className="fas fa-chevron-left"></i>
-                    </div>
-                    <div className="right-arrow">
-                        <i className="fas fa-chevron-right"></i>
-                    </div>
-                </div>
-            </section> */}
+            <SimilarVehicles city={vehicle.data.city}/>    
         </main>
 
     )
