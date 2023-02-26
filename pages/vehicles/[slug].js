@@ -14,7 +14,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useSession } from 'next-auth/react'
+import { useSession, signIn } from 'next-auth/react'
 import Slide from '@mui/material/Slide';
 import SimilarVehicles from '../../components/SimilarVehicles';
 
@@ -246,6 +246,11 @@ const Car = ({ vehicle }) => {
         }
     }
 
+    const handleSignin = (e) => {
+        e.preventDefault()
+        signIn()
+    }
+
     return (
 
         <main className="main-car">
@@ -408,6 +413,9 @@ const Car = ({ vehicle }) => {
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>
+                            
+                                <Button onClick={handleSignin}>Login</Button>
+                                <Link href={`/auth/sign-up`}><Button>Register</Button></Link>
                                 <Button onClick={handleClose}>Ok</Button>
                             </DialogActions>
                         </Dialog>
@@ -474,7 +482,7 @@ const Car = ({ vehicle }) => {
                 </section>
             </section>
 
-            <SimilarVehicles city={vehicle.data.city}/>    
+            <SimilarVehicles city={vehicle.data.city} />
         </main>
 
     )
