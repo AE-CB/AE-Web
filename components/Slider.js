@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Image from 'next/image';
@@ -52,6 +52,13 @@ const Slider = ({ images }) => {
             setSelectedImg(images[place])
         }
     }
+
+    useEffect(() => {
+        if(images[0]){
+            setSelectedImg(images[0])
+        }
+    }, [images])
+    
 
     return (
         <>

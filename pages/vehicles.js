@@ -18,6 +18,10 @@ import { useSession } from 'next-auth/react';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LoupeIcon from '@mui/icons-material/Loupe';
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const NativeSelectBox = styled(Box)(({ theme }) => ({
     '.MuiInputBase-root': {
         marginBottom: '0 !important'
@@ -35,7 +39,15 @@ const ButtonBox = styled(Box)(({ theme }) => ({
     '.MuiButtonBase-root': {
         fontSize: 12,
         backgroundColor: '#0D367F',
-        width: '100%'
+        width: '100%',
+    }
+}));
+
+const ButtonBox2 = styled(Box)(({ theme }) => ({
+    '.MuiButtonBase-root': {
+        fontSize: 12,
+        backgroundColor: '#0097D3',
+        width: '100%',
     }
 }));
 
@@ -132,6 +144,7 @@ const Vehicles = ({ vehicles }) => {
     const filtersRef = useRef(null);
     const searchRef = useRef(null);
     const [showMore, setShowMore] = useState(false);
+    const [tempModel, setTempModel] = useState('');
 
     const [brand, setBrand] = useState("all");
     const [condition, setCondition] = useState("all");
@@ -157,6 +170,50 @@ const Vehicles = ({ vehicles }) => {
         let tempArr = filters;
         tempArr[type] = event.target.value;
     };
+
+    const clearFilters = async () => {
+        setBrand('all')
+        setCondition("all");
+        setModel("");
+        setYearMax("all");
+        setYearMin("all");
+        setPriceMax("");
+        setPriceMin("");
+        setCategory("all");
+        setGear("all");
+        setFuel("all");
+        setCity("all");
+
+        document.getElementById("brand_input").value = "";
+
+        let formData = new FormData();
+        formData.append('brand', 'all');
+        formData.append('condition', 'all');
+        formData.append('model', "");
+        formData.append('yearMax', 'all');
+        formData.append('yearMin', 'all');
+        formData.append('priceMax', "");
+        formData.append('priceMin', "");
+        formData.append('category', 'all');
+        formData.append('gear', 'all');
+        formData.append('fuel', 'all');
+        formData.append('city', 'all');
+        formData.append('sortfilter', sortfilter);
+        formData.append('search', searchtext);
+
+        const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/filtered_vehicles?page=1', {
+            method: 'POST',
+            body: formData,
+        })
+
+
+        const vehicleFiltered = await res.json()
+        setVehicleArr(vehicleFiltered.data)
+        setTotalItems(vehicleFiltered.total)
+        filtersRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        setPagecount(Math.ceil(vehicleFiltered.total / vehicleFiltered.per_page))
+        setPage(1)
+    }
 
     const filterItems = async () => {
         let formData = new FormData();
@@ -393,7 +450,7 @@ const Vehicles = ({ vehicles }) => {
                                 {/* <InputLabel sx={{ fontSize: 16 }} variant="standard" htmlFor="uncontrolled-native">
                                     Model 
                                 </InputLabel> */}
-                                <TextField id="standard-basic" label="Model" variant="standard" onChange={changeBrand} />
+                                <TextField id="brand_input" label="Model" variant="standard" onChange={changeBrand} />
                             </FormControl>
                         </TextFieldBox>
                         <NativeSelectBox sx={{ minWidth: 120, marginBottom: 0 }}>
@@ -622,9 +679,12 @@ const Vehicles = ({ vehicles }) => {
                         {!showMore && <CustomAdmore onClick={handleShowMore} sx={{ borderRadius: '12px', fontWeight: 'bold', width: '100%', marginBottom: '5px' }}>
                             <LoupeIcon sx={{ fontWeight: 'bold', marginRight: '5px' }} /> More Filters
                         </CustomAdmore>}
-                        <ButtonBox>
+                        <ButtonBox sx={{ marginBottom: '5px !important' }}>
                             <Button size="large" variant="contained" onClick={filterItems}>Apply Filters</Button>
                         </ButtonBox>
+                        <ButtonBox2>
+                            <Button size="large" variant="contained" onClick={clearFilters}>Clear Filters</Button>
+                        </ButtonBox2>
                     </section>
 
                     <section className="cars-list car-l-custom vehiclelist">
@@ -650,7 +710,7 @@ const Vehicles = ({ vehicles }) => {
                                             </div>
                                             <div className="car-data">
                                                 <p>Manufactured Year: {item.year}</p>
-                                                <p>Kilometers: {item.mileage} Km</p>
+                                                <p>Kilometers: {numberWithCommas(item.mileage)} Km</p>
                                                 <p><Price type='Rs.' price={item.price}></Price></p>
                                             </div>
                                         </div>

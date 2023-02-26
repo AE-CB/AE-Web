@@ -80,6 +80,8 @@ const AddItem = ({ session }) => {
     // const [owner, setOwner] = useState("");
     const [price, setPrice] = useState("");
     const [condition, setCondition] = useState("");
+    const [fuel, setFuel] = useState("");
+    const [gear, setGear] = useState("");
 
     var terrors = [];
     const [errors, setErrors] = useState([]);
@@ -102,6 +104,8 @@ const AddItem = ({ session }) => {
         // formData.append('owner', owner);
         formData.append('price', price);
         formData.append('condition', condition);
+        formData.append('fuel', fuel);
+        formData.append('gear', gear);
 
 
 
@@ -369,7 +373,7 @@ const AddItem = ({ session }) => {
                         </div>
                         <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/vender/car-aside-2.webp"} alt="imagen auto" />
                     </section>
-                    <section className="tec-section"> {/* Datos Tecnicos */}
+                    <section className=""> {/* Datos Tecnicos */}
                         <div>
                             <h2>3. Technical Data of the Vehicle</h2>
                             <div className="sign-up-field">
@@ -381,6 +385,25 @@ const AddItem = ({ session }) => {
                                 <h3>Engine</h3>
                                 <input type="text" name="motor" onChange={(e) => setEngine(e.target.value)}
                                     placeholder="What size is the engine of your vehicle?" autoComplete="off" required />
+                            </div>
+                            <div className="sign-up-field">
+                                <h3>Fuel Type</h3>
+                                <select defaultValue={''} name="fuel" id="" onChange={(e) => setFuel(e.target.value)} required>
+                                    <option value="" disabled>Select Your Fuel Type</option>
+                                    <option value="petrol">Petrol</option>
+                                    <option value="diesel">Diesel</option>
+                                    <option value="electric">Electric</option>
+                                    <option value="hybrid">Hybrid</option>
+                                    <option value="gas">Gas</option>
+                                </select>
+                            </div>
+                            <div className="sign-up-field">
+                                <h3>Gear</h3>
+                                <select defaultValue={''} name="fuel" id="" onChange={(e) => setGear(e.target.value)} required>
+                                    <option value="" disabled>Select Gear</option>
+                                    <option value="Automatic">Auto</option>
+                                    <option value="Manual">Manual</option>
+                                </select>
                             </div>
                             {/* <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" /> */}
                         </div>

@@ -18,6 +18,9 @@ import { useSession } from 'next-auth/react'
 import Slide from '@mui/material/Slide';
 import SimilarVehicles from '../../components/SimilarVehicles';
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 import { Alert } from '@mui/material';
 
@@ -99,7 +102,6 @@ const Car = ({ vehicle }) => {
 
 
     let images = JSON.parse(vehicle.data.images)
-    // console.log(images)    
 
     const [question, setQuestion] = useState("");
     // Unapproved questions for vehicle
@@ -254,7 +256,7 @@ const Car = ({ vehicle }) => {
             </div>
 
             <section className="car-section" >
-                <Slider images={images} />
+                <Slider images={JSON.parse(vehicle.data.images)} />
 
                 <section className="car-info">
                     <div className="car-brand-model">
@@ -263,7 +265,7 @@ const Car = ({ vehicle }) => {
                     </div>
                     <div className="year-km">
                         <p>Manufactured Year: <span>{vehicle.data.year}</span></p>
-                        <p>Kilometers: <span>{vehicle.data.mileage} Km</span></p>
+                        <p>Kilometers: <span>{numberWithCommas(vehicle.data.mileage)} Km</span></p>
                     </div>
                     {/* <h4 className="car-price normal_text">Rs. <span>{vehicle.data.price}</span></h4> */}
                     <h4 className="car-price normal_text"><Price type='Rs.' price={vehicle.data.price}></Price></h4>
@@ -275,7 +277,7 @@ const Car = ({ vehicle }) => {
                         <p>Brand: <span>{vehicle.data.brand}</span></p>
                         <p>Model: <span>{vehicle.data.model}</span></p>
                         <p>Manufactured Year: <span>{vehicle.data.year}</span></p>
-                        <p>Mileage: <span>{vehicle.data.mileage} Km</span></p>
+                        <p>Kilometers: <span>{numberWithCommas(vehicle.data.mileage)} Km</span></p>
                         <p>Color: <span>{vehicle.data.color}</span></p>
                         <p>Engine: <span>{vehicle.data.engine}</span></p>
                         {/* <p>Transmission: <span>6</span> velocidades</p> */}
@@ -482,7 +484,7 @@ Car.layout = "AdminLayout";
 export default Car
 
 // params: { slug } comes from url
-export const getStaticProps = async ({ params: { slug } }) => {
+export const getServerSideProps = async ({ params: { slug } }) => {
 
     const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/vehicles/' + slug, {
         method: 'get',
@@ -507,40 +509,40 @@ export const getStaticProps = async ({ params: { slug } }) => {
     }
 }
 
-export const getStaticPaths = async () => {
+// export const getStaticPaths = async () => {
 
-    const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles', {
-        method: 'get',
-        // headers: new Headers({
-        //     'Authorization': 'Bearer ' + process.env.API_KEY,
-        // })
-    })
+//     const res = await fetch(process.env.NEXT_PUBLIC_API_HOST + '/approved_vehicles', {
+//         method: 'get',
+//         // headers: new Headers({
+//         //     'Authorization': 'Bearer ' + process.env.API_KEY,
+//         // })
+//     })
 
-    const vehiclesitems = await res.json()
-    // console.log(vehiclesitems)
+//     const vehiclesitems = await res.json()
+//     // console.log(vehiclesitems)
 
-    // const vehicles = [
-    //     { "id": 2, "name": "John", "age": 30, "car": null },
-    //     { "id": 31, "name": "John 2", "age": 32, "car": null },
-    //     { "id": 32, "name": "John 2", "age": 32, "car": null },
-    //     { "id": 33, "name": "John 2", "age": 32, "car": null },
-    //     { "id": 34, "name": "John 2", "age": 32, "car": null },
-    //     { "id": 35, "name": "John 2", "age": 32, "car": null },
-    //     { "id": 36, "name": "John 2", "age": 32, "car": null },
-    //     { "id": 37, "name": "John 2", "age": 32, "car": null },
-    //     { "id": 38, "name": "John 2", "age": 32, "car": null },
-    // ]
+//     // const vehicles = [
+//     //     { "id": 2, "name": "John", "age": 30, "car": null },
+//     //     { "id": 31, "name": "John 2", "age": 32, "car": null },
+//     //     { "id": 32, "name": "John 2", "age": 32, "car": null },
+//     //     { "id": 33, "name": "John 2", "age": 32, "car": null },
+//     //     { "id": 34, "name": "John 2", "age": 32, "car": null },
+//     //     { "id": 35, "name": "John 2", "age": 32, "car": null },
+//     //     { "id": 36, "name": "John 2", "age": 32, "car": null },
+//     //     { "id": 37, "name": "John 2", "age": 32, "car": null },
+//     //     { "id": 38, "name": "John 2", "age": 32, "car": null },
+//     // ]
 
 
 
-    const paths = vehiclesitems.data.map((vehicle) => ({
-        params: {
-            slug: vehicle.slug.toString()
-        }
-    }));
+//     const paths = vehiclesitems.data.map((vehicle) => ({
+//         params: {
+//             slug: vehicle.slug.toString()
+//         }
+//     }));
 
-    return {
-        paths,
-        fallback: 'blocking'
-    }
-}
+//     return {
+//         paths,
+//         fallback: 'blocking'
+//     }
+// }
