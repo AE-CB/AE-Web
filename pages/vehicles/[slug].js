@@ -292,9 +292,11 @@ const Car = ({ vehicle }) => {
                 <section className="car-seller-info">
                     <h3>Seller Information</h3>
                     <div className="seller-info">
-                        <p>Name: <span>First Last</span></p>
-                        <p>Email: <span>example@gmail.com</span></p>
-                        <p>Phone Number: <span>000 000 000</span></p>
+                        <p>Name: <span>{vehicle.data.user?.name}</span></p>
+                        <p>Email: <span>{vehicle.data.user?.email}</span></p>
+                        <p>Phone Number: <span>
+                            <a href={"tel:" + vehicle.data.user?.mobile} >{vehicle.data.user?.mobile}</a>
+                        </span></p>
                     </div>
                     <a className="btn-seller-contact" href="#">Contact</a>
                 </section>
@@ -413,7 +415,7 @@ const Car = ({ vehicle }) => {
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                            
+
                                 <Button onClick={handleSignin}>Login</Button>
                                 <Link href={`/auth/sign-up`}><Button>Register</Button></Link>
                                 <Button onClick={handleClose}>Ok</Button>
