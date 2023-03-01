@@ -7,7 +7,7 @@ function numberWithCommas(x) {
 const Price = ({type, price}) => {
   return (
     <>
-        {type} <span>{numberWithCommas(price)}</span>
+        {type} <span>{numberWithCommas((Math.floor(price * 100) / 100))}</span>
     </>
   )
 }
