@@ -94,7 +94,7 @@ const Slider = ({ images }) => {
                         <ArrowForwardIosIcon />
                     </span>
                     <Image
-                        className='nextimg'
+                        className='singleimage'
                         width={1000} height={1000}
                         src={process.env.NEXT_PUBLIC_IMAGE_HOST + selectedImg}
                         alt="Main Image"

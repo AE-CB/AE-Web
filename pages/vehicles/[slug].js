@@ -295,10 +295,10 @@ const Car = ({ vehicle }) => {
                         <p>Name: <span>{vehicle.data.user?.name}</span></p>
                         <p>Email: <span>{vehicle.data.user?.email}</span></p>
                         <p>Phone Number: <span>
-                            <a href={"tel:" + vehicle.data.user?.mobile} >{vehicle.data.user?.mobile}</a>
+                            <a href={"tel:" + vehicle.data.user?.mobile}>{vehicle.data.user?.mobile}</a>
                         </span></p>
                     </div>
-                    <a className="btn-seller-contact" href="#">Contact</a>
+                    <a className="btn-seller-contact" href={"tel:" + vehicle.data.user?.mobile}>Contact</a>
                 </section>
 
                 <section className="car-description">
