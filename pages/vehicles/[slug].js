@@ -291,14 +291,32 @@ const Car = ({ vehicle }) => {
 
                 <section className="car-seller-info">
                     <h3>Seller Information</h3>
-                    <div className="seller-info">
-                        <p>Name: <span>{vehicle.data.user?.name}</span></p>
-                        <p>Email: <span>{vehicle.data.user?.email}</span></p>
-                        <p>Phone Number: <span>
-                            <a href={"tel:" + vehicle.data.user?.mobile}>{vehicle.data.user?.mobile}</a>
-                        </span></p>
-                    </div>
-                    <a className="btn-seller-contact" href={"tel:" + vehicle.data.user?.mobile}>Contact</a>
+
+                    {vehicle.data.change_owner ?
+                        <>
+                            <div className="seller-info">
+                                <p>Name: <span>{vehicle.data.name}</span></p>
+                                <p>Email: <span>{vehicle.data.email}</span></p>
+                                <p>Phone Number: <span>
+                                    <a href={"tel:" + vehicle.data.phone}>{vehicle.data.phone}</a>
+                                </span></p>
+                            </div>
+                            <a className="btn-seller-contact" href={"tel:" + vehicle.data.phone}>Contact</a>
+                        </>
+                        :
+                        <>
+                            <div className="seller-info">
+                                <p>Name: <span>{vehicle.data.user?.name}</span></p>
+                                <p>Email: <span>{vehicle.data.user?.email}</span></p>
+                                <p>Phone Number: <span>
+                                    <a href={"tel:" + vehicle.data.user?.mobile}>{vehicle.data.user?.mobile}</a>
+                                </span></p>
+                            </div>
+                            <a className="btn-seller-contact" href={"tel:" + vehicle.data.user?.mobile}>Contact</a>
+                        </>
+                    }
+
+
                 </section>
 
                 <section className="car-description">

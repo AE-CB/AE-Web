@@ -4274,6 +4274,14 @@ select:hover {
   object-fit: cover;
 }
 
+.owner_detail_checkbox{
+  margin-right: 5px;
+}
+
+.owner_detail_checkbox:hover{
+  cursor: pointer;
+}
+
 /* position: 'absolute',
   top: '50%',
   left: '50%',

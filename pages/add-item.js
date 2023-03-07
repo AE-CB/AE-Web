@@ -83,6 +83,11 @@ const AddItem = ({ session }) => {
     const [fuel, setFuel] = useState("");
     const [gear, setGear] = useState("");
 
+    const [checked, setChecked] = useState(false);
+    const [ownerName, setOwnerName] = useState("");
+    const [ownerPhone, setOwnerPhone] = useState("");
+    const [ownerEmail, setOwnerEmail] = useState("");
+
     var terrors = [];
     const [errors, setErrors] = useState([]);
 
@@ -107,7 +112,12 @@ const AddItem = ({ session }) => {
         formData.append('fuel', fuel);
         formData.append('gear', gear);
 
-
+        if (checked) {
+            formData.append('change_owner', 1);
+            formData.append('ownerName', ownerName);
+            formData.append('ownerPhone', ownerPhone);
+            formData.append('ownerEmail', ownerEmail);
+        }
 
         var ins = img_upload.current.files.length;
 
@@ -513,7 +523,40 @@ const AddItem = ({ session }) => {
                     </section>
                     <section className="end-section"> {/* Finalizar Publicacion */}
                         <div>
-                            <h2>6. Finish Publishing</h2>
+                            <h2>6. Owner details</h2>
+                            <div className="sign-up-field">
+                                <label>
+                                    <input checked={checked}
+                                        onChange={() => setChecked(!checked)}
+                                        className='owner_detail_checkbox' type="checkbox" />
+                                    Change owner detais. (Otherwise data will taken from the profile data)
+                                </label>
+                            </div>
+                            {checked &&
+                                <div>
+                                    <div className="sign-up-field">
+                                        <h3>Owner Name</h3>
+                                        <input type="text" name="kilometers" onChange={(e) => setOwnerName(e.target.value)}
+                                            placeholder="Owner's name" min="0" />
+                                    </div>
+                                    <div className="sign-up-field">
+                                        <h3>Owner Phone</h3>
+                                        <input type="text" name="kilometers" onChange={(e) => setOwnerPhone(e.target.value)}
+                                            placeholder="Owner's phone" min="0" required />
+                                    </div>
+                                    <div className="sign-up-field">
+                                        <h3>Email</h3>
+                                        <input type="text" name="kilometers" onChange={(e) => setOwnerEmail(e.target.value)}
+                                            placeholder="Email of User" min="0" required />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/vender/car-aside-5.webp"} alt="imagen auto" />
+                    </section>
+                    <section className="end-section"> {/* Finalizar Publicacion */}
+                        <div>
+                            <h2>7. Finish Publishing</h2>
                             {/* <div className="sign-up-field">
                                 <h3>Owner&apos;s Name</h3>
                                 <input type="text" name="owner" onChange={(e) => setOwner(e.target.value)}
@@ -530,16 +573,17 @@ const AddItem = ({ session }) => {
                             <div className="sign-up-field">
                                 <h3>Condition</h3>
                                 <select name="condition" id="" onChange={(e) => setCondition(e.target.value)} >
-                                    <option value={"antique"}>Antique</option>
-                                    <option value={"brand_new"}>Brand New</option>
                                     <option value={"registered"}>Registered</option>
+                                    <option value={"brand_new"}>Brand New</option>
                                     <option value={"unregistered"}>Unregistered</option>
+                                    <option value={"antique"}>Antique</option>
                                 </select>
                             </div>
                             {/* <Image width={1000} height={1000} className="nextimg logo-ch-vender" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/logo/carhouse-logo.png"} alt="logo CarHouse" /> */}
                         </div>
                         <Image width={1000} height={1000} className="nextimgaside-img" src={process.env.NEXT_PUBLIC_FRONT_IMAGE_HOST + "/assets/img/images/vender/car-aside-5.webp"} alt="imagen auto" />
                     </section>
+
                     <input className="btn-publish" type="submit" value="Publish" />
                 </form>
             </main>
