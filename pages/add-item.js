@@ -114,9 +114,9 @@ const AddItem = ({ session }) => {
 
         if (checked) {
             formData.append('change_owner', 1);
-            formData.append('ownerName', ownerName);
-            formData.append('ownerPhone', ownerPhone);
-            formData.append('ownerEmail', ownerEmail);
+            formData.append('name', ownerName);
+            formData.append('phone', ownerPhone);
+            formData.append('email', ownerEmail);
         }
 
         var ins = img_upload.current.files.length;
