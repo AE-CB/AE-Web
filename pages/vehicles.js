@@ -19,7 +19,11 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LoupeIcon from '@mui/icons-material/Loupe';
 
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if(x){
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }else{
+        return 0;
+    }
 }
 
 const NativeSelectBox = styled(Box)(({ theme }) => ({
